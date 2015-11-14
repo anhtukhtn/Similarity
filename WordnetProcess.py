@@ -301,3 +301,4 @@ def get_synsets_n_v(word_origin, wn_words):
   return wn_words_synset
   ########################################
 
+
