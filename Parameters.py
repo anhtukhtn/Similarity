@@ -44,10 +44,10 @@ class PARAMETERS:
   SIMILARITY_METHOD_USING = SIMILARITY_METHOD.JCN
 
   # n best when calculating similarity for each synset
-  N_BEST_CALCULATE_SIMILARITY = 8
+  N_BEST_CALCULATE_SIMILARITY = 5
 
   # weight for jaccard and similarity
-  JACCARD_WEIGHT = 0.3
+  JACCARD_WEIGHT = 0.2
 
 ####################################################################################################
 
