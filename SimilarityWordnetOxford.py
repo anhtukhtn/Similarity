@@ -536,7 +536,7 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
           #
           p_max = dict_synset.path_similarity(wn_synset);
 
-          p_max = p_max*p_wn_words_synsets[iWnWord][synsetIndex]
+          # p_max = p_max*p_wn_words_synsets[iWnWord][synsetIndex]
 
           print p_wn_words_synsets[iWnWord][synsetIndex]
 
