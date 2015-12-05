@@ -818,7 +818,7 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
   FileProcess.write_to_excel_file("Results/parameters/path/"+WORD+"_synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
   #####################################################################################################
 
-def similarityWords(dictOxfordNouns ):
+def similarityWords(dictOxfordNouns):
 
   for word in dictOxfordNouns:
     print word
