@@ -15,13 +15,13 @@ def readCoFile(fileName):
   data = f.read();
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - paragraph
-  # No: 7988_1
-  # KEY: b-complex vitamin
+  # No: 1111_1
+  # KEY: bo
   # POS: noun
-  # RELATED_ENG: B-complex vitamin, B complex, vitamin B complex, vitamin B, B vitamin, B, b vitamins
-  # RELATED_VIE: vitamin nhóm B
-  # GLOSS_ENG: originally thought to be a single vitamin but now separated into several B vitamins
-  # GLOSS_VIE: ban đầu được cho là một chất vitamin nhưng bây giờ tách ra thành một số vitamin B
+  # RELATED_ENG: abc
+  # RELATED_VIE: abc
+  # GLOSS_ENG: abc
+  # GLOSS_VIE: abc
   # EX_ENG:
   # EX_VIE:
 

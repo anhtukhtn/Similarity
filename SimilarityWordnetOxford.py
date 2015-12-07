@@ -823,7 +823,7 @@ def similarityWords(dictOxfordNouns):
   for word in dictOxfordNouns:
     print word
     print dictOxfordNouns[word]
-    if word == 'bank':
+    if word == 'baby':
       similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
 
 dictOxfordNouns = OxfordParser.readOxfordNouns();

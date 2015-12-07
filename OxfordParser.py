@@ -20,7 +20,7 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
     oxfordNouns[runhd][str(iMeaning)]['sd'] = sd.text;
 
   # get d
-  d = meaning.find('.//d');
+  d = meaning.find('.//d') or meaning.find('.//ud');
   if d != None:
     oxfordNouns[runhd][str(iMeaning)]['d'] = d.text;
 
@@ -137,7 +137,7 @@ def readOxfordNouns():
               for iMeaning in range(len(meanings)):
                 readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,1)
             else:
-              meanings = word_POS.findall('.//d');
+              meanings = word_POS.findall('.//d')or word_POS.findall('.//ud');
               if len(meanings)!= 0:
                 readContentOfWord(oxfordNouns,runhd,0,word_POS,0);
       else:
@@ -303,4 +303,4 @@ def writeDictFromOxfordToFile(filename, dict):
 
 
 dict = readOxfordNouns();
-writeDictFromOxfordToFile("OxfordDict/bank.csv",dict);
+writeDictFromOxfordToFile("OxfordDict/b.csv",dict);

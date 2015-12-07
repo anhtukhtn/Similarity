@@ -25,10 +25,10 @@ class PARAMETERS:
 
   # features in wn for a word
   DICT_WN_FEATURE_RELATION_definition = 1
-  DICT_WN_FEATURE_RELATION_hypernyms = 1
-  DICT_WN_FEATURE_RELATION_hyponyms = 1
-  DICT_WN_FEATURE_RELATION_part_meronyms = 1
-  DICT_WN_FEATURE_RELATION_member_holonyms = 1
+  DICT_WN_FEATURE_RELATION_hypernyms = 0
+  DICT_WN_FEATURE_RELATION_hyponyms = 0
+  DICT_WN_FEATURE_RELATION_part_meronyms = 0
+  DICT_WN_FEATURE_RELATION_member_holonyms = 0
 
   # using POS (extracting)
   POS_FEATURE_n = 1
