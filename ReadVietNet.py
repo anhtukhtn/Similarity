@@ -24,6 +24,11 @@ def readVietNetFile():
       line = f.readline();
       continue
 
+    if phrases[2] != "N":
+      line = f.readline();
+      continue
+
+
     arr_d_xh = phrases[4].split(";");
 
     if not dictVietNet.has_key(phrases[1]):
@@ -35,7 +40,7 @@ def readVietNetFile():
     # print dictVietNet[phrases[1]][curIndex]["tv"];
     dictVietNet[phrases[1]][curIndex]["d"] = arr_d_xh[0];
 
-    print dictVietNet[phrases[1]][curIndex]
+    # print dictVietNet[phrases[1]][curIndex]
 
     index += 1;
 

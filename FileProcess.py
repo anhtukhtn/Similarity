@@ -28,5 +28,17 @@ def write_to_excel_file(filename, row, matrix_2d):
   file.close();
   ########################################
 
+def append_to_excel_file(filename, row, matrix_2d):
+
+  file = open(filename, 'a');
+  writer = csv.writer(file);
+  writer.writerow(row);
+  for values in matrix_2d:
+    writer.writerow(values);
+
+  writer.writerow("");
+  file.close();
+  ########################################
+
 # a = [[1,2,3],[4,5,6],[7,8,9]]
 # write_to_excel_file("temp.csv",a,a)
