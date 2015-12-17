@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd582e2a-e30d-494a-8a37-2914f4d5fb3e" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/CompareWithGold.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CompareVietNetOxford.py" afterPath="$PROJECT_DIR$/CompareVietNetOxford.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileProcess.py" afterPath="$PROJECT_DIR$/FileProcess.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OxfordParser.py" afterPath="$PROJECT_DIR$/OxfordParser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReadVietNet.py" afterPath="$PROJECT_DIR$/ReadVietNet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilarityWordnetOxford.py" afterPath="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Similarity.iws" />
@@ -29,7 +33,7 @@
         <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="817" column="0" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
+              <caret line="816" column="34" selection-start-line="816" selection-start-column="34" selection-end-line="816" selection-end-column="34" />
               <folding>
                 <element signature="e#19#38#0" expanded="true" />
               </folding>
@@ -37,24 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoParser.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CoParser.py">
+      <file leaf-file-name="CompareVietNetOxford.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/CompareVietNetOxford.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.26030368">
+              <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
+              <folding>
+                <element signature="e#47#65#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompareVietNetOxford.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CompareVietNetOxford.py">
+      <file leaf-file-name="CompareWithGold.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75609756">
-              <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-              <folding>
-                <element signature="e#47#65#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,7 +67,7 @@
         <entry file="file://$PROJECT_DIR$/OxfordParser.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="139" column="74" selection-start-line="139" selection-start-column="74" selection-end-line="139" selection-end-column="74" />
+              <caret line="304" column="17" selection-start-line="304" selection-start-column="17" selection-end-line="304" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -73,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/FileProcess.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -83,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/ReadVietNet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+              <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -108,11 +112,12 @@
         <option value="$PROJECT_DIR$/LaconecParser.py" />
         <option value="$PROJECT_DIR$/CoParser.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/OxfordParser.py" />
-        <option value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
         <option value="$PROJECT_DIR$/Parameters.py" />
+        <option value="$PROJECT_DIR$/OxfordParser.py" />
         <option value="$PROJECT_DIR$/ReadVietNet.py" />
         <option value="$PROJECT_DIR$/FileProcess.py" />
+        <option value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
+        <option value="$PROJECT_DIR$/CompareWithGold.py" />
         <option value="$PROJECT_DIR$/CompareVietNetOxford.py" />
       </list>
     </option>
@@ -125,6 +130,22 @@
     <option name="y" value="24" />
     <option name="width" value="1301" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>Buildout</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -149,6 +170,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -183,14 +206,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="settings.editor.splitter.proportion" value="0.237534" />
   </component>
   <component name="RunManager" selected="Python.CompareVietNetOxford">
     <configuration default="false" name="SimilarityWordnetOxford" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -206,23 +229,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Similarity" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SimilarityWordB" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Similarity" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SimilarityWordB.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -274,6 +280,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Similarity" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CompareVietNetOxford.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="CompareWithGold" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Similarity" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CompareWithGold.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -402,18 +425,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
-      <item index="1" class="java.lang.String" itemvalue="Python.SimilarityWordB" />
-      <item index="2" class="java.lang.String" itemvalue="Python.Parameters" />
-      <item index="3" class="java.lang.String" itemvalue="Python.LaconecParser" />
-      <item index="4" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
+      <item index="1" class="java.lang.String" itemvalue="Python.Parameters" />
+      <item index="2" class="java.lang.String" itemvalue="Python.LaconecParser" />
+      <item index="3" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
+      <item index="4" class="java.lang.String" itemvalue="Python.CompareWithGold" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
         <item index="1" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
-        <item index="2" class="java.lang.String" itemvalue="Python.LaconecParser" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Parameters" />
-        <item index="4" class="java.lang.String" itemvalue="Python.SimilarityWordB" />
+        <item index="2" class="java.lang.String" itemvalue="Python.CompareWithGold" />
+        <item index="3" class="java.lang.String" itemvalue="Python.LaconecParser" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Parameters" />
       </list>
     </recent_temporary>
   </component>
@@ -432,7 +455,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -441,7 +464,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15680246" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39880952" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4077381" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27083334" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -492,9 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -502,9 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4368" column="0" selection-start-line="4368" selection-start-column="0" selection-end-line="4368" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -530,9 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -558,9 +572,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -568,9 +579,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -596,9 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -606,9 +611,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -634,9 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,9 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,9 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="186" column="4" selection-start-line="186" selection-start-column="4" selection-end-line="186" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -682,9 +675,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="297" column="0" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -710,9 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -720,9 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4365" column="0" selection-start-line="4365" selection-start-column="0" selection-end-line="4365" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -748,9 +732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="184" column="4" selection-start-line="184" selection-start-column="4" selection-end-line="184" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -758,9 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="312" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -786,9 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,9 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="343" column="6" selection-start-line="343" selection-start-column="6" selection-end-line="343" selection-end-column="6" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -824,9 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -834,9 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="343" column="6" selection-start-line="343" selection-start-column="6" selection-end-line="343" selection-end-column="6" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -866,7 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.142857">
           <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -874,9 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -884,34 +846,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4368" column="0" selection-start-line="4368" selection-start-column="0" selection-end-line="4368" selection-end-column="0" />
-          <folding>
-            <element signature="e#64#101#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
+    <entry file="file://$PROJECT_DIR$/OxfordParser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="817" column="0" selection-start-line="817" selection-start-column="0" selection-end-line="817" selection-end-column="0" />
-          <folding>
-            <element signature="e#19#38#0" expanded="true" />
-          </folding>
+          <caret line="304" column="17" selection-start-line="304" selection-start-column="17" selection-end-line="304" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ReadVietNet.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CoParser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -919,23 +868,33 @@
     <entry file="file://$PROJECT_DIR$/FileProcess.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="19" selection-start-line="38" selection-start-column="19" selection-end-line="38" selection-end-column="19" />
+          <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OxfordParser.py">
+    <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="139" column="74" selection-start-line="139" selection-start-column="74" selection-end-line="139" selection-end-column="74" />
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="816" column="34" selection-start-line="816" selection-start-column="34" selection-end-line="816" selection-end-column="34" />
+          <folding>
+            <element signature="e#19#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CompareVietNetOxford.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75609756">
-          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.26030368">
+          <caret line="8" column="41" selection-start-line="8" selection-start-column="41" selection-end-line="8" selection-end-column="41" />
           <folding>
             <element signature="e#47#65#0" expanded="true" />
           </folding>

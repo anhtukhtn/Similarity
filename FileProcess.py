@@ -36,7 +36,7 @@ def append_to_excel_file(filename, row, matrix_2d):
   for values in matrix_2d:
     writer.writerow(values);
 
-  writer.writerow("");
+  writer.writerow([]);
   file.close();
   ########################################
 

@@ -7,6 +7,11 @@ from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
 import FileProcess
 import heapq
+import CompareVietNetOxford
+import CompareWithGold
+
+import copy
+
 from nltk.metrics import jaccard_distance
 wordnet_lemmatizer = WordNetLemmatizer()
 
@@ -456,7 +461,6 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
   return dict_synsets_for_words;
   ########################################
 
-
 def choose_pair(matrix_similarity, wn_words, dict_words):
   if len(wn_words) == 1 and len(dict_words) == 1:
     matrix_similarity[0][0] += matrix_similarity[0][0] + 100;
@@ -475,6 +479,24 @@ def choose_pair(matrix_similarity, wn_words, dict_words):
       if matrix_similarity[iWnWord][order[0]] >= 1.1*matrix_similarity[iWnWord][order[1]]:
         matrix_similarity[iWnWord][order[0]] += 100;
 
+
+def choose_pair_0_1(matrix_similarity, wn_words, dict_words):
+  if len(wn_words) == 1 and len(dict_words) == 1:
+    matrix_similarity[0][0] = 1;
+
+  if len(wn_words) == 1 and len(dict_words) > 1:
+
+    order = heapq.nlargest(2, range(len(matrix_similarity[0])), matrix_similarity[0].__getitem__);
+
+    if matrix_similarity[0][order[0]] >= 1.1*matrix_similarity[0][order[1]]:
+      matrix_similarity[0][order[0]] = 1;
+
+  if len(wn_words) > 1 and len(dict_words) > 1:
+    for iWnWord in range(len(wn_words)):
+      order = heapq.nlargest(2, range(len(matrix_similarity[iWnWord])), matrix_similarity[iWnWord].__getitem__);
+
+      if matrix_similarity[iWnWord][order[0]] >= 1.1*matrix_similarity[iWnWord][order[1]]:
+        matrix_similarity[iWnWord][order[0]] = 1;
 
 # dictOxfordNouns = OxfordParser.readOxfordNouns();
 # get_nbest_synsets_for_word_in_oxford(dictOxfordNouns['bank'],'bank')
@@ -767,8 +789,13 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
     for iDictWord in range(len(dict_words)):
       matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord]*(1-PARAMETERS.JACCARD_WEIGHT) + PARAMETERS.JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
 
-  choose_pair(matrix_similarity,wn_words,dict_words);
+  choose_pair_0_1(matrix_similarity,wn_words,dict_words);
 
+  formatAndWriteMatrixToFile(copy.deepcopy(matrix_similarity), wn_words, dict_words ,WORD)
+
+  return matrix_similarity;
+
+def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
   ####################################################################################################
 
   print "----------------------------------------------------"
@@ -792,7 +819,7 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
   # - - - - - - - - - - - - - - - - - - - - - - - - -
   # row
   arrRowDict = [];
-  arrRowDict.append("--");
+  arrRowDict.append(WORD);
   for i in range(len(dict_words)):
     if not dict_words[str(i)].has_key('tv'):
       dict_words[str(i)]['tv'] = "--";
@@ -814,8 +841,11 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
   #         break
   #
   # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  #
-  FileProcess.write_to_excel_file("Results/parameters/path/"+WORD+"_synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
+
+
+
+  # FileProcess.write_to_excel_file("Results/parameters/path/"+WORD+"_synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
+  FileProcess.append_to_excel_file("Results/parameters/path/"+"synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
   #####################################################################################################
 
 def similarityWords(dictOxfordNouns):
@@ -824,7 +854,9 @@ def similarityWords(dictOxfordNouns):
     print word
     print dictOxfordNouns[word]
     if word == 'baby':
-      similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
+      matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
+      (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
+      print (precision, recall, accuracy)
 
 dictOxfordNouns = OxfordParser.readOxfordNouns();
 similarityWords(dictOxfordNouns)

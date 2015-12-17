@@ -51,5 +51,4 @@ def readVietNetFile():
   return dictVietNet
   ########################################
 
-
-readVietNetFile()
+# readVietNetFile()

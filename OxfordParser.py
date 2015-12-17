@@ -302,5 +302,5 @@ def writeDictFromOxfordToFile(filename, dict):
   ########################################
 
 
-dict = readOxfordNouns();
-writeDictFromOxfordToFile("OxfordDict/b.csv",dict);
+# dict = readOxfordNouns();
+# writeDictFromOxfordToFile("OxfordDict/b.csv",dict);
