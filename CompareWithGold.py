@@ -7,28 +7,41 @@ goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+"comp
 def compareGoldWithResult(dictResult,WORD):
   tp = 0.;
   tn = 0.;
-  fn = 0.;
-  fp = 0.;
+  fn = 0.00001;
+  fp = 0.00001;
 
-  print dictResult
-  print goldData[WORD]
+  if not goldData.has_key(WORD):
+    return (-1,0,0)
+
+  # print dictResult
+  # print goldData[WORD]
 
   for row in range(len(dictResult)):
     for col in range(len(dictResult[row])):
       result = dictResult[row][col]
       gold = goldData[WORD][row][col]
 
+      gold = int(gold)
       if result != 1:
         result = 0;
 
-      if result == gold and gold == 1:
+      # print "\n"
+      # print result
+      # print gold
+
+      if (result == gold and gold == 1):
         tp += 1.;
-      elif result == gold and gold == 0:
+        # print "tp"
+      elif (result == gold and gold == 0):
         tn += 1.;
-      elif result != gold and gold == 1:
+        # print "tn"
+      elif (result != gold and gold == 1):
         fn += 1.;
-      elif result != gold and gold == 0:
+        # print "fp"
+      elif (result != gold and gold == 0):
         fp += 1.;
+        # print "fp"
+
 
   precision = tp / (tp + fp);
   recall = tp / (tp + fn);

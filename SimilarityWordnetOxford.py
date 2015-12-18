@@ -40,8 +40,8 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
 
   for iWord in range(len(wn_synsets_for_word_origin)):
 
-    print "- - - - - - - - - - - - - - - - - - - - - - - - - - -";
-    print iWord;
+    # print "- - - - - - - - - - - - - - - - - - - - - - - - - - -";
+    # print iWord;
     wn_synsets_for_words.append([]);
 
     # add p
@@ -58,16 +58,16 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
     # add p
     p_synsets_for_words[iWord].append(1.5);
 
-    print synset_of_word
-    print "---"
+    # print synset_of_word
+    # print "---"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # get hypernyms
 
     if PARAMETERS.DICT_WN_FEATURE_RELATION_hypernyms == 1:
-      print "hypernyms"
+      # print "hypernyms"
       for hypernym in wn.synset(wordDict.name()).hypernyms():
-        print hypernym
+        # print hypernym
         wn_synsets_for_words[iWord].append(hypernym);
 
         # add p
@@ -77,9 +77,9 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # get meronyms
     if PARAMETERS.DICT_WN_FEATURE_RELATION_part_meronyms == 1:
-      print "meronyms"
+      # print "meronyms"
       for meronym in wn.synset(wordDict.name()).part_meronyms():
-        print meronym
+        # print meronym
         wn_synsets_for_words[iWord].append(meronym);
 
         # add p
@@ -88,9 +88,9 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
     # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # # get holonyms
     if PARAMETERS.DICT_WN_FEATURE_RELATION_member_holonyms == 1:
-      print "holonyms"
+      # print "holonyms"
       for holonym in wn.synset(wordDict.name()).member_holonyms():
-        print holonym
+        # print holonym
         wn_synsets_for_words[iWord].append(holonym);
 
         # add p
@@ -99,9 +99,9 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # get hyponyms
     if PARAMETERS.DICT_WN_FEATURE_RELATION_hyponyms == 1:
-      print "hyponyms"
+      # print "hyponyms"
       for hyponym in wn.synset(wordDict.name()).hyponyms():
-        print hyponym
+        # print hyponym
         wn_synsets_for_words[iWord].append(hyponym);
 
         # add p
@@ -112,10 +112,10 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
 
     if PARAMETERS.DICT_WN_FEATURE_RELATION_definition == 1:
 
-      print "\ndefinition ------";
+      # print "\ndefinition ------";
 
       tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wordDict.name()).definition()));
-      print tagged_sent
+      # print tagged_sent
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - -
       if PARAMETERS.POS_FEATURE_n == 1:
@@ -141,7 +141,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
                   p_max = p;
                   synsetMax = synsetNoun
 
-              print synsetMax
+              # print synsetMax
               if synsetMax not in wn_synsets_for_words[iWord]:
                 wn_synsets_for_words[iWord].append(synsetMax);
 
@@ -177,7 +177,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
                   p_max = p;
                   synsetMax = synsetVerb
               #
-              print synsetMax
+              # print synsetMax
               if synsetMax not in wn_synsets_for_words[iWord]:
                 wn_synsets_for_words[iWord].append(synsetMax);
 
@@ -187,7 +187,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
             # if synsetsDictNoun[0] not in wn_words_synset[iWord]:
             #   wn_words_synset[iWord].append(synsetsDictNoun[0]);
 
-    print wn_synsets_for_words[iWord]
+    # print wn_synsets_for_words[iWord]
 
   ########################################
   return wn_synsets_for_words,p_synsets_for_words;
@@ -214,7 +214,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
 
   for iWord in range(len(dict_words)):
 
-    print iWord;
+    # print iWord;
 
     dict_words_nouns.append([]);
     dict_synsets_for_words.append([]);
@@ -241,12 +241,12 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
 
       if len(nouns) == 0:
         tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
-        print tagged_sent
+        # print tagged_sent
         nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' and word != 'etc'))];
 
     elif wordDict.has_key("d") and wordDict["d"] != None:
       tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
-      print tagged_sent
+      # print tagged_sent
       nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' or word != 'etc'))];
     else:
       continue
@@ -262,7 +262,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     if len(dict_words_nouns[iWord]) == 0:
       continue
 
-    print dict_words_nouns[iWord]
+    # print dict_words_nouns[iWord]
     synsetsSD = [];
 
     for word in dict_words_nouns[iWord]:
@@ -300,9 +300,9 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
         dict_words_nouns[iWord].append(noun);
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    print wordDict["tv"]
-    print dict_words_nouns[iWord]
-
+    # print wordDict["tv"]
+    # print dict_words_nouns[iWord]
+    #
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     #
     # synsets
@@ -340,8 +340,8 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     # print "\n"
 
     synsetRoot = synsetsSD[iSDMax];
-    print "synsetroot"
-    print synsetRoot
+    # print "synsetroot"
+    # print synsetRoot
 
     for noun in dict_words_nouns[iWord]:
       synsets_noun = wn.synsets(noun, pos = 'n');
@@ -370,8 +370,8 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
       tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       verbs = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
 
-      print "VVVVV"
-      print verbs
+      # print "VVVVV"
+      # print verbs
       for verb in verbs:
         verb = wordnet_lemmatizer.lemmatize(verb, pos='v');
         if verb == None:
@@ -382,7 +382,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
           dict_words_verbs[iWord].append(verb);
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      print dict_words_verbs[iWord]
+      # print dict_words_verbs[iWord]
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - -
       #
@@ -429,8 +429,8 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
       # print "\n"
 
       synsetRoot = synsetsSD[iSDMax];
-      print "synsetroot"
-      print synsetRoot
+      # print "synsetroot"
+      # print synsetRoot
 
       for verb in dict_words_verbs[iWord]:
         synsets_verb = wn.synsets(verb, pos = 'v');
@@ -454,8 +454,8 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
         # if synsets_noun[0] not in dict_synsets_nouns[iWord]:
           # dict_synsets_nouns[iWord].append(synsets_noun[0]);
 
-    print "dict_synsets_nouns"
-    print dict_synsets_for_words[iWord]
+    # print "dict_synsets_nouns"
+    # print dict_synsets_for_words[iWord]
 
   ########################################
   return dict_synsets_for_words;
@@ -515,12 +515,12 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
   if len(wn_words) == 0:
     return ;
 
-  print "wn_words -------"
-  print wn_words;
+  # print "wn_words -------"
+  # print wn_words;
 
   (wn_words_synsets,p_wn_words_synsets) = get_synsets_for_word_in_wn(WORD, wn_words);
 
-  print wn_words_synsets
+  # print wn_words_synsets
 
   # matrix for similarity dict_words vs wn_words
   matrix_similarity = [[0 for x in range(len(dict_words))] for x in range(len(wn_words))];
@@ -560,7 +560,7 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
 
           # p_max = p_max*p_wn_words_synsets[iWnWord][synsetIndex]
 
-          print p_wn_words_synsets[iWnWord][synsetIndex]
+          # print p_wn_words_synsets[iWnWord][synsetIndex]
 
           if p_max == None:
             continue
@@ -568,7 +568,7 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
           arr_p.append(p_max);
 
           # print p_max
-        print "\n"
+        # print "\n"
 
         arr_p = sorted(arr_p, reverse=True);
 
@@ -620,7 +620,7 @@ def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_wo
   # print wn_words;
   (dict_words_synsets,p_dict_words_synsets) = get_synsets_for_word_in_wn(WORD, dict_words);
 
-  print "sysnets -----------------------.----.-----.--.-"
+  # print "sysnets -----------------------.----.-----.--.-"
 
   # matrix for similarity dict_words vs wn_words
   matrix_similarity_reverse = [[0 for x in range(len(dict_words))] for x in range(len(wn_words))];
@@ -766,6 +766,9 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
 
   matrix_similarity = similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words,wn_words)
 
+  if matrix_similarity == None:
+    return
+
   matrix_similarity_reverse = similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD , wn_words, dict_words)
 
   for iWnWord in range(len(wn_words)):
@@ -774,7 +777,6 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
       matrix_similarity[iWnWord][iDictWord] /= 2;
 
 
-  print "----------------------------------------------------"
   s = [[str(e) for e in row] for row in matrix_similarity]
   lens = [max(map(len, col)) for col in zip(*s)]
   fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
@@ -850,13 +852,35 @@ def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
 
 def similarityWords(dictOxfordNouns):
 
+  total_precision = 0;
+  total_recall = 0;
+  total_accuracy = 0;
+  missingWORD = 0;
   for word in dictOxfordNouns:
     print word
-    print dictOxfordNouns[word]
-    if word == 'baby':
-      matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
-      (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
-      print (precision, recall, accuracy)
+    # print dictOxfordNouns[word]
+    # if word == 'baby':
+    matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
+
+    if matrix_result == None:
+      missingWORD += 1;
+      continue
+
+    (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
+    print (precision, recall, accuracy)
+    if precision != -1:
+      total_precision += precision
+      total_recall += recall
+      total_accuracy += accuracy
+    else:
+      missingWORD += 1
+
+  print "total:"
+
+  print missingWORD
+  print total_precision/(len(dictOxfordNouns)-missingWORD)
+  print total_recall/(len(dictOxfordNouns)-missingWORD)
+  print total_precision/(len(dictOxfordNouns)-missingWORD)
 
 dictOxfordNouns = OxfordParser.readOxfordNouns();
 similarityWords(dictOxfordNouns)

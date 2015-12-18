@@ -8,9 +8,33 @@ import csv
 from nltk.corpus import wordnet as wn
 from nltk.metrics import jaccard_distance
 
+def levenshtein(a,b):
+    "Calculates the Levenshtein distance between a and b."
+    n, m = len(a), len(b)
+    if n > m:
+        # Make sure n <= m, to use O(min(n,m)) space
+        a,b = b,a
+        n,m = m,n
+
+    current = range(n+1)
+    for i in range(1,m+1):
+        previous, current = current, [i]+[0]*n
+        for j in range(1,n+1):
+            add, delete = previous[j]+1, current[j-1]+1
+            change = previous[j-1]
+            if a[j-1] != b[i-1]:
+                change = change + 1
+            current[j] = min(add, delete, change)
+
+    return current[n]
+
+
 def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
 
   for WORD in dict_Oxford:
+
+    # if WORD == "BA":
+      # print "holyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyy"
 
     wn_words = wn.synsets(WORD, pos = 'n');
     if wn_words == None:
@@ -33,7 +57,10 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
 
         vietNet = {};
         for iVietNet in arr_VietNet:
-          if arr_VietNet[iVietNet]["d"] == definitionWn:
+
+          levenshtein_vn_wn = levenshtein(arr_VietNet[iVietNet]["d"],definitionWn)
+
+          if levenshtein_vn_wn < len(definitionWn)/2.:
             vietNet = arr_VietNet[iVietNet];
             break
 
@@ -64,7 +91,7 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
           print arr_tv_oxford
           print jaccard
           matrix_similarity[iWn][iOxford] = 0;
-          if jaccard < 0.9:
+          if jaccard < 0.95:
             matrix_similarity[iWn][iOxford] = 1;
 
         matrix_similarity[iWn].insert(0,viet_net_tv + "<>" + definitionWn.encode("utf-8"));
@@ -131,7 +158,7 @@ def readResultFile(fileName):
   ########################################
 
 # readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox.csv");
-
-dict_VN = ReadVietNet.readVietNetFile()
-dict_Ox = OxfordParser.readOxfordNouns();
-compareVietNetAndOxford(dict_VN,dict_Ox)
+#
+# dict_VN = ReadVietNet.readVietNetFile()
+# dict_Ox = OxfordParser.readOxfordNouns();
+# compareVietNetAndOxford(dict_VN,dict_Ox)
