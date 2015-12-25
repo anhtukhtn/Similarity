@@ -872,6 +872,11 @@ def similarityWords(dictOxfordNouns):
       total_precision += precision
       total_recall += recall
       total_accuracy += accuracy
+      print "result -------"
+      print precision
+      print recall
+      print accuracy
+      print "\n"
     else:
       missingWORD += 1
 

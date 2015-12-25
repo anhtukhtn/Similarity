@@ -3,7 +3,7 @@ __author__ = 'tu'
 import CompareVietNetOxford
 
 goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox.csv");
-
+print goldData
 def compareGoldWithResult(dictResult,WORD):
   tp = 0.;
   tn = 0.;
@@ -46,6 +46,9 @@ def compareGoldWithResult(dictResult,WORD):
   precision = tp / (tp + fp);
   recall = tp / (tp + fn);
   accuracy = (tp + tn) / (tp + tn + fp + fn);
+
+  if precision == recall and precision == 0 and fn == fp and fn == 0:
+    precision = -1;
 
   return (precision, recall, accuracy)
   ########################################

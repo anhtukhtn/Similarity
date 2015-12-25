@@ -116,7 +116,7 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
 
         arrRowDict.append(dict_Oxford[WORD][str(i)]["tv"].encode("utf-8") + "<>" + dict_Oxford[WORD][str(i)]["d"].encode("utf-8"));
 
-      FileProcess.append_to_excel_file("Results/parameters/VN_Ox/"+"compare_VN_Ox.csv",arrRowDict,matrix_similarity)
+      FileProcess.append_to_excel_file("Results/parameters/VN_Ox/"+"compare_VN_Ox_2.csv",arrRowDict,matrix_similarity)
 
 def readResultFile(fileName):
 
@@ -157,8 +157,8 @@ def readResultFile(fileName):
 
   ########################################
 
-# readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox.csv");
+# readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox_v2.csv");
 #
-# dict_VN = ReadVietNet.readVietNetFile()
-# dict_Ox = OxfordParser.readOxfordNouns();
-# compareVietNetAndOxford(dict_VN,dict_Ox)
+dict_VN = ReadVietNet.readVietNetFile()
+dict_Ox = OxfordParser.readOxfordNouns();
+compareVietNetAndOxford(dict_VN,dict_Ox)

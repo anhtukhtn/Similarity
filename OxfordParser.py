@@ -8,6 +8,29 @@ import csv
 from collections import OrderedDict
 
 def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
+
+  # if len(meanings) == 0:
+  #   return
+
+  meaning = meanings
+
+  if isinstance(meanings,list):
+    meaning = meanings[iMeaning]
+
+  d = meaning.find('.//d') or meaning.find('.//ud');
+  if d == None:
+    return
+
+  # get meaning
+  vn = meaning.find('.//meaning');
+  if vn == None:
+    vn = meaning.find('.//txt_v_s_srf');
+
+  if vn == None:
+    return
+
+
+
   oxfordNouns[runhd][str(iMeaning)] = OrderedDict();
 
   meaning = meanings[iMeaning]
@@ -30,6 +53,8 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
     vn = meaning.find('.//txt_v_s_srf');
   if vn != None and vn.text != None:
     oxfordNouns[runhd][str(iMeaning)]['tv'] = vn.text;
+  elif vn != None and vn.tail != None:
+    oxfordNouns[runhd][str(iMeaning)]['tv'] = vn.tail;
 
   # get examples
   x = meaning.findall('.//x');
@@ -40,6 +65,29 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
   xh = meaning.findall('.//xh');
   for i in range(len(xh)):
     oxfordNouns[runhd][str(iMeaning)]['xh' + str(i)] = xh[i].text;
+
+def checkAndRemoveInvalidElement(meanings):
+
+  if not isinstance(meanings,list):
+    return meanings
+
+  hasInvalid = 1
+
+  while hasInvalid == 1:
+    hasInvalid = 0
+    for meaning in meanings:
+      d = meaning.find('.//d') or meaning.find('.//ud');
+        # get meaning
+      vn = meaning.find('.//meaning');
+      if vn == None:
+        vn = meaning.find('.//txt_v_s_srf');
+
+      if vn == None or d == None or d.text == None:
+        meanings.remove(meaning)
+        hasInvalid = 1
+
+  return meanings
+
 
 
 ####################################################################################################
@@ -63,12 +111,20 @@ def readOxfordNouns():
     if runhd == None:
       continue
 
+    if runhd.text == "bayou" or runhd.text == "beak"\
+        or runhd.text == "beano" or runhd.text == "beast":
+      continue
+
     print runhd.text
 
     runhd = runhd.text;
 
-    if runhd == 'ballot box':
+    if runhd == 'bow':
+      print "holy -----------"
       adsf = 1;
+
+    if oxfordNouns.has_key(runhd):
+      continue
 
     # get noun, verb of word
     findallpg = word.findall('.//p-g');
@@ -83,28 +139,36 @@ def readOxfordNouns():
         if POS.strip() == 'noun':
           meanings = word_POS.findall('.//n-g');
 
-          oxfordNouns[runhd] = OrderedDict();
 
           if len(meanings) != 0:
+            oxfordNouns[runhd] = OrderedDict();
+            meanings = checkAndRemoveInvalidElement(meanings)
             for iMeaning in range(len(meanings)):
               readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,1)
+            break
           else:
             meanings = word_POS.findall('.//d');
-            if len(meanings)!= 0:
+            if len(meanings)!= 0 and not oxfordNouns.has_key(runhd):
+              oxfordNouns[runhd] = OrderedDict();
+              word_POS = checkAndRemoveInvalidElement(word_POS)
               readContentOfWord(oxfordNouns,runhd,0,word_POS,0);
+              break
     else:
       POS = word.find('.//z_p');
       if POS != None:
         if POS.text.strip() == 'noun':
-
-          oxfordNouns[runhd] = OrderedDict();
           meanings = word.findall('.//sd-g') or word.findall('.//n-g');
 
           if len(meanings) != 0:
+            oxfordNouns[runhd] = OrderedDict();
+            meanings = checkAndRemoveInvalidElement(meanings)
             for iMeaning in range(len(meanings)):
               readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,1)
           else:
-            readContentOfWord(oxfordNouns,runhd,0,word,0);
+            word = checkAndRemoveInvalidElement(word)
+            if len(word) != 0 and not oxfordNouns.has_key(runhd):
+              oxfordNouns[runhd] = OrderedDict();
+              readContentOfWord(oxfordNouns,runhd,0,word,0);
 
     for word_2 in word.findall('.//entry'):
 
@@ -131,31 +195,37 @@ def readOxfordNouns():
           if POS.strip() == 'noun':
             meanings = word_POS.findall('.//n-g');
 
-            oxfordNouns[runhd] = OrderedDict();
 
             if len(meanings) != 0:
+              oxfordNouns[runhd] = OrderedDict();
+              meanings = checkAndRemoveInvalidElement(meanings)
               for iMeaning in range(len(meanings)):
                 readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,1)
+              break
             else:
               meanings = word_POS.findall('.//d')or word_POS.findall('.//ud');
-              if len(meanings)!= 0:
+              meanings = checkAndRemoveInvalidElement(meanings)
+              if len(meanings)!= 0 and not oxfordNouns.has_key(runhd):
+                oxfordNouns[runhd] = OrderedDict();
                 readContentOfWord(oxfordNouns,runhd,0,word_POS,0);
+                break
       else:
         POS = word_2.find('.//z_p');
         if POS != None:
           if POS.text.strip() == 'noun':
 
-            oxfordNouns[runhd] = OrderedDict();
             meanings = word_2.findall('.//sd-g') or word_2.findall('.//n-g');
 
             if len(meanings) != 0:
+              oxfordNouns[runhd] = OrderedDict();
+              meanings = checkAndRemoveInvalidElement(meanings)
               for iMeaning in range(len(meanings)):
                 readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,1)
             else:
-              readContentOfWord(oxfordNouns,runhd,0,word_2,0);
-
-
-
+              word_2 = checkAndRemoveInvalidElement(word_2)
+              if len(word_2) != 0 and not oxfordNouns.has_key(runhd):
+                oxfordNouns[runhd] = OrderedDict();
+                readContentOfWord(oxfordNouns,runhd,0,word_2,0);
 
   ########################################
   return oxfordNouns;
@@ -175,7 +245,7 @@ def readOxfordVerbs():
   root = tree.getroot();
 
   # get all words
-  for word in root.findall('entry'):
+  for word in root.findall('entry') or root.findall('hd') or root.findall('entry/hd'):
 
     # get word
     runhd = word.find('.//runhd');
@@ -186,7 +256,7 @@ def readOxfordVerbs():
 
     runhd = runhd.text;
 
-    if runhd == 'ballot box':
+    if runhd == 'beloved':
       adsf = 1;
 
     # get noun, verb of word
@@ -292,6 +362,9 @@ def writeDictFromOxfordToFile(filename, dict):
     if dict[word] == None:
       continue
 
+    if word == "bay":
+      adf = 1
+
     for meaning in dict[word]:
       for key in dict[word][meaning]:
         if dict[word][meaning][key] == None:
@@ -303,4 +376,4 @@ def writeDictFromOxfordToFile(filename, dict):
 
 
 # dict = readOxfordNouns();
-# writeDictFromOxfordToFile("OxfordDict/b.csv",dict);
+# writeDictFromOxfordToFile("OxfordDict/b-detail.csv",dict);
