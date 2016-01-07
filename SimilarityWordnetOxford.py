@@ -472,7 +472,7 @@ def choose_pair(matrix_similarity, wn_words, dict_words):
     if matrix_similarity[0][order[0]] >= 1.1*matrix_similarity[0][order[1]]:
       matrix_similarity[0][order[0]] += 100;
 
-  if len(wn_words) > 1 and len(dict_words) > 1:
+  if len(wn_words) > 1 and len(dict_words) >= 1:
     for iWnWord in range(len(wn_words)):
       order = heapq.nlargest(2, range(len(matrix_similarity[iWnWord])), matrix_similarity[iWnWord].__getitem__);
 
@@ -481,21 +481,24 @@ def choose_pair(matrix_similarity, wn_words, dict_words):
 
 
 def choose_pair_0_1(matrix_similarity, wn_words, dict_words):
-  if len(wn_words) == 1 and len(dict_words) == 1:
+  if len(wn_words) == 1 and len(dict_words) == 1 and matrix_similarity[0][0] > 0.08:
     matrix_similarity[0][0] = 1;
 
-  if len(wn_words) == 1 and len(dict_words) > 1:
+  if len(wn_words) > 1 and len(dict_words) == 1:
+    col = []
+    for iWnWord in range(len(wn_words)):
+      col.append(matrix_similarity[iWnWord][0])
+    order = heapq.nlargest(2, range(len(wn_words)), col.__getitem__);
+    print "1 col"
+    print order
+    if matrix_similarity[order[0]][0] >= 1.2*matrix_similarity[order[1]][0] or matrix_similarity[order[0]][0]>0.25:
+      matrix_similarity[order[0]][0] = 1;
 
-    order = heapq.nlargest(2, range(len(matrix_similarity[0])), matrix_similarity[0].__getitem__);
-
-    if matrix_similarity[0][order[0]] >= 1.1*matrix_similarity[0][order[1]]:
-      matrix_similarity[0][order[0]] = 1;
-
-  if len(wn_words) > 1 and len(dict_words) > 1:
+  if len(wn_words) >= 1 and len(dict_words) > 1:
     for iWnWord in range(len(wn_words)):
       order = heapq.nlargest(2, range(len(matrix_similarity[iWnWord])), matrix_similarity[iWnWord].__getitem__);
 
-      if matrix_similarity[iWnWord][order[0]] >= 1.1*matrix_similarity[iWnWord][order[1]]:
+      if matrix_similarity[iWnWord][order[0]] >= 1.2*matrix_similarity[iWnWord][order[1]] or matrix_similarity[0][order[0]]>0.25:
         matrix_similarity[iWnWord][order[0]] = 1;
 
 # dictOxfordNouns = OxfordParser.readOxfordNouns();
@@ -600,14 +603,6 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
 
     # word-word
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  ####################################################################################################
-
-  print "----------------------------------------------------"
-  s = [[str(e) for e in row] for row in matrix_similarity]
-  lens = [max(map(len, col)) for col in zip(*s)]
-  fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-  table = [fmt.format(*row) for row in s]
-  print '\n'.join(table)
 
   ########################################
   return matrix_similarity
@@ -704,15 +699,6 @@ def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_wo
     # word-word
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  ####################################################################################################
-
-  print "----------------------------------------------------"
-  s = [[str(e) for e in row] for row in matrix_similarity_reverse]
-  lens = [max(map(len, col)) for col in zip(*s)]
-  fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-  table = [fmt.format(*row) for row in s]
-  print '\n'.join(table)
-
   ########################################
   return matrix_similarity_reverse
 
@@ -776,20 +762,17 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
       matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord] + matrix_similarity_reverse[iDictWord][iWnWord];
       matrix_similarity[iWnWord][iDictWord] /= 2;
 
+  matrix_similarity_jaccard = similarity_by_jaccard(WORD, dict_words, wn_words)
+
+  for iWnWord in range(len(wn_words)):
+    for iDictWord in range(len(dict_words)):
+      matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord]*(1-PARAMETERS.JACCARD_WEIGHT) + PARAMETERS.JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
 
   s = [[str(e) for e in row] for row in matrix_similarity]
   lens = [max(map(len, col)) for col in zip(*s)]
   fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
   table = [fmt.format(*row) for row in s]
   print '\n'.join(table)
-
-  ####################################################################################################
-
-  matrix_similarity_jaccard = similarity_by_jaccard(WORD, dict_words, wn_words)
-
-  for iWnWord in range(len(wn_words)):
-    for iDictWord in range(len(dict_words)):
-      matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord]*(1-PARAMETERS.JACCARD_WEIGHT) + PARAMETERS.JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
 
   choose_pair_0_1(matrix_similarity,wn_words,dict_words);
 
@@ -798,15 +781,6 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
   return matrix_similarity;
 
 def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
-  ####################################################################################################
-
-  print "----------------------------------------------------"
-  s = [[str(e) for e in row] for row in matrix_similarity]
-  lens = [max(map(len, col)) for col in zip(*s)]
-  fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-  table = [fmt.format(*row) for row in s]
-  print '\n'.join(table)
-
 
   ####################################################################################################
   #

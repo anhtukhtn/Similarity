@@ -112,14 +112,19 @@ def readOxfordNouns():
       continue
 
     if runhd.text == "bayou" or runhd.text == "beak"\
-        or runhd.text == "beano" or runhd.text == "beast":
+        or runhd.text == "beano" or runhd.text == "beast" \
+        or runhd.text == "basque" or runhd.text == "batman" or runhd == "bauxite"\
+        or runhd.text == "beachwear" or runhd.text == "beano"\
+        or runhd.text == "bellwether" or runhd.text == "bergamot"\
+        or runhd.text == "biddy" or runhd.text == "billow"\
+        or runhd.text == "billy" or runhd.text == "backhander":
       continue
 
     print runhd.text
 
     runhd = runhd.text;
 
-    if runhd == 'bow':
+    if runhd == 'baccy':
       print "holy -----------"
       adsf = 1;
 

@@ -25,9 +25,9 @@ def compareGoldWithResult(dictResult,WORD):
       if result != 1:
         result = 0;
 
-      # print "\n"
-      # print result
-      # print gold
+      print "pair result"
+      print result
+      print gold
 
       if (result == gold and gold == 1):
         tp += 1.;
@@ -42,12 +42,18 @@ def compareGoldWithResult(dictResult,WORD):
         fp += 1.;
         # print "fp"
 
+  if tp == tn and tp == 0:
+    print "tp tn fp fn"
+    print tp
+    print tn
+    print fp
+    print fn
 
   precision = tp / (tp + fp);
   recall = tp / (tp + fn);
   accuracy = (tp + tn) / (tp + tn + fp + fn);
 
-  if precision == recall and precision == 0 and fn == fp and fn == 0:
+  if precision == recall and precision == 0 and fn == fp and fn < 1:
     precision = -1;
 
   return (precision, recall, accuracy)

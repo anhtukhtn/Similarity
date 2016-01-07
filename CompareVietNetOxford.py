@@ -33,6 +33,9 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
 
   for WORD in dict_Oxford:
 
+    if len(dict_Oxford[WORD]) == 0:
+      continue
+
     # if WORD == "BA":
       # print "holyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyyholyyy"
 
@@ -159,6 +162,6 @@ def readResultFile(fileName):
 
 # readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox_v2.csv");
 #
-dict_VN = ReadVietNet.readVietNetFile()
-dict_Ox = OxfordParser.readOxfordNouns();
-compareVietNetAndOxford(dict_VN,dict_Ox)
+# dict_VN = ReadVietNet.readVietNetFile()
+# dict_Ox = OxfordParser.readOxfordNouns();
+# compareVietNetAndOxford(dict_VN,dict_Ox)
