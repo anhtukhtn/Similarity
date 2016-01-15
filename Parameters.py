@@ -43,7 +43,7 @@ class PARAMETERS:
   N_BEST_CALCULATE_SIMILARITY = 4
 
   # weight for jaccard and similarity
-  JACCARD_WEIGHT = 0.2
+  JACCARD_WEIGHT = 0.05
 
 class PARAMETERS_CHOICE_0_1:
   CHOICE_1_1_MIN = 0.1

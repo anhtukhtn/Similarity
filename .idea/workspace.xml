@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd582e2a-e30d-494a-8a37-2914f4d5fb3e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CompareVietNetOxford.py" afterPath="$PROJECT_DIR$/CompareVietNetOxford.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CompareWithGold.py" afterPath="$PROJECT_DIR$/CompareWithGold.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileProcess.py" afterPath="$PROJECT_DIR$/FileProcess.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OxfordParser.py" afterPath="$PROJECT_DIR$/OxfordParser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameters.py" afterPath="$PROJECT_DIR$/Parameters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ReadVietNet.py" afterPath="$PROJECT_DIR$/ReadVietNet.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilarityWordnetOxford.py" afterPath="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -30,13 +25,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SimilarityWordnetOxford.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimilarityWordnetOxford.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1796875">
-              <caret line="834" column="17" selection-start-line="834" selection-start-column="17" selection-end-line="834" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="822" column="0" selection-start-line="822" selection-start-column="0" selection-end-line="822" selection-end-column="0" />
               <folding>
                 <element signature="e#19#38#0" expanded="true" />
+                <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Train_params.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Train_params.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="3.4292378">
+              <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
+              <folding>
+                <element signature="e#18#48#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,12 +119,13 @@
         <option value="$PROJECT_DIR$/WriteParametersAndResult.py" />
         <option value="$PROJECT_DIR$/FileProcess.py" />
         <option value="$PROJECT_DIR$/Results/parameters/params_result/params_result" />
-        <option value="$PROJECT_DIR$/Parameters.py" />
         <option value="$PROJECT_DIR$/OxfordParser.py" />
         <option value="$PROJECT_DIR$/CompareWithGold.py" />
         <option value="$PROJECT_DIR$/Results/parameters/VN_Ox/compare_VN_Ox_2.1.csv" />
         <option value="$PROJECT_DIR$/Results/parameters/VN_Ox/2.1/compare_VN_Ox_2.1_doing_done_15_1 (copy).csv" />
         <option value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
+        <option value="$PROJECT_DIR$/Parameters.py" />
+        <option value="$PROJECT_DIR$/Train_params.py" />
       </list>
     </option>
   </component>
@@ -124,10 +133,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="76" />
-    <option name="y" value="52" />
-    <option name="width" value="1288" />
-    <option name="height" value="741" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -177,7 +186,7 @@
     <property name="settings.editor.splitter.proportion" value="0.24637681" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/tu/PycharmProjects/WordNet/Similarity/SimilarityWordnetOxford.py" />
   </component>
-  <component name="RunManager" selected="Python.SimilarityWordnetOxford">
+  <component name="RunManager" selected="Python.Train_params">
     <configuration default="false" name="SimilarityWordnetOxford" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -229,23 +238,6 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="OxfordParser" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Similarity" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/OxfordParser.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="WriteParametersAndResult" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -259,6 +251,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Similarity" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/WriteParametersAndResult.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Train_params" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Similarity" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train_params.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -389,16 +398,16 @@
       <item index="0" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
       <item index="1" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
       <item index="2" class="java.lang.String" itemvalue="Python.CompareWithGold" />
-      <item index="3" class="java.lang.String" itemvalue="Python.OxfordParser" />
-      <item index="4" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
+      <item index="3" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Train_params" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
-        <item index="1" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
-        <item index="2" class="java.lang.String" itemvalue="Python.CompareWithGold" />
-        <item index="3" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
-        <item index="4" class="java.lang.String" itemvalue="Python.OxfordParser" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Train_params" />
+        <item index="1" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
+        <item index="2" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
+        <item index="3" class="java.lang.String" itemvalue="Python.CompareWithGold" />
+        <item index="4" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
       </list>
     </recent_temporary>
   </component>
@@ -416,8 +425,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="76" y="52" width="1288" height="741" extended-state="0" />
-    <editor active="true" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -426,7 +435,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19287375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3725794" sideWeight="0.8055771" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.7259317" sideWeight="0.6979086" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29900077" sideWeight="0.6979086" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29237947" sideWeight="0.19442293" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -459,7 +468,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="28" />
+      <option name="time" value="29" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -477,6 +486,7 @@
           <caret line="925" column="21" selection-start-line="925" selection-start-column="21" selection-end-line="925" selection-end-column="21" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -509,6 +519,7 @@
           <caret line="925" column="21" selection-start-line="925" selection-start-column="21" selection-end-line="925" selection-end-column="21" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -541,6 +552,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -573,6 +585,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -605,6 +618,7 @@
           <caret line="70" column="17" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -637,6 +651,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -669,6 +684,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -783,7 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,9 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-          <folding>
-            <element signature="e#64#74#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -801,7 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0234375">
           <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -811,6 +822,32 @@
           <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
           <folding>
             <element signature="e#19#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Results/parameters/VN_Ox/compare_VN_Ox_2.1.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.125">
+          <caret line="65" column="1098" selection-start-line="65" selection-start-column="1098" selection-end-line="65" selection-end-column="1098" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="822" column="0" selection-start-line="822" selection-start-column="0" selection-end-line="822" selection-end-column="0" />
+          <folding>
+            <element signature="e#19#38#0" expanded="true" />
+            <marker date="1452878209074" expanded="true" signature="26007:27293" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -825,22 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Results/parameters/VN_Ox/compare_VN_Ox_2.1.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.125">
-          <caret line="65" column="1098" selection-start-line="65" selection-start-column="1098" selection-end-line="65" selection-end-column="1098" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parameters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -849,12 +870,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
+    <entry file="file://$PROJECT_DIR$/Train_params.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1796875">
-          <caret line="834" column="17" selection-start-line="834" selection-start-column="17" selection-end-line="834" selection-end-column="18" />
+        <state vertical-scroll-proportion="3.4292378">
+          <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
           <folding>
-            <element signature="e#19#38#0" expanded="true" />
+            <element signature="e#18#48#0" expanded="true" />
           </folding>
         </state>
       </provider>

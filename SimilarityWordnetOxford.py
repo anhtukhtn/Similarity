@@ -823,83 +823,53 @@ def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
 
 def similarityWords(dictOxfordNouns):
 
+  print "\n --------------------------------------------------"
+  print "new round"
+
   total_precision = 0;
   total_recall = 0;
   total_accuracy = 0;
   missingWORD = 0;
-
-  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0.01
-  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.1
-  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.21
-  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.1
-  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.2
-  Parameters.PARAMETERS.JACCARD_WEIGHT = 0.0
-
-  step_for_min = 0.01
-  step_for_range = 0.01
-
-  # step_for_nbest = 1
-
   total_word = 0
   count_step = 0
 
+  for word in dictOxfordNouns:
+    # print dictOxfordNouns[word]
+    # if word == 'baby':
+    matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
 
-  while (Parameters.PARAMETERS.JACCARD_WEIGHT < 0.05):
+    if matrix_result == None:
+      missingWORD += 1;
+      continue
 
-    for word in dictOxfordNouns:
-      # print dictOxfordNouns[word]
-      # if word == 'baby':
-      matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
+    # print "\n"
+    print word
 
-      if matrix_result == None:
-        missingWORD += 1;
-        continue
-
+    (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
+    # print (precision, recall, accuracy)
+    if precision != -1:
+      total_precision += precision
+      total_recall += recall
+      total_accuracy += accuracy
+      total_word += 1
+      count_step += 1
+      # print "result -------"
+      # print precision
+      # print recall
+      # print accuracy
       # print "\n"
-      print word
+    else:
+      missingWORD += 1
 
-      (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
-      # print (precision, recall, accuracy)
-      if precision != -1:
-        total_precision += precision
-        total_recall += recall
-        total_accuracy += accuracy
-        total_word += 1
-        count_step += 1
-        # print "result -------"
-        # print precision
-        # print recall
-        # print accuracy
-        # print "\n"
-      else:
-        missingWORD += 1
+  # total_word = len(dictOxfordNouns) - missingWORD
+  precision = total_precision/total_word
+  recall = total_recall/total_word
+  accuracy = total_accuracy/total_word
+  print "total:"
+  print total_word
+  print precision
+  print recall
+  print accuracy
 
-      # if count_step == 340:
-      #   break
+  WriteParametersAndResult.append_result_to_file(precision,recall,accuracy)
 
-    # total_word = len(dictOxfordNouns) - missingWORD
-    precision = total_precision/total_word
-    recall = total_recall/total_word
-    accuracy = total_accuracy/total_word
-    print "total:"
-    print total_word
-    print precision
-    print recall
-    print accuracy
-
-    WriteParametersAndResult.append_result_to_file(precision,recall,accuracy)
-
-    Parameters.PARAMETERS.JACCARD_WEIGHT += step_for_range
-
-    print "\n --------------------------------------------------"
-    print "new round"
-
-    total_precision = 0;
-    total_recall = 0;
-    total_accuracy = 0;
-    missingWORD = 0;
-    total_word = 0
-    count_step = 0
-
-dictOxfordNouns = OxfordParser.readOxfordNouns();
-similarityWords(dictOxfordNouns)
