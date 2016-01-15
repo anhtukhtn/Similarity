@@ -4,6 +4,7 @@ __author__ = 'tu'
 # -*- coding: utf-8 -
 
 import csv
+import time
 
 ####################################################################################################
 #
@@ -38,6 +39,18 @@ def append_to_excel_file(filename, row, matrix_2d):
 
   writer.writerow([]);
   file.close();
+  ########################################
+
+def append_result_to_excel_file(filename, values):
+  try:
+    file = open(filename, 'a');
+  except IOError:
+    time.sleep(1)
+    append_result_to_excel_file(filename,values)
+  with file:
+    writer = csv.writer(file);
+    writer.writerow(values);
+    file.close();
   ########################################
 
 # a = [[1,2,3],[4,5,6],[7,8,9]]

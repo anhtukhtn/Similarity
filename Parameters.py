@@ -19,10 +19,6 @@ class SIMILARITY_METHOD:
 
 class PARAMETERS:
 
-  # get num of b best when extracting oxford and wn
-  N_BEST_EXTRACT_OXFORD = 1
-  N_BEST_EXTRACT_WN = 1
-
   # features in wn for a word
   DICT_WN_FEATURE_RELATION_definition = 1
   DICT_WN_FEATURE_RELATION_hypernyms = 0
@@ -41,13 +37,19 @@ class PARAMETERS:
   DICT_OX_FEATURE_RELATION_x = 1
 
   # similarity method
-  SIMILARITY_METHOD_USING = SIMILARITY_METHOD.JCN
+  SIMILARITY_METHOD_USING = SIMILARITY_METHOD.PATH
 
   # n best when calculating similarity for each synset
-  N_BEST_CALCULATE_SIMILARITY = 5
+  N_BEST_CALCULATE_SIMILARITY = 4
 
   # weight for jaccard and similarity
   JACCARD_WEIGHT = 0.2
 
+class PARAMETERS_CHOICE_0_1:
+  CHOICE_1_1_MIN = 0.1
+  CHOICE_1_COL_MIN_FIRST = 0.5
+  CHOICE_1_COL_RANGE_FIRST = 1.01
+  CHOICE_N_N_MIN_FIRST = 0.5
+  CHOICE_N_N_RANGE_FIRST = 1.26
 ####################################################################################################
 

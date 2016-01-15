@@ -2,13 +2,13 @@ __author__ = 'tu'
 
 import CompareVietNetOxford
 
-goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox.csv");
-print goldData
+goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox_2.1.csv");
+# print goldData
 def compareGoldWithResult(dictResult,WORD):
   tp = 0.;
   tn = 0.;
-  fn = 0.00001;
-  fp = 0.00001;
+  fn = 0.0;
+  fp = 0.0;
 
   if not goldData.has_key(WORD):
     return (-1,0,0)
@@ -25,9 +25,9 @@ def compareGoldWithResult(dictResult,WORD):
       if result != 1:
         result = 0;
 
-      print "pair result"
-      print result
-      print gold
+      # print "pair result"
+      # print result
+      # print gold
 
       if (result == gold and gold == 1):
         tp += 1.;
@@ -43,15 +43,15 @@ def compareGoldWithResult(dictResult,WORD):
         # print "fp"
 
   if tp == tn and tp == 0:
-    print "tp tn fp fn"
-    print tp
-    print tn
-    print fp
-    print fn
+    print "tp tn == 0"
+  #   print tp
+  #   print tn
+  #   print fp
+  #   print fn
 
-  precision = tp / (tp + fp);
-  recall = tp / (tp + fn);
-  accuracy = (tp + tn) / (tp + tn + fp + fn);
+  precision = tp / (tp + fp + 0.000000001);
+  recall = tp / (tp + fn + 0.000000001);
+  accuracy = (tp + tn) / (tp + tn + fp + fn + 0.000000001);
 
   if precision == recall and precision == 0 and fn == fp and fn < 1:
     precision = -1;

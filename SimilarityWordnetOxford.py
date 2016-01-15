@@ -9,6 +9,8 @@ import FileProcess
 import heapq
 import CompareVietNetOxford
 import CompareWithGold
+import Parameters
+import WriteParametersAndResult
 
 import copy
 
@@ -481,7 +483,7 @@ def choose_pair(matrix_similarity, wn_words, dict_words):
 
 
 def choose_pair_0_1(matrix_similarity, wn_words, dict_words):
-  if len(wn_words) == 1 and len(dict_words) == 1 and matrix_similarity[0][0] > 0.08:
+  if len(wn_words) == 1 and len(dict_words) == 1 and matrix_similarity[0][0] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN:
     matrix_similarity[0][0] = 1;
 
   if len(wn_words) > 1 and len(dict_words) == 1:
@@ -489,22 +491,28 @@ def choose_pair_0_1(matrix_similarity, wn_words, dict_words):
     for iWnWord in range(len(wn_words)):
       col.append(matrix_similarity[iWnWord][0])
     order = heapq.nlargest(2, range(len(wn_words)), col.__getitem__);
-    print "1 col"
-    print order
-    if matrix_similarity[order[0]][0] >= 1.2*matrix_similarity[order[1]][0] or matrix_similarity[order[0]][0]>0.25:
+    # print "1 col"
+    # print order
+    if matrix_similarity[order[0]][0] >= Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST*matrix_similarity[order[1]][0] or \
+            matrix_similarity[order[0]][0] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST:
       matrix_similarity[order[0]][0] = 1;
 
   if len(wn_words) >= 1 and len(dict_words) > 1:
     for iWnWord in range(len(wn_words)):
       order = heapq.nlargest(2, range(len(matrix_similarity[iWnWord])), matrix_similarity[iWnWord].__getitem__);
 
-      if matrix_similarity[iWnWord][order[0]] >= 1.2*matrix_similarity[iWnWord][order[1]] or matrix_similarity[0][order[0]]>0.25:
+      if matrix_similarity[iWnWord][order[0]] >= Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST*matrix_similarity[iWnWord][order[1]] or\
+              matrix_similarity[0][order[0]] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST:
         matrix_similarity[iWnWord][order[0]] = 1;
 
 # dictOxfordNouns = OxfordParser.readOxfordNouns();
 # get_nbest_synsets_for_word_in_oxford(dictOxfordNouns['bank'],'bank')
 
 def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_words):
+
+  if len(wn_words) == 0:
+    return ;
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - -
   #
   # dictionary data
@@ -514,9 +522,6 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
   #
   # wordnet data
 
-
-  if len(wn_words) == 0:
-    return ;
 
   # print "wn_words -------"
   # print wn_words;
@@ -582,6 +587,8 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
           if i < nBest:
             p_dictNoun_wnNouns += arr_p[i];
             count += 1;
+          else:
+            break
 
         p_dictNoun_wnNouns = p_dictNoun_wnNouns/count;
         arr_p_word.append(p_dictNoun_wnNouns);
@@ -593,6 +600,8 @@ def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_wo
         if i < nBest:
           p_iWnWord_iDictWord += arr_p_word[i]*1;
           count += 1;
+        else:
+          break
 
       if count == 0:
         p_iWnWord_iDictWord = 0;
@@ -640,8 +649,6 @@ def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_wo
         p_dictNoun_wnNouns = 0;
 
         # for some nouns don't have synsets
-        countwnNouns = 0.00000001;
-
         arr_p  = [];
 
         # - - - - - - - - - - - - - - - - - - - - - - - -
@@ -663,6 +670,8 @@ def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_wo
           if i < nBest:
             p_dictNoun_wnNouns += arr_p[i];
             count +=1
+          else:
+            break
 
         p_dictNoun_wnNouns = p_dictNoun_wnNouns/count;
         arr_p_word.append(p_dictNoun_wnNouns);
@@ -672,22 +681,10 @@ def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_wo
       count = 5;
       for i in xrange(0, len(arr_p_word)-1):
         if i < nBest:
-          if nBest > len(arr_p_word):
-            if i == 0:
-              p_iWnWord_iDictWord += arr_p_word[i]*5;
-            elif i< nBest/3:
-              p_iWnWord_iDictWord += arr_p_word[i]*1.;
-            else:
-              p_iWnWord_iDictWord += arr_p_word[i]*1;
-          else:
-            if i == 0:
-              p_iWnWord_iDictWord += arr_p_word[i]*5.;
-            elif i< len(arr_p_word)/3:
-              p_iWnWord_iDictWord += arr_p_word[i]*1.;
-            else:
-              p_iWnWord_iDictWord += arr_p_word[i]*1;
-
+          p_iWnWord_iDictWord += arr_p_word[i]*1;
           count += 1;
+        else:
+          break
 
       if count == 0:
         p_iWnWord_iDictWord = 0;
@@ -768,11 +765,11 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
     for iDictWord in range(len(dict_words)):
       matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord]*(1-PARAMETERS.JACCARD_WEIGHT) + PARAMETERS.JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
 
-  s = [[str(e) for e in row] for row in matrix_similarity]
-  lens = [max(map(len, col)) for col in zip(*s)]
-  fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-  table = [fmt.format(*row) for row in s]
-  print '\n'.join(table)
+  # s = [[str(e) for e in row] for row in matrix_similarity]
+  # lens = [max(map(len, col)) for col in zip(*s)]
+  # fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+  # table = [fmt.format(*row) for row in s]
+  # print '\n'.join(table)
 
   choose_pair_0_1(matrix_similarity,wn_words,dict_words);
 
@@ -830,36 +827,79 @@ def similarityWords(dictOxfordNouns):
   total_recall = 0;
   total_accuracy = 0;
   missingWORD = 0;
-  for word in dictOxfordNouns:
-    print word
-    # print dictOxfordNouns[word]
-    # if word == 'baby':
-    matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
 
-    if matrix_result == None:
-      missingWORD += 1;
-      continue
+  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0.01
+  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.1
+  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.21
+  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.1
+  # Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.2
+  Parameters.PARAMETERS.JACCARD_WEIGHT = 0.0
 
-    (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
-    print (precision, recall, accuracy)
-    if precision != -1:
-      total_precision += precision
-      total_recall += recall
-      total_accuracy += accuracy
-      print "result -------"
-      print precision
-      print recall
-      print accuracy
-      print "\n"
-    else:
-      missingWORD += 1
+  step_for_min = 0.01
+  step_for_range = 0.01
 
-  print "total:"
+  # step_for_nbest = 1
 
-  print missingWORD
-  print total_precision/(len(dictOxfordNouns)-missingWORD)
-  print total_recall/(len(dictOxfordNouns)-missingWORD)
-  print total_precision/(len(dictOxfordNouns)-missingWORD)
+  total_word = 0
+  count_step = 0
+
+
+  while (Parameters.PARAMETERS.JACCARD_WEIGHT < 0.05):
+
+    for word in dictOxfordNouns:
+      # print dictOxfordNouns[word]
+      # if word == 'baby':
+      matrix_result = similarity_by_synsets_synsets_nbest_withword_average(word,dictOxfordNouns[word]);
+
+      if matrix_result == None:
+        missingWORD += 1;
+        continue
+
+      # print "\n"
+      print word
+
+      (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
+      # print (precision, recall, accuracy)
+      if precision != -1:
+        total_precision += precision
+        total_recall += recall
+        total_accuracy += accuracy
+        total_word += 1
+        count_step += 1
+        # print "result -------"
+        # print precision
+        # print recall
+        # print accuracy
+        # print "\n"
+      else:
+        missingWORD += 1
+
+      # if count_step == 340:
+      #   break
+
+    # total_word = len(dictOxfordNouns) - missingWORD
+    precision = total_precision/total_word
+    recall = total_recall/total_word
+    accuracy = total_accuracy/total_word
+    print "total:"
+    print total_word
+    print precision
+    print recall
+    print accuracy
+
+    WriteParametersAndResult.append_result_to_file(precision,recall,accuracy)
+
+    Parameters.PARAMETERS.JACCARD_WEIGHT += step_for_range
+
+    print "\n --------------------------------------------------"
+    print "new round"
+
+    total_precision = 0;
+    total_recall = 0;
+    total_accuracy = 0;
+    missingWORD = 0;
+    total_word = 0
+    count_step = 0
 
 dictOxfordNouns = OxfordParser.readOxfordNouns();
 similarityWords(dictOxfordNouns)

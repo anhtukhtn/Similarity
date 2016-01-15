@@ -28,8 +28,12 @@ def readVietNetFile():
       line = f.readline();
       continue
 
+    arr_d_xh = phrases[4]
+    if ";No Example" in arr_d_xh:
+      arr_d_xh = arr_d_xh.replace(";No Example","");
 
-    arr_d_xh = phrases[4].split(";");
+    if "; \"" in arr_d_xh:
+      arr_d_xh = arr_d_xh.split("; \"")[0]
 
     if not dictVietNet.has_key(phrases[1]):
       dictVietNet[phrases[1]] = {};
@@ -38,7 +42,7 @@ def readVietNetFile():
     dictVietNet[phrases[1]][curIndex] = {};
     dictVietNet[phrases[1]][curIndex]["tv"] = phrases[3];
     # print dictVietNet[phrases[1]][curIndex]["tv"];
-    dictVietNet[phrases[1]][curIndex]["d"] = arr_d_xh[0];
+    dictVietNet[phrases[1]][curIndex]["d"] = arr_d_xh;
 
     # print dictVietNet[phrases[1]][curIndex]
 

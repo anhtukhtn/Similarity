@@ -43,8 +43,8 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
     if wn_words == None:
       continue
 
-    # if WORD != 'bank':
-    #   continue;
+    if WORD == 'baby':
+      a = 1;
 
     if dict_VietNet.has_key(WORD):
 
@@ -119,7 +119,7 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
 
         arrRowDict.append(dict_Oxford[WORD][str(i)]["tv"].encode("utf-8") + "<>" + dict_Oxford[WORD][str(i)]["d"].encode("utf-8"));
 
-      FileProcess.append_to_excel_file("Results/parameters/VN_Ox/"+"compare_VN_Ox_2.csv",arrRowDict,matrix_similarity)
+      FileProcess.append_to_excel_file("Results/parameters/VN_Ox/"+"compare_VN_Ox_2_2.1.csv",arrRowDict,matrix_similarity)
 
 def readResultFile(fileName):
 
@@ -142,14 +142,14 @@ def readResultFile(fileName):
     if firstline == 1 and len(row)!=0:
       word = row[0];
       dict[word] = [];
-      print "\n"
+      # print "\n"
       firstline = 2;
 
     # end matrix of a word
     if len(row)==0:
       firstline = 1;
-      print word
-      print dict[word]
+      # print word
+      # print dict[word]
 
   ########################################
   return dict

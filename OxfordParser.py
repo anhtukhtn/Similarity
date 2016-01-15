@@ -117,16 +117,21 @@ def readOxfordNouns():
         or runhd.text == "beachwear" or runhd.text == "beano"\
         or runhd.text == "bellwether" or runhd.text == "bergamot"\
         or runhd.text == "biddy" or runhd.text == "billow"\
-        or runhd.text == "billy" or runhd.text == "backhander":
+        or runhd.text == "billy" or runhd.text == "backhander"\
+        or runhd.text == "blinder" or runhd.text == "basis"\
+        or runhd.text == "blubber" or runhd.text == "blue" \
+        or runhd.text == "bogie" or runhd.text == "bounce"\
+        or runhd.text == "bounds" or runhd.text == "bourbon"\
+        or runhd.text == "bream" or runhd.text == "bullock":
       continue
 
-    print runhd.text
+    # print runhd.text
 
     runhd = runhd.text;
 
-    if runhd == 'baccy':
-      print "holy -----------"
-      adsf = 1;
+    # if runhd == 'baccy':
+    #   print "holy -----------"
+    #   adsf = 1;
 
     if oxfordNouns.has_key(runhd):
       continue
@@ -184,8 +189,8 @@ def readOxfordNouns():
 
       runhd = runhd.text;
 
-      if runhd == 'ballpark':
-        adsf = 1;
+      # if runhd == 'ballpark':
+      #   adsf = 1;
 
       # get noun, verb of word
       findallpg = word_2.findall('.//p-g');
