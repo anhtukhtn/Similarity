@@ -872,4 +872,5 @@ def similarityWords(dictOxfordNouns):
   print accuracy
 
   WriteParametersAndResult.append_result_to_file(precision,recall,accuracy)
+  return (precision, recall, accuracy)
 

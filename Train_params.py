@@ -5,27 +5,75 @@ import Parameters
 
 dict_ox_nouns = OxfordParser.readOxfordNouns();
 
-
 def jaccard_weight(dict_nouns):
+  def _reset_params():
+    Parameters.PARAMETERS.JACCARD_WEIGHT = 0.01
+  def _change_params_for_step(cur_step, alpha):
+    _reset_params()
+    Parameters.PARAMETERS.JACCARD_WEIGHT += cur_step*alpha
 
-  step = 0.01
-  Parameters.PARAMETERS.JACCARD_WEIGHT = 0.0
+  _reset_params()
+  _alpha = 0.02
+  _max_step = 10
+  _current_step = 0
 
-  while (Parameters.PARAMETERS.JACCARD_WEIGHT < 0.05):
+  while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
-    Parameters.PARAMETERS.JACCARD_WEIGHT += step
+    _current_step += 1
 
+    _change_params_for_step(_current_step,_alpha)
+
+  _reset_params()
+
+def choice_1_COL_RANGE_FIRST(dict_nouns):
+  def _reset_params():
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.01
+  def _change_params_for_step(cur_step,alpha):
+    _reset_params()
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST += cur_step*alpha
+
+  _reset_params()
+  _alpha = 0.02
+  _max_step = 10
+  _current_step = 0
+
+  while _current_step <= _max_step:
+    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    _current_step += 1
+
+    _change_params_for_step(_current_step, _alpha)
+
+  _reset_params()
+
+def choice_N_N_RANGE_FIRST(dict_nouns):
+  def _reset_params():
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.01
+  def _change_params_for_step(cur_step, alpha):
+    _reset_params()
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST += cur_step*alpha
+
+  _reset_params()
+  _alpha = 0.02
+  _max_step = 10
+  _current_step = 0
+
+  while _current_step <= _max_step:
+    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    _current_step += 1
+
+    _change_params_for_step(_current_step, _alpha)
+
+  _reset_params()
 
 def feature_wn(dict_nouns):
-
-  def reset_params():
+  def _reset_params():
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_definition = 1
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_hypernyms = 0
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_hyponyms = 0
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_part_meronyms = 0
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_member_holonyms = 0
-  def change_params_for_step(cur_step):
-    reset_params()
+  def _change_params_for_step(cur_step):
+    _reset_params()
     if cur_step == 1:
       Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_hypernyms = 1
     elif cur_step == 2:
@@ -58,27 +106,26 @@ def feature_wn(dict_nouns):
       Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_member_holonyms = 1
 
 
-  reset_params()
-  step = 1
-  max_step = 10
-  current_step = 0
+  _reset_params()
+  _max_step = 10
+  _current_step = 0
 
-  while current_step <= max_step:
+  while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
-    current_step += step
+    _current_step += 1
 
-    change_params_for_step(current_step)
+    _change_params_for_step(_current_step)
 
-  reset_params()
+  _reset_params()
 
 def feature_dict(dict_nouns):
-  def reset_params():
+  def _reset_params():
     Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_sd = 1
     Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_d = 1
     Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_xh = 1
     Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_x = 1
-  def change_params_for_step(cur_step):
-    reset_params()
+  def _change_params_for_step(cur_step):
+    _reset_params()
     if cur_step == 1:
       Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_xh = 0
     elif cur_step == 2:
@@ -87,62 +134,83 @@ def feature_dict(dict_nouns):
       Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_xh = 0
       Parameters.PARAMETERS.DICT_OX_FEATURE_RELATION_x = 0
 
-  reset_params()
-  step = 1
-  max_step = 3
-  current_step = 0
+  _reset_params()
+  _max_step = 3
+  _current_step = 0
 
-  while current_step <= max_step:
+  while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
-    current_step += step
+    _current_step += 1
 
-    change_params_for_step(current_step)
+    _change_params_for_step(_current_step)
 
-  reset_params()
+  _reset_params()
 
 def feature_POS(dict_nouns):
-  def reset_params():
+  def _reset_params():
     Parameters.PARAMETERS.POS_FEATURE_n = 1
     Parameters.PARAMETERS.POS_FEATURE_v = 0
-  def change_params_for_step(cur_step):
-    reset_params()
+  def _change_params_for_step(cur_step):
+    _reset_params()
     if cur_step == 1:
       Parameters.PARAMETERS.POS_FEATURE_v = 1
 
-  reset_params()
-  step = 1
-  max_step = 1
-  current_step = 0
+  _reset_params()
+  _max_step = 1
+  _current_step = 0
 
-  while current_step <= max_step:
+  while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
-    current_step += step
+    _current_step += 1
 
-    change_params_for_step(current_step)
+    _change_params_for_step(_current_step)
 
-  reset_params()
+  _reset_params()
 
 def nbest_similarity(dict_nouns):
-  def reset_params():
+  def _reset_params():
     Parameters.PARAMETERS.N_BEST_CALCULATE_SIMILARITY = 1
-  def change_params_for_step(cur_step):
-    reset_params()
-    Parameters.PARAMETERS.N_BEST_CALCULATE_SIMILARITY += cur_step*1
+  def _change_params_for_step(cur_step, alpha):
+    _reset_params()
+    Parameters.PARAMETERS.N_BEST_CALCULATE_SIMILARITY += cur_step*alpha
 
-  reset_params()
-  step = 1
-  max_step = 9
-  current_step = 0
+  _reset_params()
+  _alpha = 1
+  _max_step = 9
+  _current_step = 0
 
-  while current_step <= max_step:
+  while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
-    current_step += step
+    _current_step += 1
 
-    change_params_for_step(current_step)
+    _change_params_for_step(_current_step,_alpha)
 
-  reset_params()
+  _reset_params()
+
+def train():
+  _best_result = 0;
+  _best_params = ;
+
+  for i in range(1000):
+    # random_all_feature
+    # calculate_result -> current best
+    # store result params
+    # choise a random feature
+      # run this feature in range -> choice best result
+      # compare with current best result -> store or not
+
+    # compare with _best
+
+
+
+
+
+
 
 # feature_wn(dict_ox_nouns)
 # feature_dict(dict_ox_nouns)
 # feature_POS(dict_ox_nouns)
-nbest_similarity(dict_ox_nouns)
+# nbest_similarity(dict_ox_nouns)
+# jaccard_weight(dict_ox_nouns)
+# choice_1_COL_RANGE_FIRST(dict_ox_nouns)
+# choice_N_N_RANGE_FIRST(dict_ox_nouns)
