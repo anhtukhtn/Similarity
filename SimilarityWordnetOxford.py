@@ -219,6 +219,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     # print iWord;
 
     dict_words_nouns.append([]);
+    dict_words_verbs.append([]);
     dict_synsets_for_words.append([]);
 
     # add p
@@ -367,7 +368,6 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
 
     if PARAMETERS.POS_FEATURE_v:
 
-      dict_words_verbs.append([]);
       # continue
       tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       verbs = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];

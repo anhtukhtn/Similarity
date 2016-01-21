@@ -1,2 +1,5 @@
-# Similarity
-Similarity
+OxfordDict/
+OxfordXML/
+Results/
+WN/
+CoParser.py
