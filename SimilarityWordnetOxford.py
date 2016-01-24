@@ -843,7 +843,7 @@ def similarityWords(dictOxfordNouns):
       continue
 
     # print "\n"
-    print word
+    # print word
 
     (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
     # print (precision, recall, accuracy)

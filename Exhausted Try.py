@@ -6,6 +6,8 @@ import Parameters
 
 dict_ox_nouns = OxfordParser.readOxfordNouns();
 
+__continue = 1
+
 def feature_wn(dict_nouns):
   def _reset_params():
     Parameters.PARAMETERS.DICT_WN_FEATURE_RELATION_definition = 1
@@ -52,7 +54,7 @@ def feature_wn(dict_nouns):
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     feature_dict(dict_nouns)
 
@@ -82,7 +84,7 @@ def feature_dict(dict_nouns):
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     feature_POS(dict_nouns)
 
@@ -105,7 +107,7 @@ def feature_POS(dict_nouns):
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     nbest_similarity(dict_nouns)
 
@@ -127,7 +129,7 @@ def nbest_similarity(dict_nouns):
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     jaccard_weight(dict_nouns)
 
@@ -145,12 +147,12 @@ def jaccard_weight(dict_nouns):
     Parameters.PARAMETERS.JACCARD_WEIGHT += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.05
+  _max_step = 8
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     choice_1_1_MIN(dict_nouns)
     choice_1_COL_MIN_FIRST(dict_nouns)
@@ -169,9 +171,12 @@ def choice_1_1_MIN(dict_nouns):
     Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.05
+  _max_step = 8
   _current_step = 0
+
+  if __continue == 1:
+    return
 
   while _current_step <= _max_step:
     SimilarityWordnetOxford.similarityWords(dict_nouns)
@@ -189,12 +194,17 @@ def choice_1_COL_MIN_FIRST(dict_nouns):
     Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.05
+  _max_step = 8
   _current_step = 0
 
+  global __continue
+  if __continue == 1:
+    __continue = 0
+    return
+
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
     choice_1_COL_RANGE_FIRST(dict_nouns)
 
@@ -211,8 +221,8 @@ def choice_1_COL_RANGE_FIRST(dict_nouns):
     Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.05
+  _max_step = 8
   _current_step = 0
 
   while _current_step <= _max_step:
@@ -232,14 +242,14 @@ def choice_N_N_MIN_FIRST(dict_nouns):
     Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.05
+  _max_step = 8
   _current_step = 0
 
   while _current_step <= _max_step:
-    SimilarityWordnetOxford.similarityWords(dict_nouns)
+    # SimilarityWordnetOxford.similarityWords(dict_nouns)
 
-    choice_1_COL_RANGE_FIRST(dict_nouns)
+    choice_N_N_RANGE_FIRST(dict_nouns)
 
     _current_step += 1
     _change_params_for_step(_current_step, _alpha)
@@ -255,8 +265,8 @@ def choice_N_N_RANGE_FIRST(dict_nouns):
     Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST += cur_step*alpha
 
   _reset_params()
-  _alpha = 0.04
-  _max_step = 10
+  _alpha = 0.5
+  _max_step = 8
   _current_step = 0
 
   while _current_step <= _max_step:
@@ -265,5 +275,6 @@ def choice_N_N_RANGE_FIRST(dict_nouns):
     _change_params_for_step(_current_step, _alpha)
 
   _reset_params()
+
 
 feature_wn(dict_ox_nouns)

@@ -42,8 +42,8 @@ def compareGoldWithResult(dictResult,WORD):
         fp += 1.;
         # print "fp"
 
-  if tp == tn and tp == 0:
-    print "tp tn == 0"
+  # if tp == tn and tp == 0:
+  #   print "tp tn == 0"
   #   print tp
   #   print tn
   #   print fp

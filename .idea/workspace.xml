@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd582e2a-e30d-494a-8a37-2914f4d5fb3e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Parameters.py" afterPath="$PROJECT_DIR$/Parameters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Train_params.py" afterPath="$PROJECT_DIR$/Train_params.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CompareWithGold.py" afterPath="$PROJECT_DIR$/CompareWithGold.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exhausted Try.py" afterPath="$PROJECT_DIR$/Exhausted Try.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilarityWordnetOxford.py" afterPath="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WriteParametersAndResult.py" afterPath="$PROJECT_DIR$/WriteParametersAndResult.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Results/parameters/params_result/params_result_2" afterPath="$PROJECT_DIR$/Results/parameters/params_result/params_result_2" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Similarity.iws" />
@@ -26,14 +26,14 @@
     <favorites_list name="Similarity" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.73698384">
+    <splitter split-orientation="horizontal" split-proportion="0.75975037">
       <split-first>
         <leaf>
           <file leaf-file-name="SimilarityWordnetOxford.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="864" column="4" selection-start-line="864" selection-start-column="4" selection-end-line="864" selection-end-column="4" />
+                  <caret line="846" column="0" selection-start-line="846" selection-start-column="0" selection-end-line="846" selection-end-column="0" />
                   <folding>
                     <element signature="e#19#38#0" expanded="true" />
                   </folding>
@@ -45,7 +45,7 @@
             <entry file="file://$PROJECT_DIR$/Train_params.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+                  <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
                   <folding>
                     <element signature="e#18#48#0" expanded="true" />
                   </folding>
@@ -56,8 +56,8 @@
           <file leaf-file-name="Exhausted Try.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Exhausted Try.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.12335526">
-                  <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.23519737">
+                  <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
                   <folding>
                     <element signature="e#19#49#0" expanded="true" />
                   </folding>
@@ -79,7 +79,7 @@
             <entry file="file://$PROJECT_DIR$/WriteParametersAndResult.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+                  <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
                   <folding>
                     <element signature="e#19#37#0" expanded="true" />
                   </folding>
@@ -113,7 +113,7 @@
             <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.0">
-                  <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+                  <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
                   <folding />
                 </state>
               </provider>
@@ -126,8 +126,8 @@
           <file leaf-file-name="Parameters.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Parameters.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.75164473">
-                  <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.2713816">
+                  <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -160,14 +160,14 @@
         <option value="$PROJECT_DIR$/FileProcess.py" />
         <option value="$PROJECT_DIR$/Results/parameters/params_result/params_result" />
         <option value="$PROJECT_DIR$/OxfordParser.py" />
-        <option value="$PROJECT_DIR$/CompareWithGold.py" />
         <option value="$PROJECT_DIR$/Results/parameters/VN_Ox/compare_VN_Ox_2.1.csv" />
         <option value="$PROJECT_DIR$/Results/parameters/VN_Ox/2.1/compare_VN_Ox_2.1_doing_done_15_1 (copy).csv" />
-        <option value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
         <option value="$PROJECT_DIR$/Train_params.py" />
         <option value="$PROJECT_DIR$/Parameters.py" />
+        <option value="$PROJECT_DIR$/CompareWithGold.py" />
         <option value="$PROJECT_DIR$/WriteParametersAndResult.py" />
         <option value="$PROJECT_DIR$/Exhausted Try.py" />
+        <option value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
       </list>
     </option>
   </component>
@@ -187,10 +187,13 @@
           <State>
             <id />
           </State>
+          <State>
+            <id>Python</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>Buildout</id>
+            <id>PyGlobalUndefinedInspection</id>
           </State>
         </selected-state>
       </profile-state>
@@ -219,8 +222,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -255,6 +256,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -265,7 +268,7 @@
     <property name="settings.editor.splitter.proportion" value="0.24637681" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/tu/PycharmProjects/WordNet/Similarity/SimilarityWordnetOxford.py" />
   </component>
-  <component name="RunManager" selected="Python.WriteParametersAndResult">
+  <component name="RunManager" selected="Python.Exhausted Try">
     <configuration default="false" name="SimilarityWordnetOxford" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -279,23 +282,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Similarity" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="CompareVietNetOxford" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Similarity" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/CompareVietNetOxford.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -347,6 +333,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Similarity" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Train_params.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Exhausted Try" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Similarity" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Exhausted Try.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -475,18 +478,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
-      <item index="1" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
-      <item index="2" class="java.lang.String" itemvalue="Python.CompareWithGold" />
-      <item index="3" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Train_params" />
+      <item index="1" class="java.lang.String" itemvalue="Python.CompareWithGold" />
+      <item index="2" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Train_params" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Exhausted Try" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Train_params" />
-        <item index="2" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
-        <item index="3" class="java.lang.String" itemvalue="Python.CompareWithGold" />
-        <item index="4" class="java.lang.String" itemvalue="Python.CompareVietNetOxford" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Exhausted Try" />
+        <item index="1" class="java.lang.String" itemvalue="Python.WriteParametersAndResult" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Train_params" />
+        <item index="3" class="java.lang.String" itemvalue="Python.SimilarityWordnetOxford" />
+        <item index="4" class="java.lang.String" itemvalue="Python.CompareWithGold" />
       </list>
     </recent_temporary>
   </component>
@@ -512,9 +515,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14373559" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20292082" sideWeight="0.8055771" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31591085" sideWeight="0.8055771" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18139893" sideWeight="0.6979086" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.358186" sideWeight="0.6979086" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.052083332" sideWeight="0.19442293" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -567,7 +570,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="30" />
+      <option name="time" value="37" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -891,14 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/OxfordParser.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -924,26 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Train_params.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
-          <folding>
-            <element signature="e#18#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="864" column="4" selection-start-line="864" selection-start-column="4" selection-end-line="864" selection-end-column="4" />
-          <folding>
-            <element signature="e#19#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Parameters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -952,20 +927,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CompareWithGold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WriteParametersAndResult.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
             <element signature="e#19#37#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SimilarityWordnetOxford.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="846" column="0" selection-start-line="846" selection-start-column="0" selection-end-line="846" selection-end-column="0" />
+          <folding>
+            <element signature="e#19#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Train_params.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="14" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+          <folding>
+            <element signature="e#18#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Exhausted Try.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12335526">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.23519737">
+          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
           <folding>
             <element signature="e#19#49#0" expanded="true" />
           </folding>
