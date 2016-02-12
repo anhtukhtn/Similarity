@@ -11,6 +11,7 @@ import CompareVietNetOxford
 import CompareWithGold
 import Parameters
 import WriteParametersAndResult
+import POSWrapper
 
 import copy
 
@@ -116,7 +117,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
 
       # print "\ndefinition ------";
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wordDict.name()).definition()));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wordDict.name()).definition()));
       # print tagged_sent
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -239,16 +240,16 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
 
     nouns = [];
     if wordDict.has_key("sd") and PARAMETERS.DICT_OX_FEATURE_RELATION_sd == 1:
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["sd"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["sd"]));
       nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' and word != 'etc'))];
 
       if len(nouns) == 0:
-        tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+        tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
         # print tagged_sent
         nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' and word != 'etc'))];
 
     elif wordDict.has_key("d") and wordDict["d"] != None:
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       # print tagged_sent
       nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' or word != 'etc'))];
     else:
@@ -281,7 +282,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     # d
 
     if PARAMETERS.DICT_OX_FEATURE_RELATION_d == 1:
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     if PARAMETERS.DICT_OX_FEATURE_RELATION_xh == 1:
@@ -369,7 +370,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     if PARAMETERS.POS_FEATURE_v:
 
       # continue
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       verbs = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
 
       # print "VVVVV"
@@ -705,7 +706,7 @@ def similarity_by_jaccard(WORD, dict_words, wn_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -724,7 +725,7 @@ def similarity_by_jaccard(WORD, dict_words, wn_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -843,7 +844,7 @@ def similarityWords(dictOxfordNouns):
       continue
 
     # print "\n"
-    # print word
+    print word
 
     (precision, recall, accuracy) = CompareWithGold.compareGoldWithResult(matrix_result,word)
     # print (precision, recall, accuracy)

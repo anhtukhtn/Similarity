@@ -4,6 +4,7 @@ __author__ = 'tu'
 
 import nltk
 from nltk.corpus import wordnet as wn
+import POSWrapper
 
 
 ####################################################################################################
@@ -39,7 +40,7 @@ def get_nouns(dict_words):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -51,7 +52,7 @@ def get_nouns(dict_words):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -102,7 +103,7 @@ def get_synsets(dict_words):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -116,7 +117,7 @@ def get_synsets(dict_words):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -233,7 +234,7 @@ def get_nbest_synsets(dict_words):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -251,7 +252,7 @@ def get_nbest_synsets(dict_words):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -432,7 +433,7 @@ def get_nbest_synsets_with_word(dict_words,word_concept):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -450,7 +451,7 @@ def get_nbest_synsets_with_word(dict_words,word_concept):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -610,7 +611,7 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -628,7 +629,7 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ')];
 
     # print  tagged_sent
@@ -762,7 +763,7 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
     #       dict_synsets_nouns[iWord].append(synsets_noun[0]);
 
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
     print "VVVVV"
     print nouns
@@ -875,7 +876,7 @@ def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):
     #
     # sd
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["sd"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["sd"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -893,7 +894,7 @@ def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -1025,7 +1026,7 @@ def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):
     #       dict_synsets_nouns[iWord].append(synsets_noun[0]);
 
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
     print "VVVVV"
     print nouns
@@ -1116,7 +1117,7 @@ def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):
     # x1
 
     if wordDict.has_key("x1"):
-      tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["x1"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["x1"]));
       nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
       for noun in nouns:
@@ -1248,7 +1249,7 @@ def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):
       #       dict_synsets_nouns[iWord].append(synsets_noun[0]);
 
 
-      tagged_sent = nltk.pos_tag(nltk.word_tokenize(wordDict["x1"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wordDict["x1"]));
       nouns = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
       print "VVVVV"
       print nouns

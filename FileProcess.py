@@ -42,6 +42,7 @@ def append_to_excel_file(filename, row, matrix_2d):
   ########################################
 
 def append_result_to_excel_file(filename, values):
+
   try:
     file = open(filename, 'a');
   except IOError:

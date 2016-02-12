@@ -14,6 +14,7 @@ from nltk.metrics import jaccard_distance
 import ManualData
 import ReadVietNet
 from difflib import SequenceMatcher
+import POSWrapper
 
 import heapq
 
@@ -77,16 +78,16 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
 
     nouns = [];
     if wordDict.has_key("sd"):
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["sd"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["sd"]));
       nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' and word != 'etc'))];
 
       if len(nouns) == 0:
-        tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+        tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
         print tagged_sent
         nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' and word != 'etc'))];
 
     elif wordDict.has_key("d") and wordDict["d"] != None:
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
       print tagged_sent
       nouns = [word for word,pos in tagged_sent if ((pos == 'NN' or pos == 'NNS') and (word != 'sth' or word != 'etc'))];
     else:
@@ -118,7 +119,7 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
     #
     # d
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     if wordDict.has_key('xh0') and wordDict['xh0'] is not None and wordDict['xh0'] != 'nn':
@@ -204,7 +205,7 @@ def get_nbest_synsets_n_v_with_word(dict_words,word_concept):
         dict_synsets_nouns[iWord].append(synMax);
 
     # continue
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wordDict["d"]));
     nouns = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBN' or pos == 'VBD')];
 
     print "VVVVV"
@@ -555,7 +556,7 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -574,7 +575,7 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -904,7 +905,7 @@ def similarity_by_synsets_synsets_nbest_withword_v_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -923,7 +924,7 @@ def similarity_by_synsets_synsets_nbest_withword_v_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -1241,7 +1242,7 @@ def similarity_by_synsets_synsets_nbest_withword_lch_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -1260,7 +1261,7 @@ def similarity_by_synsets_synsets_nbest_withword_lch_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -1580,7 +1581,7 @@ def similarity_by_synsets_synsets_nbest_withword_lch_v_average(WORD, dict_words)
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -1599,7 +1600,7 @@ def similarity_by_synsets_synsets_nbest_withword_lch_v_average(WORD, dict_words)
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -1917,7 +1918,7 @@ def similarity_by_synsets_synsets_nbest_withword_wup_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -1936,7 +1937,7 @@ def similarity_by_synsets_synsets_nbest_withword_wup_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -2256,7 +2257,7 @@ def similarity_by_synsets_synsets_nbest_withword_wup_v_average(WORD, dict_words)
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -2275,7 +2276,7 @@ def similarity_by_synsets_synsets_nbest_withword_wup_v_average(WORD, dict_words)
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -2594,7 +2595,7 @@ def similarity_by_synsets_synsets_nbest_withword_resnik_average(WORD, dict_words
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -2613,7 +2614,7 @@ def similarity_by_synsets_synsets_nbest_withword_resnik_average(WORD, dict_words
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -2933,7 +2934,7 @@ def similarity_by_synsets_synsets_nbest_withword_resnik_v_average(WORD, dict_wor
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -2952,7 +2953,7 @@ def similarity_by_synsets_synsets_nbest_withword_resnik_v_average(WORD, dict_wor
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -3271,7 +3272,7 @@ def similarity_by_synsets_synsets_nbest_withword_jcn_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -3290,7 +3291,7 @@ def similarity_by_synsets_synsets_nbest_withword_jcn_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -3611,7 +3612,7 @@ def similarity_by_synsets_synsets_nbest_withword_jcn_v_average(WORD, dict_words)
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -3630,7 +3631,7 @@ def similarity_by_synsets_synsets_nbest_withword_jcn_v_average(WORD, dict_words)
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -3949,7 +3950,7 @@ def similarity_by_synsets_synsets_nbest_withword_lin_average(WORD, dict_words):
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -3968,7 +3969,7 @@ def similarity_by_synsets_synsets_nbest_withword_lin_average(WORD, dict_words):
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);
@@ -4288,7 +4289,7 @@ def similarity_by_synsets_synsets_nbest_withword_lin_v_average(WORD, dict_words)
 
   for iWnWord in range(len(wn_words)):
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition()));
     words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
     # words = nltk.wordpunct_tokenize(wn.synset(wn_words[iWnWord].name()).definition());
@@ -4307,7 +4308,7 @@ def similarity_by_synsets_synsets_nbest_withword_lin_v_average(WORD, dict_words)
         matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
         continue
 
-      tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]));
       words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
 
       # words = nltk.wordpunct_tokenize(dict_words[str(iDictWord)]["d"]);

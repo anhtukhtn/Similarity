@@ -3,6 +3,7 @@ __author__ = 'tu'
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
+import POSWrapper
 wordnet_lemmatizer = WordNetLemmatizer()
 
 ####################################################################################################
@@ -72,7 +73,7 @@ def get_nouns(word_origin, wn_words):
     print "\ndefinition ------";
     # print wn.synset(bank.name()).definition();
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
     nouns = [word for word,pos in tagged_sent if pos == 'NN'];
 
     for noun in nouns:
@@ -135,7 +136,7 @@ def get_synsets(word_origin, wn_words):
     print "\ndefinition ------";
     # print wn.synset(bank.name()).definition();
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS')];
 
     for noun in nouns:
@@ -233,7 +234,7 @@ def get_synsets_n_v(word_origin, wn_words):
     print "\ndefinition ------";
     # print wn.synset(bank.name()).definition();
 
-    tagged_sent = nltk.pos_tag(nltk.wordpunct_tokenize(wn.synset(wordDict.name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn.synset(wordDict.name()).definition()));
     print tagged_sent
     nouns = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS'  or pos == 'JJ')];
 
@@ -266,7 +267,7 @@ def get_synsets_n_v(word_origin, wn_words):
 
 
 
-    tagged_sent = nltk.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
+    tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(wn.synset(wordDict.name()).definition()));
     nouns = [word for word,pos in tagged_sent if (pos == 'VB' or pos == 'VBD' or pos == 'VBN')];
 
     for noun in nouns:

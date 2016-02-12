@@ -3,7 +3,7 @@ __author__ = 'tu'
 import FileProcess
 import Parameters
 
-result_file_name = "Results/parameters/params_result/params_result_exhausted_2"
+result_file_name = "Results/parameters/params_result/params_result_exhausted_n_best_0_full"
 def append_params_and_result_to_file(values):
   FileProcess.append_result_to_excel_file(result_file_name,values)
 
