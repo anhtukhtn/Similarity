@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd582e2a-e30d-494a-8a37-2914f4d5fb3e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Similarity.iml" afterPath="$PROJECT_DIR$/.idea/Similarity.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DictProcess.py" afterPath="$PROJECT_DIR$/DictProcess.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Exhausted Try.py" afterPath="$PROJECT_DIR$/Exhausted Try.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileProcess.py" afterPath="$PROJECT_DIR$/FileProcess.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilaritySample.py" afterPath="$PROJECT_DIR$/SimilaritySample.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilarityWordB.py" afterPath="$PROJECT_DIR$/SimilarityWordB.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SimilarityWordnetOxford.py" afterPath="$PROJECT_DIR$/SimilarityWordnetOxford.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WordnetProcess.py" afterPath="$PROJECT_DIR$/WordnetProcess.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WriteParametersAndResult.py" afterPath="$PROJECT_DIR$/WriteParametersAndResult.py" />
-    </list>
+    <list default="true" id="dd582e2a-e30d-494a-8a37-2914f4d5fb3e" name="Default" comment="" />
     <ignored path="Similarity.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
