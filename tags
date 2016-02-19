@@ -1,0 +1,232 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CHOICE_1_1_MIN	Parameters.py	/^  CHOICE_1_1_MIN = 0.00$/;"	v	class:PARAMETERS_CHOICE_0_1
+CHOICE_1_COL_MIN_FIRST	Parameters.py	/^  CHOICE_1_COL_MIN_FIRST = 0.0$/;"	v	class:PARAMETERS_CHOICE_0_1
+CHOICE_1_COL_RANGE_FIRST	Parameters.py	/^  CHOICE_1_COL_RANGE_FIRST = 1.0$/;"	v	class:PARAMETERS_CHOICE_0_1
+CHOICE_N_N_MIN_FIRST	Parameters.py	/^  CHOICE_N_N_MIN_FIRST = 0.0$/;"	v	class:PARAMETERS_CHOICE_0_1
+CHOICE_N_N_RANGE_FIRST	Parameters.py	/^  CHOICE_N_N_RANGE_FIRST = 1.00$/;"	v	class:PARAMETERS_CHOICE_0_1
+DATA_BABY	ManualData.py	/^def DATA_BABY():$/;"	f
+DATA_BAG	ManualData.py	/^def DATA_BAG():$/;"	f
+DATA_BALANCE	ManualData.py	/^def DATA_BALANCE():$/;"	f
+DATA_BANK	ManualData.py	/^def DATA_BANK():$/;"	f
+DATA_BEE	ManualData.py	/^def DATA_BEE():$/;"	f
+DATA_BOARD	ManualData.py	/^def DATA_BOARD():$/;"	f
+DATA_BOOK	ManualData.py	/^def DATA_BOOK():$/;"	f
+DATA_VN_BANK	ManualData.py	/^def DATA_VN_BANK():$/;"	f
+DICT_OX_FEATURE_RELATION_d	Parameters.py	/^  DICT_OX_FEATURE_RELATION_d = 1$/;"	v	class:PARAMETERS
+DICT_OX_FEATURE_RELATION_sd	Parameters.py	/^  DICT_OX_FEATURE_RELATION_sd = 1$/;"	v	class:PARAMETERS
+DICT_OX_FEATURE_RELATION_x	Parameters.py	/^  DICT_OX_FEATURE_RELATION_x = 0$/;"	v	class:PARAMETERS
+DICT_OX_FEATURE_RELATION_xh	Parameters.py	/^  DICT_OX_FEATURE_RELATION_xh = 0$/;"	v	class:PARAMETERS
+DICT_WN_FEATURE_RELATION_definition	Parameters.py	/^  DICT_WN_FEATURE_RELATION_definition = 1$/;"	v	class:PARAMETERS
+DICT_WN_FEATURE_RELATION_hypernyms	Parameters.py	/^  DICT_WN_FEATURE_RELATION_hypernyms = 0$/;"	v	class:PARAMETERS
+DICT_WN_FEATURE_RELATION_hyponyms	Parameters.py	/^  DICT_WN_FEATURE_RELATION_hyponyms = 0$/;"	v	class:PARAMETERS
+DICT_WN_FEATURE_RELATION_member_holonyms	Parameters.py	/^  DICT_WN_FEATURE_RELATION_member_holonyms = 0$/;"	v	class:PARAMETERS
+DICT_WN_FEATURE_RELATION_part_meronyms	Parameters.py	/^  DICT_WN_FEATURE_RELATION_part_meronyms = 0$/;"	v	class:PARAMETERS
+JACCARD_WEIGHT	Parameters.py	/^  JACCARD_WEIGHT = 0.0$/;"	v	class:PARAMETERS
+JCN	Parameters.py	/^  JCN  = 2$/;"	v	class:SIMILARITY_METHOD
+LCH	Parameters.py	/^  LCH  = 3$/;"	v	class:SIMILARITY_METHOD
+LIN	Parameters.py	/^  LIN  = 4$/;"	v	class:SIMILARITY_METHOD
+Map	Parameters.py	/^class Map(dict):$/;"	c
+N_BEST_CALCULATE_SIMILARITY	Parameters.py	/^  N_BEST_CALCULATE_SIMILARITY = 1$/;"	v	class:PARAMETERS
+PARAMETERS	Parameters.py	/^class PARAMETERS:$/;"	c
+PARAMETERS_CHOICE_0_1	Parameters.py	/^class PARAMETERS_CHOICE_0_1:$/;"	c
+PATH	Parameters.py	/^  PATH = 1$/;"	v	class:SIMILARITY_METHOD
+POS_FEATURE_n	Parameters.py	/^  POS_FEATURE_n = 1$/;"	v	class:PARAMETERS
+POS_FEATURE_v	Parameters.py	/^  POS_FEATURE_v = 0$/;"	v	class:PARAMETERS
+RESNIK	Parameters.py	/^  RESNIK = 5$/;"	v	class:SIMILARITY_METHOD
+SIMILARITY_METHOD	Parameters.py	/^class SIMILARITY_METHOD:$/;"	c
+SIMILARITY_METHOD_USING	Parameters.py	/^  SIMILARITY_METHOD_USING = SIMILARITY_METHOD.PATH$/;"	v	class:PARAMETERS
+WUP	Parameters.py	/^  WUP  = 6$/;"	v	class:SIMILARITY_METHOD
+_1_1_min	Parameters.py	/^  _1_1_min = "1_1_min"$/;"	v	class:params_string
+_1_col_min	Parameters.py	/^  _1_col_min = "1_col_min"$/;"	v	class:params_string
+_1_col_range	Parameters.py	/^  _1_col_range = "1_col_range"$/;"	v	class:params_string
+__author__	CompareWithGold.py	/^__author__ = 'tu'$/;"	v
+__author__	DictProcess.py	/^__author__ = 'tu'$/;"	v
+__author__	ExhaustedTry.py	/^__author__ = 'tu'$/;"	v
+__author__	FileProcess.py	/^__author__ = 'tu'$/;"	v
+__author__	ManualData.py	/^__author__ = 'tu'$/;"	v
+__author__	OxfordParser.py	/^__author__ = 'tu'$/;"	v
+__author__	Parameters.py	/^__author__ = 'tu'$/;"	v
+__author__	ReadVietNet.py	/^__author__ = 'tu'$/;"	v
+__author__	SimilarityBank.py	/^__author__ = 'tu'$/;"	v
+__author__	SimilaritySample.py	/^__author__ = 'tu'$/;"	v
+__author__	SimilarityWordB.py	/^__author__ = 'tu'$/;"	v
+__author__	SimilarityWordnetOxford.py	/^__author__ = 'tu'$/;"	v
+__author__	Train_params.py	/^__author__ = 'tu'$/;"	v
+__author__	WordnetProcess.py	/^__author__ = 'tu'$/;"	v
+__author__	WriteParametersAndResult.py	/^__author__ = 'tu'$/;"	v
+__continue	ExhaustedTry.py	/^__continue = 0$/;"	v
+__init__	Parameters.py	/^    def __init__(self, **kwargs):$/;"	m	class:Map
+__n_best	ExhaustedTry.py	/^__n_best = 0$/;"	v
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_POS
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_dict
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_wn
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:choice_N_N_RANGE_FIRST
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:jaccard_weight
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:nbest_similarity
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_1_MIN
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_COL_MIN_FIRST
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_COL_RANGE_FIRST
+_change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_N_N_MIN_FIRST
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_POS
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_dict
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_wn
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:choice_N_N_RANGE_FIRST
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:jaccard_weight
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step, alpha):$/;"	f	function:nbest_similarity
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_1_MIN
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_COL_MIN_FIRST
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_1_COL_RANGE_FIRST
+_change_params_for_step	Train_params.py	/^  def _change_params_for_step(cur_step,alpha):$/;"	f	function:choice_N_N_MIN_FIRST
+_n_n_min	Parameters.py	/^  _n_n_min = "_n_n_min"$/;"	v	class:params_string
+_n_n_range	Parameters.py	/^  _n_n_range = "n_n_range"$/;"	v	class:params_string
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:choice_1_1_MIN
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:choice_1_COL_MIN_FIRST
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:choice_1_COL_RANGE_FIRST
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:choice_N_N_MIN_FIRST
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:choice_N_N_RANGE_FIRST
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:feature_POS
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:feature_dict
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:feature_wn
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:jaccard_weight
+_reset_params	ExhaustedTry.py	/^  def _reset_params():$/;"	f	function:nbest_similarity
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:choice_1_1_MIN
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:choice_1_COL_MIN_FIRST
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:choice_1_COL_RANGE_FIRST
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:choice_N_N_MIN_FIRST
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:choice_N_N_RANGE_FIRST
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:feature_POS
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:feature_dict
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:feature_wn
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:jaccard_weight
+_reset_params	Train_params.py	/^  def _reset_params():$/;"	f	function:nbest_similarity
+append_params_and_result_to_file	WriteParametersAndResult.py	/^def append_params_and_result_to_file(values):$/;"	f
+append_result_to_excel_file	FileProcess.py	/^def append_result_to_excel_file(filename, values):$/;"	f
+append_result_to_file	WriteParametersAndResult.py	/^def append_result_to_file(precision,recall,accuracy):$/;"	f
+append_to_excel_file	FileProcess.py	/^def append_to_excel_file(filename, row, matrix_2d):$/;"	f
+brown_ic	SimilarityWordB.py	/^brown_ic = wordnet_ic.ic('ic-brown.dat')$/;"	v
+checkAndRemoveInvalidElement	OxfordParser.py	/^def checkAndRemoveInvalidElement(meanings):$/;"	f
+choice_1_1_MIN	ExhaustedTry.py	/^def choice_1_1_MIN(dict_nouns):$/;"	f
+choice_1_1_MIN	Train_params.py	/^def choice_1_1_MIN(dict_nouns):$/;"	f
+choice_1_COL_MIN_FIRST	ExhaustedTry.py	/^def choice_1_COL_MIN_FIRST(dict_nouns):$/;"	f
+choice_1_COL_MIN_FIRST	Train_params.py	/^def choice_1_COL_MIN_FIRST(dict_nouns):$/;"	f
+choice_1_COL_RANGE_FIRST	ExhaustedTry.py	/^def choice_1_COL_RANGE_FIRST(dict_nouns):$/;"	f
+choice_1_COL_RANGE_FIRST	Train_params.py	/^def choice_1_COL_RANGE_FIRST(dict_nouns):$/;"	f
+choice_N_N_MIN_FIRST	ExhaustedTry.py	/^def choice_N_N_MIN_FIRST(dict_nouns):$/;"	f
+choice_N_N_MIN_FIRST	Train_params.py	/^def choice_N_N_MIN_FIRST(dict_nouns):$/;"	f
+choice_N_N_RANGE_FIRST	ExhaustedTry.py	/^def choice_N_N_RANGE_FIRST(dict_nouns):$/;"	f
+choice_N_N_RANGE_FIRST	Train_params.py	/^def choice_N_N_RANGE_FIRST(dict_nouns):$/;"	f
+choose_pair	SimilarityWordB.py	/^def choose_pair(matrix_similarity, wn_words, dict_words):$/;"	f
+choose_pair	SimilarityWordnetOxford.py	/^def choose_pair(matrix_similarity, wn_words, dict_words):$/;"	f
+choose_pair_0_1	SimilarityWordnetOxford.py	/^def choose_pair_0_1(matrix_similarity, wn_words, dict_words):$/;"	f
+compareGoldWithResult	CompareWithGold.py	/^def compareGoldWithResult(dictResult,WORD):$/;"	f
+compareVietNetAndOxford	CompareVietNetOxford.py	/^def compareVietNetAndOxford(dict_VietNet, dict_Oxford):$/;"	f
+cosine_similarity	SimilarityBank.py	/^def cosine_similarity(x,y):$/;"	f
+d	Parameters.py	/^  d = "d"$/;"	v	class:params_string
+definition	Parameters.py	/^  definition = "definition"$/;"	v	class:params_string
+dictOxford	SimilaritySample.py	/^dictOxford = OxfordParser.readOxfordNouns();$/;"	v
+dictOxfordNouns	SimilarityWordB.py	/^dictOxfordNouns = OxfordParser.readOxfordNouns();$/;"	v
+dictOxfordVerbs	SimilarityWordB.py	/^dictOxfordVerbs = OxfordParser.readOxfordVerbs();$/;"	v
+dictVietNet	SimilarityWordB.py	/^dictVietNet = ReadVietNet.readVietNetFile();$/;"	v
+dict_ox_nouns	ExhaustedTry.py	/^dict_ox_nouns = OxfordParser.readOxfordNouns();$/;"	v
+dict_ox_nouns	Train_params.py	/^dict_ox_nouns = OxfordParser.readOxfordNouns();$/;"	v
+feature_POS	ExhaustedTry.py	/^def feature_POS(dict_nouns):$/;"	f
+feature_POS	Train_params.py	/^def feature_POS(dict_nouns):$/;"	f
+feature_dict	ExhaustedTry.py	/^def feature_dict(dict_nouns):$/;"	f
+feature_dict	Train_params.py	/^def feature_dict(dict_nouns):$/;"	f
+feature_wn	ExhaustedTry.py	/^def feature_wn(dict_nouns):$/;"	f
+feature_wn	Train_params.py	/^def feature_wn(dict_nouns):$/;"	f
+formatAndWriteMatrixToFile	SimilarityWordnetOxford.py	/^def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
+get_current_params	Parameters.py	/^def get_current_params():$/;"	f
+get_nbest_synsets	DictProcess.py	/^def get_nbest_synsets(dict_words):$/;"	f
+get_nbest_synsets_for_word_in_oxford	SimilarityWordnetOxford.py	/^def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):$/;"	f
+get_nbest_synsets_n_v_with_word	DictProcess.py	/^def get_nbest_synsets_n_v_with_word(dict_words,word_concept):$/;"	f
+get_nbest_synsets_n_v_with_word	SimilaritySample.py	/^def get_nbest_synsets_n_v_with_word(dict_words,word_concept):$/;"	f
+get_nbest_synsets_n_v_with_word	SimilarityWordB.py	/^def get_nbest_synsets_n_v_with_word(dict_words,word_concept):$/;"	f
+get_nbest_synsets_n_v_with_word_vn	SimilaritySample.py	/^def get_nbest_synsets_n_v_with_word_vn(dict_words,word_concept):$/;"	f
+get_nbest_synsets_n_v_x_with_word	DictProcess.py	/^def get_nbest_synsets_n_v_x_with_word(dict_words,word_concept):$/;"	f
+get_nbest_synsets_with_word	DictProcess.py	/^def get_nbest_synsets_with_word(dict_words,word_concept):$/;"	f
+get_nouns	DictProcess.py	/^def get_nouns(dict_words):$/;"	f
+get_nouns	WordnetProcess.py	/^def get_nouns(word_origin, wn_words):$/;"	f
+get_params_string	Parameters.py	/^def get_params_string():$/;"	f
+get_synsets	DictProcess.py	/^def get_synsets(dict_words):$/;"	f
+get_synsets	WordnetProcess.py	/^def get_synsets(word_origin, wn_words):$/;"	f
+get_synsets_for_word_in_wn	SimilarityWordnetOxford.py	/^def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):$/;"	f
+get_synsets_n_v	WordnetProcess.py	/^def get_synsets_n_v(word_origin, wn_words):$/;"	f
+goldData	CompareWithGold.py	/^goldData = CompareVietNetOxford.readResultFile("Results\/parameters\/VN_Ox\/"+"compare_VN_Ox_2.1.csv");$/;"	v
+holonyms	Parameters.py	/^  holonyms = "holonyms"$/;"	v	class:params_string
+hypernyms	Parameters.py	/^  hypernyms = "hypernyms"$/;"	v	class:params_string
+hyponyms	Parameters.py	/^  hyponyms = "hyponyms"$/;"	v	class:params_string
+jaccard_weight	ExhaustedTry.py	/^def jaccard_weight(dict_nouns):$/;"	f
+jaccard_weight	Parameters.py	/^  jaccard_weight = "jaccard_weight"$/;"	v	class:params_string
+jaccard_weight	Train_params.py	/^def jaccard_weight(dict_nouns):$/;"	f
+levenshtein	CompareVietNetOxford.py	/^def levenshtein(a,b):$/;"	f
+meronyms	Parameters.py	/^  meronyms = "meronyms"$/;"	v	class:params_string
+n	Parameters.py	/^  n = "n"$/;"	v	class:params_string
+nbest	Parameters.py	/^  nbest = "nbest"$/;"	v	class:params_string
+nbest_similarity	ExhaustedTry.py	/^def nbest_similarity(dict_nouns):$/;"	f
+nbest_similarity	Train_params.py	/^def nbest_similarity(dict_nouns):$/;"	f
+params_string	Parameters.py	/^class params_string:$/;"	c
+pos_tag	POSWrapper.py	/^def pos_tag(tokens):$/;"	f
+random_params_values	Parameters.py	/^def random_params_values():$/;"	f
+readContentOfWord	OxfordParser.py	/^def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):$/;"	f
+readOxfordNouns	OxfordParser.py	/^def readOxfordNouns():$/;"	f
+readOxfordVerbs	OxfordParser.py	/^def readOxfordVerbs():$/;"	f
+readResultFile	CompareVietNetOxford.py	/^def readResultFile(fileName):$/;"	f
+readVietNetFile	ReadVietNet.py	/^def readVietNetFile():$/;"	f
+result_file_name	WriteParametersAndResult.py	/^result_file_name = "Results\/parameters\/params_result\/params_result_exhausted_n_best_0_full"$/;"	v
+sd	Parameters.py	/^  sd = "sd"$/;"	v	class:params_string
+semcor_ic	SimilarityWordB.py	/^semcor_ic = wordnet_ic.ic('ic-semcor.dat')$/;"	v
+set_params_from_arr	Parameters.py	/^def set_params_from_arr(params):$/;"	f
+set_params_from_dict	Parameters.py	/^def set_params_from_dict(params):$/;"	f
+similarityWordB	SimilaritySample.py	/^def similarityWordB():$/;"	f
+similarityWordB	SimilarityWordB.py	/^def similarityWordB():$/;"	f
+similarityWords	SimilarityWordnetOxford.py	/^def similarityWords(dictOxfordNouns):$/;"	f
+similarity_by_jaccard	SimilarityWordnetOxford.py	/^def similarity_by_jaccard(WORD, dict_words, wn_words):$/;"	f
+similarity_by_nouns	SimilarityBank.py	/^def similarity_by_nouns():$/;"	f
+similarity_by_synsets	SimilarityBank.py	/^def similarity_by_synsets():$/;"	f
+similarity_by_synsets_synsets	SimilarityBank.py	/^def similarity_by_synsets_synsets():$/;"	f
+similarity_by_synsets_synsets_nbest	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest():$/;"	f
+similarity_by_synsets_synsets_nbest_withword	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword():$/;"	f
+similarity_by_synsets_synsets_nbest_withword	SimilaritySample.py	/^def similarity_by_synsets_synsets_nbest_withword(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_average	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_average():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_average	SimilaritySample.py	/^def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_average	SimilarityWordnetOxford.py	/^def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_average_VN	SimilaritySample.py	/^def similarity_by_synsets_synsets_nbest_withword_average_VN(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_concept	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_concept():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_concept_other	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_concept_other():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_dict_wn	SimilarityWordnetOxford.py	/^def similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words, wn_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_jcn_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_jcn_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_jcn_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_jcn_v_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_lch_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_lch_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_lch_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_lch_v_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_lin_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_lin_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_lin_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_lin_v_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_resnik_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_resnik_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_resnik_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_resnik_v_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_reverse	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_reverse():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_v_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_verb	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_verb():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_verb_x	SimilarityBank.py	/^def similarity_by_synsets_synsets_nbest_withword_verb_x():$/;"	f
+similarity_by_synsets_synsets_nbest_withword_wn_dict	SimilarityWordnetOxford.py	/^def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_wup_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_wup_average(WORD, dict_words):$/;"	f
+similarity_by_synsets_synsets_nbest_withword_wup_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_wup_v_average(WORD, dict_words):$/;"	f
+square_rooted	SimilarityBank.py	/^def square_rooted(x):$/;"	f
+tagger	POSWrapper.py	/^tagger = PerceptronTagger()$/;"	v
+testCtags	SimilarityWordnetOxford.py	/^def testCtags():$/;"	f
+train_from_base	Train_params.py	/^def train_from_base(dict_nouns):$/;"	f
+train_with_random	Train_params.py	/^def train_with_random(dict_nouns):$/;"	f
+v	Parameters.py	/^  v = "v"$/;"	v	class:params_string
+wordnet_lemmatizer	SimilaritySample.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
+wordnet_lemmatizer	SimilarityWordB.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
+wordnet_lemmatizer	SimilarityWordnetOxford.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
+wordnet_lemmatizer	WordnetProcess.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
+writeDictFromOxfordToFile	OxfordParser.py	/^def writeDictFromOxfordToFile(filename, dict):$/;"	f
+write_to_excel_file	FileProcess.py	/^def write_to_excel_file(filename, row, matrix_2d):$/;"	f
+x	Parameters.py	/^  x = "x"$/;"	v	class:params_string
+xh	Parameters.py	/^  xh = "xh"$/;"	v	class:params_string
