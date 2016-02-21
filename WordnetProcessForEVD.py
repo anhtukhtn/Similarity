@@ -27,9 +27,19 @@ def read_nouns():
       # get description
       # print wn.synset(bank.name()).definition();
 
+    for meronym in synset.part_meronyms():
+      for lemma in wn.synset(meronym.name()).lemmas():
+        lemma_name = lemma.name();
+        dict_wn[synset.name()].append(lemma_name)
+
+    for holonym in synset.member_holonyms():
+      for lemma in wn.synset(holonym.name()).lemmas():
+        lemma_name = lemma.name();
+        dict_wn[synset.name()].append(lemma_name)
+
+
     tagged_sent = POSWrapper.pos_tag(nltk.word_tokenize(synset.definition()));
     nouns = [word for word,pos in tagged_sent if pos == 'NN'];
-    print nouns
 
     for noun in nouns:
       dict_wn[synset.name()].append(noun)
