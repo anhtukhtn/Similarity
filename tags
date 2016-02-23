@@ -60,6 +60,7 @@ __author__	Train_params.py	/^__author__ = 'tu'$/;"	v
 __author__	WordnetProcess.py	/^__author__ = 'tu'$/;"	v
 __author__	WriteParametersAndResult.py	/^__author__ = 'tu'$/;"	v
 __continue	ExhaustedTry.py	/^__continue = 0$/;"	v
+__dict_Ox__	map_wordnet_via_EVD.py	/^__dict_Ox__ = {}$/;"	v
 __init__	Parameters.py	/^    def __init__(self, **kwargs):$/;"	m	class:Map
 __n_best	ExhaustedTry.py	/^__n_best = 0$/;"	v
 _change_params_for_step	ExhaustedTry.py	/^  def _change_params_for_step(cur_step):$/;"	f	function:feature_POS
@@ -109,6 +110,7 @@ append_result_to_excel_file	FileProcess.py	/^def append_result_to_excel_file(fil
 append_result_to_file	WriteParametersAndResult.py	/^def append_result_to_file(precision,recall,accuracy):$/;"	f
 append_to_excel_file	FileProcess.py	/^def append_to_excel_file(filename, row, matrix_2d):$/;"	f
 brown_ic	SimilarityWordB.py	/^brown_ic = wordnet_ic.ic('ic-brown.dat')$/;"	v
+cal_similarity_for_word	SimilarityWordnetOxford.py	/^def cal_similarity_for_word(word):$/;"	f
 checkAndRemoveInvalidElement	OxfordParser.py	/^def checkAndRemoveInvalidElement(meanings):$/;"	f
 choice_1_1_MIN	ExhaustedTry.py	/^def choice_1_1_MIN(dict_nouns):$/;"	f
 choice_1_1_MIN	Train_params.py	/^def choice_1_1_MIN(dict_nouns):$/;"	f
@@ -126,6 +128,7 @@ choose_pair_0_1	SimilarityWordnetOxford.py	/^def choose_pair_0_1(matrix_similari
 compareGoldWithResult	CompareWithGold.py	/^def compareGoldWithResult(dictResult,WORD):$/;"	f
 compareVietNetAndOxford	CompareVietNetOxford.py	/^def compareVietNetAndOxford(dict_VietNet, dict_Oxford):$/;"	f
 cosine_similarity	SimilarityBank.py	/^def cosine_similarity(x,y):$/;"	f
+count_word_in_set	map_wordnet_via_EVD.py	/^def count_word_in_set(word, words):$/;"	f
 d	Parameters.py	/^  d = "d"$/;"	v	class:params_string
 definition	Parameters.py	/^  definition = "definition"$/;"	v	class:params_string
 dictOxford	SimilaritySample.py	/^dictOxford = OxfordParser.readOxfordNouns();$/;"	v
@@ -140,7 +143,12 @@ feature_dict	ExhaustedTry.py	/^def feature_dict(dict_nouns):$/;"	f
 feature_dict	Train_params.py	/^def feature_dict(dict_nouns):$/;"	f
 feature_wn	ExhaustedTry.py	/^def feature_wn(dict_nouns):$/;"	f
 feature_wn	Train_params.py	/^def feature_wn(dict_nouns):$/;"	f
+filt_top_score_dict_word	SimilarityWordnetOxford.py	/^def filt_top_score_dict_word(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
 formatAndWriteMatrixToFile	SimilarityWordnetOxford.py	/^def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
+get_EVD_means	map_wordnet_via_EVD.py	/^def get_EVD_means(key, values, dict_EVD):$/;"	f
+get_Ox_means	map_wordnet_via_EVD.py	/^def get_Ox_means(key):$/;"	f
+get_best_max_index	SimilarityWordnetOxford.py	/^def get_best_max_index(array):$/;"	f
+get_best_mean	map_wordnet_via_EVD.py	/^def get_best_mean(means_EVD, means_ox, count_min):$/;"	f
 get_current_params	Parameters.py	/^def get_current_params():$/;"	f
 get_nbest_synsets	DictProcess.py	/^def get_nbest_synsets(dict_words):$/;"	f
 get_nbest_synsets_for_word_in_oxford	SimilarityWordnetOxford.py	/^def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):$/;"	f
@@ -165,6 +173,7 @@ jaccard_weight	ExhaustedTry.py	/^def jaccard_weight(dict_nouns):$/;"	f
 jaccard_weight	Parameters.py	/^  jaccard_weight = "jaccard_weight"$/;"	v	class:params_string
 jaccard_weight	Train_params.py	/^def jaccard_weight(dict_nouns):$/;"	f
 levenshtein	CompareVietNetOxford.py	/^def levenshtein(a,b):$/;"	f
+map_wordnet_EVD	map_wordnet_via_EVD.py	/^def map_wordnet_EVD():$/;"	f
 meronyms	Parameters.py	/^  meronyms = "meronyms"$/;"	v	class:params_string
 n	Parameters.py	/^  n = "n"$/;"	v	class:params_string
 nbest	Parameters.py	/^  nbest = "nbest"$/;"	v	class:params_string
@@ -172,17 +181,23 @@ nbest_similarity	ExhaustedTry.py	/^def nbest_similarity(dict_nouns):$/;"	f
 nbest_similarity	Train_params.py	/^def nbest_similarity(dict_nouns):$/;"	f
 params_string	Parameters.py	/^class params_string:$/;"	c
 pos_tag	POSWrapper.py	/^def pos_tag(tokens):$/;"	f
+print_2d_matrix	DebugHandler.py	/^def print_2d_matrix(matrix):$/;"	f
+project_opened	.ropeproject/config.py	/^def project_opened(project):$/;"	f
 random_params_values	Parameters.py	/^def random_params_values():$/;"	f
 readContentOfWord	OxfordParser.py	/^def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):$/;"	f
+readEVDFile	EVDParser.py	/^def readEVDFile():$/;"	f
 readOxfordNouns	OxfordParser.py	/^def readOxfordNouns():$/;"	f
 readOxfordVerbs	OxfordParser.py	/^def readOxfordVerbs():$/;"	f
 readResultFile	CompareVietNetOxford.py	/^def readResultFile(fileName):$/;"	f
 readVietNetFile	ReadVietNet.py	/^def readVietNetFile():$/;"	f
+read_nouns	WordnetProcessForEVD.py	/^def read_nouns():$/;"	f
+remove_unicode_characters	Util.py	/^def remove_unicode_characters(phrase):$/;"	f
 result_file_name	WriteParametersAndResult.py	/^result_file_name = "Results\/parameters\/params_result\/params_result_exhausted_n_best_0_full"$/;"	v
 sd	Parameters.py	/^  sd = "sd"$/;"	v	class:params_string
 semcor_ic	SimilarityWordB.py	/^semcor_ic = wordnet_ic.ic('ic-semcor.dat')$/;"	v
 set_params_from_arr	Parameters.py	/^def set_params_from_arr(params):$/;"	f
 set_params_from_dict	Parameters.py	/^def set_params_from_dict(params):$/;"	f
+set_prefs	.ropeproject/config.py	/^def set_prefs(prefs):$/;"	f
 similarityWordB	SimilaritySample.py	/^def similarityWordB():$/;"	f
 similarityWordB	SimilarityWordB.py	/^def similarityWordB():$/;"	f
 similarityWords	SimilarityWordnetOxford.py	/^def similarityWords(dictOxfordNouns):$/;"	f
@@ -216,12 +231,16 @@ similarity_by_synsets_synsets_nbest_withword_verb_x	SimilarityBank.py	/^def simi
 similarity_by_synsets_synsets_nbest_withword_wn_dict	SimilarityWordnetOxford.py	/^def similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD, dict_words, wn_words):$/;"	f
 similarity_by_synsets_synsets_nbest_withword_wup_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_wup_average(WORD, dict_words):$/;"	f
 similarity_by_synsets_synsets_nbest_withword_wup_v_average	SimilarityWordB.py	/^def similarity_by_synsets_synsets_nbest_withword_wup_v_average(WORD, dict_words):$/;"	f
+similarity_nbest_withword_average	SimilarityWordnetOxford.py	/^def similarity_nbest_withword_average(WORD, dict_words):$/;"	f
+similarity_without_choice	SimilarityWordnetOxford.py	/^def similarity_without_choice(WORD, dict_words):$/;"	f
+split_unicode_words	Util.py	/^def split_unicode_words(phrase):$/;"	f
+split_words	Util.py	/^def split_words(phrase):$/;"	f
 square_rooted	SimilarityBank.py	/^def square_rooted(x):$/;"	f
 tagger	POSWrapper.py	/^tagger = PerceptronTagger()$/;"	v
-testCtags	SimilarityWordnetOxford.py	/^def testCtags():$/;"	f
 train_from_base	Train_params.py	/^def train_from_base(dict_nouns):$/;"	f
 train_with_random	Train_params.py	/^def train_with_random(dict_nouns):$/;"	f
 v	Parameters.py	/^  v = "v"$/;"	v	class:params_string
+word_word_is_similarity	map_wordnet_via_EVD.py	/^def word_word_is_similarity(phrase_word_1, phrase_word_2):$/;"	f
 wordnet_lemmatizer	SimilaritySample.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 wordnet_lemmatizer	SimilarityWordB.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 wordnet_lemmatizer	SimilarityWordnetOxford.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v

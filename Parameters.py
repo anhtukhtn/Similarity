@@ -26,8 +26,8 @@ class PARAMETERS:
 
   # features in wn for a word
   DICT_WN_FEATURE_RELATION_definition = 1
-  DICT_WN_FEATURE_RELATION_hypernyms = 0
-  DICT_WN_FEATURE_RELATION_hyponyms = 0
+  DICT_WN_FEATURE_RELATION_hypernyms = 1
+  DICT_WN_FEATURE_RELATION_hyponyms = 1
   DICT_WN_FEATURE_RELATION_part_meronyms = 0
   DICT_WN_FEATURE_RELATION_member_holonyms = 0
 
@@ -42,10 +42,10 @@ class PARAMETERS:
   POS_FEATURE_v = 0
 
   # n best when calculating similarity for each synset
-  N_BEST_CALCULATE_SIMILARITY = 1
+  N_BEST_CALCULATE_SIMILARITY = 4
 
   # weight for jaccard and similarity
-  JACCARD_WEIGHT = 0.0
+  JACCARD_WEIGHT = 0.1
 
 class PARAMETERS_CHOICE_0_1:
   CHOICE_1_1_MIN = 0.00

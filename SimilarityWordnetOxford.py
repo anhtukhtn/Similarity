@@ -5,13 +5,12 @@ import OxfordParser
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.stem import WordNetLemmatizer
-import FileProcess
 import heapq
-import CompareVietNetOxford
 import CompareWithGold
 import Parameters
 import WriteParametersAndResult
 import POSWrapper
+import DebugHandler
 
 import copy
 
@@ -19,6 +18,8 @@ from nltk.metrics import jaccard_distance
 wordnet_lemmatizer = WordNetLemmatizer()
 
 from Parameters import PARAMETERS
+import WordnetHandler
+
 
 ####################################################################################################
 #
@@ -132,7 +133,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
             continue
 
           if noun != word_origin and noun != "sth":
-            synsetsDictNoun = wn.synsets(noun, pos = "n");
+            synsetsDictNoun = WordnetHandler.get_synsets_for_word(noun, "n");
 
             if len(synsetsDictNoun) > 0:
               synsetMax = synsetsDictNoun[0];
@@ -167,7 +168,7 @@ def get_synsets_for_word_in_wn(word_origin, wn_synsets_for_word_origin):
             continue
 
           if verb != "bank":
-            synsetsDictVerb = wn.synsets(verb, pos = "v");
+            synsetsDictVerb = WordnetHandler.get_synsets_for_word(verb, "v");
 
 
             if len(synsetsDictVerb) > 0:
@@ -210,7 +211,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
   dict_words_verbs = [];
   dict_synsets_for_words = [];
 
-  wn_words = wn.synsets(word_concept, pos = 'n');
+  wn_words = WordnetHandler.get_synsets_for_word(word_concept, 'n');
 
   # add p
   p_synsets_for_words = [];
@@ -270,7 +271,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     synsetsSD = [];
 
     for word in dict_words_nouns[iWord]:
-      synsets = wn.synsets(word, pos = 'n');
+      synsets = WordnetHandler.get_synsets_for_word(word, 'n');
       for synset in synsets:
         synsetsSD.append(synset)
 
@@ -348,7 +349,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
     # print synsetRoot
 
     for noun in dict_words_nouns[iWord]:
-      synsets_noun = wn.synsets(noun, pos = 'n');
+      synsets_noun = WordnetHandler.get_synsets_for_word(noun, 'n');
       if len(synsets_noun) <= 0:
         continue;
 
@@ -436,7 +437,7 @@ def get_nbest_synsets_for_word_in_oxford(dict_words,word_concept):
       # print synsetRoot
 
       for verb in dict_words_verbs[iWord]:
-        synsets_verb = wn.synsets(verb, pos = 'v');
+        synsets_verb = WordnetHandler.get_synsets_for_word(verb, 'v');
         if len(synsets_verb) <= 0:
           continue;
 
@@ -740,18 +741,14 @@ def similarity_by_jaccard(WORD, dict_words, wn_words):
   ########################################
   return matrix_similarity_jaccard
 
-####################################################################################################
-#
-# @brief:   calculate similarity by synsets
-#
-def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
+def similarity_nbest_withword_average(WORD, dict_words):
 
-  wn_words = wn.synsets(WORD, pos = 'n');
+  wn_words = WordnetHandler.get_synsets_for_word(WORD, 'n');
 
   matrix_similarity = similarity_by_synsets_synsets_nbest_withword_dict_wn(WORD, dict_words,wn_words)
 
   if matrix_similarity == None:
-    return
+    return  [],[]
 
   matrix_similarity_reverse = similarity_by_synsets_synsets_nbest_withword_wn_dict(WORD , wn_words, dict_words)
 
@@ -766,14 +763,16 @@ def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
     for iDictWord in range(len(dict_words)):
       matrix_similarity[iWnWord][iDictWord] = matrix_similarity[iWnWord][iDictWord]*(1-PARAMETERS.JACCARD_WEIGHT) + PARAMETERS.JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
 
-  # s = [[str(e) for e in row] for row in matrix_similarity]
-  # lens = [max(map(len, col)) for col in zip(*s)]
-  # fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
-  # table = [fmt.format(*row) for row in s]
-  # print '\n'.join(table)
+  return matrix_similarity, wn_words
 
+
+####################################################################################################
+#
+# @brief:   calculate similarity by synsets
+#
+def similarity_by_synsets_synsets_nbest_withword_average(WORD, dict_words):
+  (matrix_similarity, wn_words) = similarity_nbest_withword_average(WORD, dict_words)
   choose_pair_0_1(matrix_similarity,wn_words,dict_words);
-
   formatAndWriteMatrixToFile(copy.deepcopy(matrix_similarity), wn_words, dict_words ,WORD)
 
   return matrix_similarity;
@@ -788,7 +787,9 @@ def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
   # col
   arrColWn = [];
   for i in range(len(wn_words)):
-    matrix_similarity[i].insert(0,wn.synset(wn_words[i].name()).definition());
+    word_wn = wn_words[i].name()
+    word_wn = word_wn +"-"+ wn.synset(word_wn).definition()
+    matrix_similarity[i].insert(0,word_wn);
 
   # - - - - - - - - - - - - - - - - - - - - - - - - -
   # row
@@ -816,10 +817,8 @@ def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):
   #
   # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-
-
   # FileProcess.write_to_excel_file("Results/parameters/path/"+WORD+"_synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
-  FileProcess.append_to_excel_file("Results/parameters/path/"+"synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
+#  FileProcess.append_to_excel_file("Results/parameters/path/"+"synsets_synsets_nbest_withword_average.csv",arrRowDict,matrix_similarity)
   #####################################################################################################
 
 def similarityWords(dictOxfordNouns):
@@ -874,3 +873,57 @@ def similarityWords(dictOxfordNouns):
 
   WriteParametersAndResult.append_result_to_file(precision,recall,accuracy)
   return (precision, recall, accuracy)
+
+################################################################################
+#
+# for integrate with EVD
+
+def similarity_without_choice(WORD, dict_words):
+  (matrix_similarity, wn_words) = similarity_nbest_withword_average(WORD, dict_words)
+  filted_dict = filt_top_score_dict_word(matrix_similarity, wn_words, dict_words ,WORD)
+
+  return filted_dict
+
+def get_best_max_index(array):
+  indexs = []
+  values = heapq.nlargest(2,array)
+  for value in values:
+    indexs.append(array.index(value))
+  return indexs
+
+
+def filt_top_score_dict_word(matrix_similarity, wn_words, dict_words,WORD):
+  dict_wn_ox = {}
+
+  ox_words = []
+
+  # row
+  for i in range(len(dict_words)):
+    if not dict_words[str(i)].has_key('tv'):
+      dict_words[str(i)]['tv'] = "--";
+    if dict_words[str(i)]['tv'] == None:
+      dict_words[str(i)]['tv'] = "--"
+    ox_word = dict_words[str(i)]["tv"].encode('utf8');
+    ox_words.append(ox_word)
+
+  for i in range(len(wn_words)):
+    wn_word = wn_words[i].name()
+    dict_wn_ox[wn_word] = []
+    indexs_max = get_best_max_index(matrix_similarity[i])
+    for index in indexs_max:
+      ox_word = ox_words[index]
+      dict_wn_ox[wn_word].append(ox_word)
+
+  return dict_wn_ox
+
+__dict_ox_nouns__ = OxfordParser.readOxfordNouns();
+def cal_similarity_for_word(word):
+  filted_dict  = {}
+  if __dict_ox_nouns__.has_key(word):
+    if not (word is None or __dict_ox_nouns__[word] is None):
+      filted_dict = similarity_without_choice(word,__dict_ox_nouns__[word]);
+  return filted_dict
+
+
+#cal_similarity_for_word("bank")
+
