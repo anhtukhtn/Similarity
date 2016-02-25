@@ -29,8 +29,6 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
   if vn == None:
     return
 
-
-
   oxfordNouns[runhd][str(iMeaning)] = OrderedDict();
 
   meaning = meanings[iMeaning]
@@ -372,9 +370,6 @@ def writeDictFromOxfordToFile(filename, dict):
     if dict[word] == None:
       continue
 
-    if word == "bay":
-      adf = 1
-
     for meaning in dict[word]:
       for key in dict[word][meaning]:
         if dict[word][meaning][key] == None:
@@ -385,5 +380,23 @@ def writeDictFromOxfordToFile(filename, dict):
   ########################################
 
 
-# dict = readOxfordNouns();
+__dict_nouns__ = readOxfordNouns()
+
+
+def get_dict_nouns():
+  return __dict_nouns__
+
+
+def get_definitions_of_word(word):
+  definitions = []
+  if __dict_nouns__.has_key(word):
+    dict_means_noun = __dict_nouns__[word]
+    for index in range(len(dict_means_noun)):
+      dict_noun = dict_means_noun[str(index)]
+      if dict_noun.has_key('d'):
+        definitions.append(dict_noun['d'])
+
+  return definitions
+
+
 # writeDictFromOxfordToFile("OxfordDict/b-detail.csv",dict);

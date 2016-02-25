@@ -15,3 +15,13 @@ def split_unicode_words(phrase):
   ascii_phrase = remove_unicode_characters(phrase)
   words = split_words(ascii_phrase)
   return words
+
+
+def get_keys_values_of_dict(dict):
+  values = []
+  keys = []
+  for key, value in dict.items():
+    values.append(value)
+    keys.append(key)
+
+  return keys, values

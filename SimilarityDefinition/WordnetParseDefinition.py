@@ -1,21 +1,5 @@
-import nltk
-from nltk.stem import WordNetLemmatizer
-import POSWrapper
 import WordnetHandler
-
-
-__wordnet_lemmatizer__ = WordNetLemmatizer()
-
-
-def check_pos_noun(pos):
-  return (pos == 'NN' or pos == 'NNS' or pos == 'JJ')
-
-
-def preprocess_sentence_to_nouns(sentence):
-  tokens = nltk.wordpunct_tokenize(sentence)
-  tagged_words = POSWrapper.pos_tag(tokens)
-  nouns = [word for word, pos in tagged_words if check_pos_noun(pos)]
-  return nouns
+import PreprocessDefinition
 
 
 def get_greatest_synset_similarity_between(synset_1, noun_2):
@@ -36,13 +20,25 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
   return synset_max
 
 
-def get_definition_synsets(synset):
-  definition_synsets = []
+def get_definition_synset(synset):
+  synsets_definition = []
   definition = synset.definition()
-  nouns = preprocess_sentence_to_nouns(definition)
+  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+  nouns = list(set(nouns))
   for noun in nouns:
     synset_max = get_greatest_synset_similarity_between(synset, noun)
     if synset_max is not None:
-      definition_synsets.append(synset_max)
+      synsets_definition.append(synset_max)
 
-  return definition_synsets
+  return synsets_definition
+
+
+def get_dict_vectors_synsets_for_word(word):
+  vectors = {}
+  synsets = WordnetHandler.get_synsets_for_word(word, 'n')
+  for synset in synsets:
+    vector = get_definition_synset(synset)
+    key = synset.definition()
+    vectors[key] = vector
+
+  return vectors
