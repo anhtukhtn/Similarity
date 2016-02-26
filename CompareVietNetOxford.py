@@ -5,28 +5,9 @@ import ReadVietNet
 import OxfordParser
 import FileProcess
 import csv
+import Util
 from nltk.corpus import wordnet as wn
 from nltk.metrics import jaccard_distance
-
-def levenshtein(a,b):
-    "Calculates the Levenshtein distance between a and b."
-    n, m = len(a), len(b)
-    if n > m:
-        # Make sure n <= m, to use O(min(n,m)) space
-        a,b = b,a
-        n,m = m,n
-
-    current = range(n+1)
-    for i in range(1,m+1):
-        previous, current = current, [i]+[0]*n
-        for j in range(1,n+1):
-            add, delete = previous[j]+1, current[j-1]+1
-            change = previous[j-1]
-            if a[j-1] != b[i-1]:
-                change = change + 1
-            current[j] = min(add, delete, change)
-
-    return current[n]
 
 
 def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
@@ -61,7 +42,7 @@ def compareVietNetAndOxford(dict_VietNet, dict_Oxford):
         vietNet = {};
         for iVietNet in arr_VietNet:
 
-          levenshtein_vn_wn = levenshtein(arr_VietNet[iVietNet]["d"],definitionWn)
+          levenshtein_vn_wn = Util.levenshtein(arr_VietNet[iVietNet]["d"],definitionWn)
 
           if levenshtein_vn_wn < len(definitionWn)/2.:
             vietNet = arr_VietNet[iVietNet];

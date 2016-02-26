@@ -1,5 +1,6 @@
 import WordnetHandler
 import PreprocessDefinition
+from collections import OrderedDict
 
 
 def get_greatest_synset_similarity_between(synset_1, noun_2):
@@ -30,11 +31,30 @@ def get_definition_synset(synset):
     if synset_max is not None:
       synsets_definition.append(synset_max)
 
+
+    # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # # get hypernyms
+    # print "\nhypernyms ------";
+  for hypernym in synset.hypernyms():
+    synsets_definition.append(hypernym)
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # get hyponyms
+  for hyponym in synset.hyponyms():
+    synsets_definition.append(hyponym )
+
+#  for meronym in synset.part_meronyms():
+#    synsets_definition.append(meronym)
+#
+#  for holonym in synset.member_holonyms():
+#    synsets_definition.append(holonym )
+#
+  synsets_definition.append(synset)
   return synsets_definition
 
 
 def get_dict_vectors_synsets_for_word(word):
-  vectors = {}
+  vectors = OrderedDict()
   synsets = WordnetHandler.get_synsets_for_word(word, 'n')
   for synset in synsets:
     vector = get_definition_synset(synset)

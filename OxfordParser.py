@@ -393,8 +393,18 @@ def get_definitions_of_word(word):
     dict_means_noun = __dict_nouns__[word]
     for index in range(len(dict_means_noun)):
       dict_noun = dict_means_noun[str(index)]
-      if dict_noun.has_key('d'):
-        definitions.append(dict_noun['d'])
+      definition = ""
+
+      if dict_noun.has_key('sd') and dict_noun['sd'] != None:
+        definition += dict_noun['d']
+
+      if dict_noun.has_key('d') and dict_noun['d'] != None:
+        definition += ". " + dict_noun['d']
+
+      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
+        definition += ". " + dict_noun['xh']
+
+      definitions.append(definition)
 
   return definitions
 
