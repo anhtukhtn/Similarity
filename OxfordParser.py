@@ -424,14 +424,14 @@ def get_definitions_of_word(word):
       dict_noun = dict_means_noun[str(index)]
       definition = ""
 
-      if dict_noun.has_key('sd') and dict_noun['sd'] != None:
-        definition += dict_noun['d']
+#      if dict_noun.has_key('sd') and dict_noun['sd'] != None:
+#        definition += dict_noun['sd']
 
       if dict_noun.has_key('d') and dict_noun['d'] != None:
         definition += ". " + dict_noun['d']
 
-      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
-        definition += ". " + dict_noun['xh']
+#      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
+#        definition += ". " + dict_noun['xh']
 
       definitions.append(definition)
 

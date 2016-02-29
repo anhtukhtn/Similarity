@@ -21,7 +21,7 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
   return synset_max
 
 
-def get_definition_synset(synset):
+def get_feature_synset_for(synset):
   synsets_definition = []
   definition = synset.definition()
   nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
@@ -30,7 +30,6 @@ def get_definition_synset(synset):
     synset_max = get_greatest_synset_similarity_between(synset, noun)
     if synset_max is not None:
       synsets_definition.append(synset_max)
-
 
     # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # # get hypernyms
@@ -41,19 +40,43 @@ def get_definition_synset(synset):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # get hyponyms
   for hyponym in synset.hyponyms():
-    synsets_definition.append(hyponym )
+    synsets_definition.append(hyponym)
 
-#  for meronym in synset.part_meronyms():
-#    synsets_definition.append(meronym)
-#
-#  for holonym in synset.member_holonyms():
-#    synsets_definition.append(holonym )
+  for meronym in synset.part_meronyms():
+    synsets_definition.append(meronym)
+
+  for holonym in synset.member_holonyms():
+    synsets_definition.append(holonym)
 #
   synsets_definition.append(synset)
   return synsets_definition
 
 
+def get_definition_synset(synset):
+  synsets_definition = []
+  definition = synset.definition()
+  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+  nouns = list(set(nouns))
+  for noun in nouns:
+    synset_max = get_greatest_synset_similarity_between(synset, noun)
+    if synset_max is not None:
+      synsets_definition.append(synset_max)
+
+  return synsets_definition
+
+
 def get_dict_vectors_synsets_for_word(word):
+  vectors = OrderedDict()
+  synsets = WordnetHandler.get_synsets_for_word(word, 'n')
+  for synset in synsets:
+    vector = get_feature_synset_for(synset)
+    key = synset.definition()
+    vectors[key] = vector
+
+  return vectors
+
+
+def get_vectors_defi_for_word(word):
   vectors = OrderedDict()
   synsets = WordnetHandler.get_synsets_for_word(word, 'n')
   for synset in synsets:

@@ -2,7 +2,6 @@ import OxParseDefinition
 import WordnetParseDefinition
 from scipy import spatial
 import Util
-import FileProcess
 import WordnetHandler
 import ParamsForDefinition as Parameters
 import OxfordParser
@@ -106,10 +105,36 @@ def sim_ox_wn_definition(word):
   return m2d_sim
 
 
+def sim_ox_wn_defi_defi(word):
+  dict_vectors_wn = WordnetParseDefinition.get_dict_vectors_synsets_for_word(word)
+  (keys_wn, vectors_wn) = Util.get_keys_values_of_dict(dict_vectors_wn)
+
+  dict_vectors_wn_defi = WordnetParseDefinition.get_vectors_defi_for_word(word)
+  (keys_wn_defi, vectors_wn_defi) = Util.get_keys_values_of_dict(dict_vectors_wn_defi)
+
+
+  definitions = OxfordParser.get_definitions_of_word(word)
+
+  m2d_sim = [[0 for x in range(len(definitions))] for x in range(len(vectors_wn))]
+
+  for i in range(len(vectors_wn)):
+    vector_wn = vectors_wn[i]
+    vector_wn_defi = vectors_wn_defi[i]
+
+    dict_vectors_ox = OxParseDefinition.get_dict_vectors_synsets_for_word(word, vector_wn_defi)
+    (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
+
+    for j in range(len(vectors_ox)):
+      vector_ox = vectors_ox[j]
+      m2d_sim[i][j] = sim_2_vector(vector_ox, vector_wn)
+
+  return m2d_sim
+
+
 __m2d_sim__ = {}
 
 
-def sim_ox_wn_via_definition():
+def sim_ox_wn_via_definition_cal_word():
 
   total_precision = 0;
   total_recall = 0;
@@ -120,6 +145,7 @@ def sim_ox_wn_via_definition():
   for word in dict_ox:
 
     if word not in __m2d_sim__:
+#      m2d_sim = sim_ox_wn_defi_defi(word)
       m2d_sim = sim_ox_wn_definition(word)
       __m2d_sim__[word] = m2d_sim
 
@@ -127,6 +153,8 @@ def sim_ox_wn_via_definition():
 
     if m2d_sim == None or len(m2d_sim) == 0 or len(m2d_sim[0]) == 0:
       continue
+
+    print word
 #
 #    if len(m2d_sim) == 1 and len(m2d_sim[0]) == 1:
 #      continue
@@ -154,6 +182,77 @@ def sim_ox_wn_via_definition():
   print accuracy
 
   Parameters.append_result_to_file( precision, recall, f_score, accuracy)
+
+
+def count_pair(m2d):
+  pair = 0
+  for i in range(len(m2d)):
+    for j in range(len(m2d[i])):
+      if m2d[i][j] == 1:
+        pair += 1
+
+  return pair
+
+
+def sim_ox_wn_via_definition_cal_syns():
+  total_tp = 0.;
+  total_tn = 0.;
+  total_fn = 0.0;
+  total_fp = 0.0;
+  total_pair = 0
+
+  dict_ox = OxfordParser.get_dict_nouns()
+  for word in dict_ox:
+
+    if word not in __m2d_sim__:
+#      m2d_sim = sim_ox_wn_defi_defi(word)
+      m2d_sim = sim_ox_wn_definition(word)
+      __m2d_sim__[word] = m2d_sim
+
+    m2d_sim = copy.deepcopy(__m2d_sim__[word])
+
+    if m2d_sim == None or len(m2d_sim) == 0 or len(m2d_sim[0]) == 0:
+      continue
+
+#    if len(m2d_sim) == 1 and len(m2d_sim[0]) == 1:
+#      continue
+#
+    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
+
+    pair = count_pair(m2d_sim)
+    total_pair += pair
+
+    (tp, tn, fn, fp) = CompareWithGold.compareGoldWithResult_without_cal_result(m2d_sim,word)
+    if tp != -1:
+      total_tp += tp
+      total_tn += tn
+      total_fn += fn
+      total_fp += fp
+
+  precision = total_tp / (total_tp + total_fp)
+  recall = total_tp / (total_tp + total_fn)
+  accuracy = (total_tp + total_tn) / (total_tp + total_tn + total_fp + total_fn)
+
+  f_score = 0
+  if precision != 0 or recall != 0:
+    f_score = 2*(precision*recall)/(precision + recall)
+  print "total:"
+  print total_pair
+  print total_tp
+  print total_tn
+  print total_fn
+  print total_fp
+
+  print precision
+  print recall
+  print f_score
+  print accuracy
+
+  Parameters.append_result_to_file( precision, recall, f_score, accuracy)
+
+
+def sim_ox_wn_via_definition():
+  sim_ox_wn_via_definition_cal_syns()
 
 
 def choice_1_1_MIN():

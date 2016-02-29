@@ -59,3 +59,44 @@ def compareGoldWithResult(dictResult,WORD):
   return (precision, recall, accuracy)
   ########################################
 
+
+def compareGoldWithResult_without_cal_result(dictResult,WORD):
+  tp = -1;
+  tn = 0.;
+  fn = 0.0;
+  fp = 0.0;
+
+  if not goldData.has_key(WORD):
+    return (tp, tn, fn, fp)
+
+  for row in range(len(dictResult)):
+    for col in range(len(dictResult[row])):
+      result = dictResult[row][col]
+      gold = goldData[WORD][row][col]
+
+      gold = int(gold)
+      if result != 1:
+        result = 0;
+
+      # print "pair result"
+      # print result
+      # print gold
+
+      if (result == gold and gold == 1):
+        if tp == -1:
+          tp = 0
+        tp += 1.;
+        # print "tp"
+      elif (result == gold and gold == 0):
+        tn += 1.;
+        # print "tn"
+      elif (result != gold and gold == 1):
+        fn += 1.;
+        # print "fp"
+      elif (result != gold and gold == 0):
+        fp += 1.;
+        # print "fp"
+
+  return (tp, tn, fn, fp)
+  ########################################
+

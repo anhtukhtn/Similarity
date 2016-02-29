@@ -23,28 +23,30 @@ def get_greatest_synset_similarity_between(synsets_wn, noun_2):
   return synset_max
 
 
-#def get_definition_synset_with_synsetwn(definition, synsets_wn):
-#  definition_synsets = []
-#  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
-#  nouns = list(set(nouns))
-#  for noun in nouns:
-#    synset_max = get_greatest_synset_similarity_between(synsets_wn, noun)
-#    if synset_max is not None:
-#      definition_synsets.append(synset_max)
-#
-#  return definition_synsets
-#
-
+# synsets via synsets of main synset in wn
 def get_definition_synset_with_synsetwn(definition, synsets_wn):
   definition_synsets = []
   nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
   nouns = list(set(nouns))
   for noun in nouns:
-    synsets_of_noun = WordnetHandler.get_synsets_for_word(noun, 'n')
-    for synset_of_noun in synsets_of_noun:
-      definition_synsets.append(synset_of_noun)
+    synset_max = get_greatest_synset_similarity_between(synsets_wn, noun)
+    if synset_max is not None:
+      definition_synsets.append(synset_max)
 
   return definition_synsets
+
+
+# all synsets
+#def get_definition_synset_with_synsetwn(definition, synsets_wn):
+#  definition_synsets = []
+#  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+#  nouns = list(set(nouns))
+#  for noun in nouns:
+#    synsets_of_noun = WordnetHandler.get_synsets_for_word(noun, 'n')
+#    for synset_of_noun in synsets_of_noun:
+#      definition_synsets.append(synset_of_noun)
+#
+#  return definition_synsets
 
 
 def get_dict_vectors_synsets_for_word(word, synsets_wn):

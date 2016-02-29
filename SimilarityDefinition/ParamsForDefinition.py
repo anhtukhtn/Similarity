@@ -12,7 +12,8 @@ class PARAMETERS_CHOICE_0_1:
 ################################################################################
 
 
-__result_file_name__ = "Results/vector_definition/synsetswn_defi_hyper_hypo_ox_sd_xh_all_sysnets.csv"
+filename = "synswn_defi_hyper_hypo_mero_holo_d_cal_syns_test.csv"
+__result_file_name__ = "Results/vector_definition/" + filename
 
 
 def append_params_and_result_to_file(values):
