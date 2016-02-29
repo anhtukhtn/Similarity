@@ -5,7 +5,35 @@ __author__ = 'tu'
 
 import xml.etree.ElementTree as ET
 import csv
+import copy
 from collections import OrderedDict
+
+__filename_ox_dict__ = "OxfordXML/B_150107.xml"
+
+
+def remove_tv(element):
+  for sub_element in element:
+    if sub_element.tag == "txt_v_s_srf":
+      element.remove(sub_element)
+    remove_tv(sub_element)
+
+
+def get_string_of_d_elemnt(element):
+#  s = element.text or ""
+#  for sub_element in element:
+#    if sub_element.tag == "xr":
+#      for sub_sub_element in sub_element:
+#        if sub_sub_element.tag == "xh" and sub_sub_element.text != None:
+#          s += sub_sub_element.text
+#    if sub_element.tag == "dh" and sub_element.text != None:
+#      s += sub_element.text
+#  s += element.tail or ""
+  element = copy.deepcopy(element)
+  remove_tv(element)
+  s = ''.join(element.itertext()) or ""
+  s = s[:-1]
+  return s
+
 
 def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
 
@@ -43,7 +71,8 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
   # get d
   d = meaning.find('.//d') or meaning.find('.//ud');
   if d != None:
-    oxfordNouns[runhd][str(iMeaning)]['d'] = d.text;
+    d_string = get_string_of_d_elemnt(d)
+    oxfordNouns[runhd][str(iMeaning)]['d'] = d_string
 
   # get meaning
   vn = meaning.find('.//meaning');
@@ -98,7 +127,7 @@ def readOxfordNouns():
 
   oxfordNouns = OrderedDict();
 
-  tree = ET.parse('OxfordXML/B_150107.xml');
+  tree = ET.parse(__filename_ox_dict__);
   root = tree.getroot();
 
   # get all words
@@ -249,7 +278,7 @@ def readOxfordVerbs():
 
   oxfordNouns = OrderedDict();
 
-  tree = ET.parse('OxfordXML/B_150107.xml');
+  tree = ET.parse(__filename_ox_dict__);
   root = tree.getroot();
 
   # get all words
@@ -409,4 +438,4 @@ def get_definitions_of_word(word):
   return definitions
 
 
-# writeDictFromOxfordToFile("OxfordDict/b-detail.csv",dict);
+# writeDictFromOxfordToFile("OxfordDict/b-detail_fixed.csv",__dict_nouns__);
