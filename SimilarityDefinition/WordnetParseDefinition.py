@@ -7,6 +7,8 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
   synset_max = None
 
   synsets_of_noun = WordnetHandler.get_synsets_for_word(noun_2, 'n')
+  synsets_of_verb = WordnetHandler.get_synsets_for_word(noun_2, 'v')
+  synsets_of_noun = synsets_of_noun + synsets_of_verb
 
   if len(synsets_of_noun) > 0:
     synset_max = synsets_of_noun[0]
@@ -24,7 +26,7 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
 def get_feature_synset_for(synset):
   synsets_definition = []
   definition = synset.definition()
-  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+  nouns = PreprocessDefinition.preprocess_sentence(definition)
   nouns = list(set(nouns))
   for noun in nouns:
     synset_max = get_greatest_synset_similarity_between(synset, noun)
@@ -34,19 +36,19 @@ def get_feature_synset_for(synset):
     # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # # get hypernyms
     # print "\nhypernyms ------";
-  for hypernym in synset.hypernyms():
-    synsets_definition.append(hypernym)
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # get hyponyms
-  for hyponym in synset.hyponyms():
-    synsets_definition.append(hyponym)
-
-  for meronym in synset.part_meronyms():
-    synsets_definition.append(meronym)
-
-  for holonym in synset.member_holonyms():
-    synsets_definition.append(holonym)
+#  for hypernym in synset.hypernyms():
+#    synsets_definition.append(hypernym)
+#
+#    # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#    # get hyponyms
+#  for hyponym in synset.hyponyms():
+#    synsets_definition.append(hyponym)
+#
+#  for meronym in synset.part_meronyms():
+#    synsets_definition.append(meronym)
+#
+#  for holonym in synset.member_holonyms():
+#    synsets_definition.append(holonym)
 #
   synsets_definition.append(synset)
   return synsets_definition
@@ -55,7 +57,8 @@ def get_feature_synset_for(synset):
 def get_definition_synset(synset):
   synsets_definition = []
   definition = synset.definition()
-  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+#  nouns = PreprocessDefinition.preprocess_sentence_to_nouns(definition)
+  nouns = PreprocessDefinition.preprocess_sentence(definition)
   nouns = list(set(nouns))
   for noun in nouns:
     synset_max = get_greatest_synset_similarity_between(synset, noun)

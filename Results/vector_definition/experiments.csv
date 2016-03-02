@@ -1,11 +1,14 @@
-noun,,defi,Defi-hyper,Defi-hyper-hypo,Defi-hyper-hypo-mero-holo
-ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox),d,0-0-1-0-1-0.807-0.8388-0.8226,,0-0-1-0.2-1.1-0.803-0.8322-0.8173,
-,D-sd,,0-0-1-015-1.45-0.806-0.8367-0.821,,
-,D-sd-xh,0-0-1-0.15-1.25-0.8077-0.8388-0.82296,0-0-1-015-1.45-0.806-0.8367-0.821,0-0-1-0.2-1.1-0.8032-0.8326-0.8177,0-0-1-0.2-1.1-0.8032-0.8326-0.8176
-,D-sd-xh-h,,,,
-ox- get all synsets of nouns in ox,d,0-0-1-0.2-1.1-0.7907-0.8191-0.8049,,,
-,D-sd-xh,0-0.3-1.15-0-1-0.7829-0.8116-0.797,,,
-ox- get synsets via synsets of defi in wn of each main synset (using syns of definitions of the syns in wn to WDS ox),d,0-0.35-1.1-0-1-0.8041-0.8351-0.8193,,,
-,D-sd-xh,0-0.35-1.1-0-1-0.8043-0.8355-0.8196,,,0-0.25-1.1-0-1-0.794-0.8237-0.8086
-ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox)(cal recall by synsets),d,0-0-1-1-1.5-0.935-0.7408-0.8266,,,0-0-1-1-1.45-0.9180-0.7429-0.8212
-,D-sd-xh,0-0-1-1-1.5-0.9343-0.7359-0.8233,,,0-0-1-1-1.45-0.9165-0.7418-0.81997
+noun,,just main syn,deif- trim vectors → 3,Defi-v,defi,Defi-hyper,Defi-hyper-hypo,Defi-hyper-hypo-mero-holo
+ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox),d,,,,0-0-1-0-1-0.807-0.8388-0.8226,,0-0-1-0.2-1.1-0.803-0.8322-0.8173,
+,D-sd,,,,,0-0-1-015-1.45-0.806-0.8367-0.821,,
+,D-sd-xh,,,,0-0-1-0.15-1.25-0.8077-0.8388-0.82296,0-0-1-015-1.45-0.806-0.8367-0.821,0-0-1-0.2-1.1-0.8032-0.8326-0.8177,0-0-1-0.2-1.1-0.8032-0.8326-0.8176
+,D-sd-xh-h,,,,,,,
+ox- get all synsets of nouns in ox,d,,,,0-0-1-0.2-1.1-0.7907-0.8191-0.8049,,,
+,D-sd-xh,,,,0-0.3-1.15-0-1-0.7829-0.8116-0.797,,,
+ox- get synsets via synsets of defi in wn of each main synset (using syns of definitions of the syns in wn to WDS ox),d,,,,0-0.35-1.1-0-1-0.8041-0.8351-0.8193,,,
+,D-sd-xh,,,,0-0.35-1.1-0-1-0.8043-0.8355-0.8196,,,0-0.25-1.1-0-1-0.794-0.8237-0.8086
+ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox)[recall by synsets],d,0.7106-0.6267-0.666,0.7425-0.6371-0.6858,0.7446-0.735-0.7398,0.7305-0.7399-0.7352,,,
+,D-sd-xh,,,,,,,
+ox- get syns by 1 current main syn[by synsets],d,0.662-0.604-0.6317,0.7154-0.6463-0.6791,0.7248-0.7203-0.7225,0.7172-0.7099-0.7136,,,
+ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],d,0.6913-0.5838-0.633,0.7154-0.6524-0.6825,0.7002-0.7503-0.7244,0.696-0.7399-0.7172,,,
+ox- get syns by fix 1 main syn for 1 word,d,,,,0.7397-0.642-0.6874,,,

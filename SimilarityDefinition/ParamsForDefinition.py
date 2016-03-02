@@ -12,7 +12,7 @@ class PARAMETERS_CHOICE_0_1:
 ################################################################################
 
 
-filename = "synswn_defi_hyper_hypo_mero_holo_d_cal_syns_test.csv"
+filename = "cur_syn_defi_d_cal_syns_v.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 

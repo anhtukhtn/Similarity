@@ -68,6 +68,7 @@ def compareGoldWithResult_without_cal_result(dictResult,WORD):
 
   if not goldData.has_key(WORD):
     return (tp, tn, fn, fp)
+  tp = 0.0
 
   for row in range(len(dictResult)):
     for col in range(len(dictResult[row])):
@@ -83,8 +84,6 @@ def compareGoldWithResult_without_cal_result(dictResult,WORD):
       # print gold
 
       if (result == gold and gold == 1):
-        if tp == -1:
-          tp = 0
         tp += 1.;
         # print "tp"
       elif (result == gold and gold == 0):
