@@ -1,0 +1,7 @@
+ox,wn,wds
+"defi(d,ud)",defi,ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets]
+ex(x),ex,ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox)[recall by synsets]
+domain(sd),hyper,ox- get synsets by main synsets in wn – reduced synset step by step (using main syns in wn of the word to WDS ox)[recall by synsets]
+see also (xh),hypo,
+collocation in example(cl_in_x),mero,
+asee also(xr-xh),holo,

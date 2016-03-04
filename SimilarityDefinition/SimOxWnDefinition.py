@@ -8,12 +8,14 @@ import OxfordParser
 import heapq
 import CompareWithGold
 import copy
+import DebugHandler
 
 
 def sim_for_synset_and_synsetvector(a_synset, vector):
   p_max = 0
   for synset in vector:
-    p = a_synset.path_similarity(synset)
+#    p = a_synset.path_similarity(synset)
+    p = WordnetHandler.cal_similarity(a_synset, synset)
     if p > p_max:
       p_max = p
 
@@ -49,6 +51,19 @@ def sim_wn_ox_vector(vectors_ox, vectors_wn):
       m2d_sim[i][j] = sim_2_vector(vector_ox, vector_wn)
 
   return m2d_sim
+
+def sim_wn_ox_vector_reduce(vectors_ox, vectors_wn, status):
+  m2d_sim = [[0 for x in range(len(vectors_ox))] for x in range(len(vectors_wn))]
+  for i in range(len(vectors_wn)):
+    if status[i] == 1:
+      vector_wn = vectors_wn[i]
+      for j in range(len(vectors_ox)):
+        vector_ox = vectors_ox[j]
+        m2d_sim[i][j] = sim_2_vector(vector_ox, vector_wn)
+
+  return m2d_sim
+
+
 
 
 def choose_pair_0_1(matrix_similarity, num_rows, num_cols):
@@ -136,17 +151,12 @@ def sim_ox_wn_defi_WDS_via_curr_main_syn(word):
   (keys_wn, vectors_wn) = Util.get_keys_values_of_dict(dict_vectors_wn)
   synsets_wn = WordnetHandler.get_synsets_for_word(word, 'n')
 
-  dict_vectors_wn_defi = WordnetParseDefinition.get_vectors_defi_for_word(word)
-  (keys_wn_defi, vectors_wn_defi) = Util.get_keys_values_of_dict(dict_vectors_wn_defi)
-
-
   definitions = OxfordParser.get_definitions_of_word(word)
 
   m2d_sim = [[0 for x in range(len(definitions))] for x in range(len(vectors_wn))]
 
   for i in range(len(vectors_wn)):
     vector_wn = vectors_wn[i]
-    vector_wn_defi = vectors_wn_defi[i]
 
     dict_vectors_ox = OxParseDefinition.get_dict_vectors_synsets_for_word(word, [synsets_wn[i]])
     (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
@@ -190,8 +200,8 @@ def sim_ox_wn_mix(word):
   return result
 
 def sim_ox_wn_definition(word):
-  result = sim_ox_wn_defi_WDS_via_curr_main_syn(word)
-#  result = sim_ox_wn_defi_WDS_via_main_syns(word)
+#  result = sim_ox_wn_defi_WDS_via_curr_main_syn(word)
+  result = sim_ox_wn_defi_WDS_via_main_syns(word)
 #  result = sim_ox_wn_defi_WDS_via_defi_of_curr_main_syn(word)
 #  result = sim_ox_wn_mix(word)
 #  result = sim_ox_wn_defi_WDS_via_1_main_syn(word)
@@ -257,6 +267,85 @@ def count_pair(m2d):
   return pair
 
 
+def reducing_m2d_sim(m2d_sim, status_synsets):
+  updated = 0
+  num_rows = len(m2d_sim)
+  num_cols = len(m2d_sim[0])
+  if num_rows >= 1 and num_cols > 1:
+    for iWnWord in range(num_rows):
+      if status_synsets[iWnWord] == 1:
+        order = heapq.nlargest(2, range(len(m2d_sim[iWnWord])), m2d_sim[iWnWord].__getitem__);
+
+        if m2d_sim[iWnWord][order[0]] >= Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST*m2d_sim[iWnWord][order[1]] or\
+                m2d_sim[0][order[0]] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST:
+          m2d_sim[iWnWord][order[0]] = 1;
+          status_synsets[iWnWord] = 0
+          updated = 1
+  return updated
+
+def create_status_array(synsets_wn):
+  status = []
+  for i in range(len(synsets_wn)):
+    status.append(1)
+  return status
+
+
+def match_matrix_sim_with_temp_matrix(m2d_sim, temp_m2d):
+  for i in range(len(m2d_sim)):
+    for j in range(len(m2d_sim[0])):
+      if temp_m2d[i][j] == 1:
+        m2d_sim[i][j] = 1
+
+
+def pair_0_1_reducing_m2d_sim(matrix_similarity, num_rows, num_cols, word):
+
+  if num_rows == 1 and num_cols == 1 and matrix_similarity[0][0] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN:
+      matrix_similarity[0][0] = 1;
+
+  if num_rows > 1 and num_cols == 1:
+    col = []
+    for iWnWord in range(num_rows):
+      col.append(matrix_similarity[iWnWord][0])
+    order = heapq.nlargest(2, range(num_rows), col.__getitem__);
+    if matrix_similarity[order[0]][0] >= Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST*matrix_similarity[order[1]][0] or \
+            matrix_similarity[order[0]][0] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST:
+      matrix_similarity[order[0]][0] = 1;
+
+  if num_rows >= 1 and num_cols > 1:
+    synsets_wn = WordnetHandler.get_synsets_for_word(word,'n')
+    print synsets_wn
+    status_synsets = create_status_array(synsets_wn)
+    updated = reducing_m2d_sim(matrix_similarity, status_synsets)
+    DebugHandler.print_2d_matrix(matrix_similarity)
+    while updated == 1:
+      m2d = sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets, word)
+      DebugHandler.print_2d_matrix(m2d)
+      print status_synsets
+      updated = reducing_m2d_sim(m2d, status_synsets)
+      match_matrix_sim_with_temp_matrix(matrix_similarity, m2d)
+      DebugHandler.print_2d_matrix(matrix_similarity)
+
+  return matrix_similarity
+
+
+def sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets_wn, word):
+  dict_vectors_wn = WordnetParseDefinition.get_dict_vectores_synsets_for_synsets(synsets_wn)
+  synsets_reduce_wn = copy.deepcopy(synsets_wn)
+  for i in reversed(range(len(synsets_reduce_wn))):
+    if status_synsets_wn[i] == 0:
+      del synsets_reduce_wn[i]
+  print synsets_reduce_wn
+
+  dict_vectors_ox = OxParseDefinition.get_dict_vectors_synsets_for_word(word, synsets_reduce_wn)
+
+  (keys_wn, vectors_wn) = Util.get_keys_values_of_dict(dict_vectors_wn)
+  (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
+
+  m2d_sim = sim_wn_ox_vector_reduce(vectors_ox, vectors_wn, status_synsets_wn)
+
+  return m2d_sim
+
+
 def sim_ox_wn_via_definition_cal_syns():
   total_tp = 0.;
   total_tn = 0.;
@@ -266,6 +355,8 @@ def sim_ox_wn_via_definition_cal_syns():
 
   dict_ox = OxfordParser.get_dict_nouns()
   for word in dict_ox:
+    if word != 'bank':
+      continue
 
     if word not in __m2d_sim__:
       m2d_sim = sim_ox_wn_definition(word)
@@ -279,7 +370,9 @@ def sim_ox_wn_via_definition_cal_syns():
 #    if len(m2d_sim) == 1 and len(m2d_sim[0]) == 1:
 #      continue
 #
-    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
+#    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
+    m2d_sim = pair_0_1_reducing_m2d_sim(m2d_sim, len(m2d_sim), len(m2d_sim[0]), word)
+    print word
 
     pair = count_pair(m2d_sim)
     total_pair += pair
@@ -488,17 +581,24 @@ def choice_N_N_RANGE_FIRST():
   return f_score, current_params
 
 def train_sim_definition():
-  Parameters.reset_params_zero()
-  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
-  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
-  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
+#  Parameters.reset_params_zero()
+#  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
+#  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
+#  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
+#
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.1
 
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
   sim_ox_wn_via_definition()
+
 
 def print_gold_pair():
   gold_data = CompareWithGold.goldData

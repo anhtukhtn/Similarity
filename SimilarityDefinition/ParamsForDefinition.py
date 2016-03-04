@@ -12,7 +12,7 @@ class PARAMETERS_CHOICE_0_1:
 ################################################################################
 
 
-filename = "cur_syn_defi_d_cal_syns_v.csv"
+filename = "reduce_main_syns_defi_d_cal_syns_v_temp.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 

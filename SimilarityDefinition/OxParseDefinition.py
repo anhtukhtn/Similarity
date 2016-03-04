@@ -3,7 +3,6 @@ import PreprocessDefinition
 import OxfordParser
 from collections import OrderedDict
 
-
 def get_greatest_synset_similarity_between(synsets_wn, noun_2):
   synset_max = None
 
@@ -17,7 +16,8 @@ def get_greatest_synset_similarity_between(synsets_wn, noun_2):
 
     for synset_of_noun in synsets_of_noun:
       for synset_wn in synsets_wn:
-        p = synset_wn.path_similarity(synset_of_noun)
+#        p = synset_wn.path_similarity(synset_of_noun)
+        p = WordnetHandler.cal_similarity(synset_wn, synset_of_noun)
         if p > p_max:
           p_max = p
           synset_max = synset_of_noun
@@ -38,7 +38,8 @@ def get_greatest_synsets_similarity_between(synsets_wn, nouns):
         if len(synsets_of_noun) > 0:
           p_each_noun = 0
           for synset_of_noun in synsets_of_noun:
-            p = synset_wn.path_similarity(synset_of_noun)
+    #        p = synset_wn.path_similarity(synset_of_noun)
+            p = WordnetHandler.cal_similarity(synset_wn, synset_of_noun)
             p_each_noun += p
           p_each_noun = p_each_noun/len(synsets_of_noun)
           p_noun += p_each_noun
