@@ -67,8 +67,11 @@ __author__	WordnetProcess.py	/^__author__ = 'tu'$/;"	v
 __author__	WriteParametersAndResult.py	/^__author__ = 'tu'$/;"	v
 __continue	ExhaustedTry.py	/^__continue = 0$/;"	v
 __dict_Ox__	map_wordnet_via_EVD.py	/^__dict_Ox__ = {}$/;"	v
+__dict_defi_for_synset__	SimilarityDefinition/WordnetParseDefinition.py	/^__dict_defi_for_synset__ = {}$/;"	v
+__dict_feature_for_synset	SimilarityDefinition/WordnetParseDefinition.py	/^__dict_feature_for_synset = {}$/;"	v
 __dict_nouns__	OxfordParser.py	/^__dict_nouns__ = readOxfordNouns()$/;"	v
 __dict_ox_nouns__	SimilarityWordnetOxford.py	/^__dict_ox_nouns__ = OxfordParser.readOxfordNouns();$/;"	v
+__dict_similarity__	WordnetHandler.py	/^__dict_similarity__ = {}$/;"	v
 __dict_synsets__	WordnetHandler.py	/^__dict_synsets__ = {}$/;"	v
 __filename_ox_dict__	OxfordParser.py	/^__filename_ox_dict__ = "OxfordXML\/B_150107.xml"$/;"	v
 __init__	Parameters.py	/^    def __init__(self, **kwargs):$/;"	m	class:Map
@@ -135,6 +138,7 @@ append_result_to_file	SimilarityDefinition/ParamsForDefinition.py	/^def append_r
 append_result_to_file	WriteParametersAndResult.py	/^def append_result_to_file(precision,recall,accuracy):$/;"	f
 append_to_excel_file	FileProcess.py	/^def append_to_excel_file(filename, row, matrix_2d):$/;"	f
 brown_ic	SimilarityWordB.py	/^brown_ic = wordnet_ic.ic('ic-brown.dat')$/;"	v
+cal_similarity	WordnetHandler.py	/^def cal_similarity(synset_1, synset_2):$/;"	f
 cal_similarity_for_word	SimilarityWordnetOxford.py	/^def cal_similarity_for_word(word):$/;"	f
 checkAndRemoveInvalidElement	OxfordParser.py	/^def checkAndRemoveInvalidElement(meanings):$/;"	f
 check_pos	SimilarityDefinition/PreprocessDefinition.py	/^def check_pos(pos):$/;"	f
@@ -164,7 +168,9 @@ compareVietNetAndOxford	CompareVietNetOxford.py	/^def compareVietNetAndOxford(di
 cosine_similarity	SimilarityBank.py	/^def cosine_similarity(x,y):$/;"	f
 count_pair	SimilarityDefinition/SimOxWnDefinition.py	/^def count_pair(m2d):$/;"	f
 count_word_in_set	map_wordnet_via_EVD.py	/^def count_word_in_set(word, words):$/;"	f
-create_key	WordnetHandler.py	/^def create_key(word, pos):$/;"	f
+create_key_for_get_synsets	WordnetHandler.py	/^def create_key_for_get_synsets(word, pos):$/;"	f
+create_key_for_similarity	WordnetHandler.py	/^def create_key_for_similarity(synset_1, synset_2):$/;"	f
+create_status_array	SimilarityDefinition/SimOxWnDefinition.py	/^def create_status_array(synsets_wn):$/;"	f
 d	Parameters.py	/^  d = "d"$/;"	v	class:params_string
 definition	Parameters.py	/^  definition = "definition"$/;"	v	class:params_string
 dictOxford	SimilaritySample.py	/^dictOxford = OxfordParser.readOxfordNouns();$/;"	v
@@ -181,7 +187,7 @@ feature_dict	ExhaustedTry.py	/^def feature_dict(dict_nouns):$/;"	f
 feature_dict	Train_params.py	/^def feature_dict(dict_nouns):$/;"	f
 feature_wn	ExhaustedTry.py	/^def feature_wn(dict_nouns):$/;"	f
 feature_wn	Train_params.py	/^def feature_wn(dict_nouns):$/;"	f
-filename	SimilarityDefinition/ParamsForDefinition.py	/^filename = "defi_cur_syn_defi_d_cal_syns.csv"$/;"	v
+filename	SimilarityDefinition/ParamsForDefinition.py	/^filename = "reduce_main_syns_defi_d_cal_syns_v_temp.csv"$/;"	v
 filt_top_score_dict_word	SimilarityWordnetOxford.py	/^def filt_top_score_dict_word(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
 formatAndWriteMatrixToFile	SimilarityWordnetOxford.py	/^def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
 get_EVD_means	map_wordnet_via_EVD.py	/^def get_EVD_means(key, key_lemmas, values, dict_EVD):$/;"	f
@@ -196,6 +202,7 @@ get_definition_synset	SimilarityDefinition/WordnetParseDefinition.py	/^def get_d
 get_definition_synset_with_synsetwn	SimilarityDefinition/OxParseDefinition.py	/^def get_definition_synset_with_synsetwn(definition, synsets_wn):$/;"	f
 get_definitions_of_word	OxfordParser.py	/^def get_definitions_of_word(word):$/;"	f
 get_dict_nouns	OxfordParser.py	/^def get_dict_nouns():$/;"	f
+get_dict_vectores_synsets_for_synsets	SimilarityDefinition/WordnetParseDefinition.py	/^def get_dict_vectores_synsets_for_synsets(synsets):$/;"	f
 get_dict_vectors_synsets_for_word	SimilarityDefinition/OxParseDefinition.py	/^def get_dict_vectors_synsets_for_word(word, synsets_wn):$/;"	f
 get_dict_vectors_synsets_for_word	SimilarityDefinition/WordnetParseDefinition.py	/^def get_dict_vectors_synsets_for_word(word):$/;"	f
 get_feature_synset_for	SimilarityDefinition/WordnetParseDefinition.py	/^def get_feature_synset_for(synset):$/;"	f
@@ -231,11 +238,13 @@ jaccard_weight	Parameters.py	/^  jaccard_weight = "jaccard_weight"$/;"	v	class:p
 jaccard_weight	Train_params.py	/^def jaccard_weight(dict_nouns):$/;"	f
 levenshtein	Util.py	/^def levenshtein(a,b):$/;"	f
 map_wordnet_EVD	map_wordnet_via_EVD.py	/^def map_wordnet_EVD():$/;"	f
+match_matrix_sim_with_temp_matrix	SimilarityDefinition/SimOxWnDefinition.py	/^def match_matrix_sim_with_temp_matrix(m2d_sim, temp_m2d):$/;"	f
 meronyms	Parameters.py	/^  meronyms = "meronyms"$/;"	v	class:params_string
 n	Parameters.py	/^  n = "n"$/;"	v	class:params_string
 nbest	Parameters.py	/^  nbest = "nbest"$/;"	v	class:params_string
 nbest_similarity	ExhaustedTry.py	/^def nbest_similarity(dict_nouns):$/;"	f
 nbest_similarity	Train_params.py	/^def nbest_similarity(dict_nouns):$/;"	f
+pair_0_1_reducing_m2d_sim	SimilarityDefinition/SimOxWnDefinition.py	/^def pair_0_1_reducing_m2d_sim(matrix_similarity, num_rows, num_cols, word):$/;"	f
 params_string	Parameters.py	/^class params_string:$/;"	c
 pos_tag	POSWrapper.py	/^def pos_tag(tokens):$/;"	f
 preprocess_sentence	SimilarityDefinition/PreprocessDefinition.py	/^def preprocess_sentence(sentence):$/;"	f
@@ -252,6 +261,7 @@ readResultFile	CompareVietNetOxford.py	/^def readResultFile(fileName):$/;"	f
 readVietNetFile	ReadVietNet.py	/^def readVietNetFile():$/;"	f
 read_gold_file_to_dict	GoldData.py	/^def read_gold_file_to_dict(filename):$/;"	f
 read_nouns	WordnetProcessForEVD.py	/^def read_nouns():$/;"	f
+reducing_m2d_sim	SimilarityDefinition/SimOxWnDefinition.py	/^def reducing_m2d_sim(m2d_sim, status_synsets):$/;"	f
 remove_tv	OxfordParser.py	/^def remove_tv(element):$/;"	f
 remove_unicode_characters	Util.py	/^def remove_unicode_characters(phrase):$/;"	f
 reorder_dict_for_word	GoldData.py	/^def reorder_dict_for_word(dict_gold, word):$/;"	f
@@ -268,12 +278,15 @@ sim_ox_wn_defi_WDS_via_1_main_syn	SimilarityDefinition/SimOxWnDefinition.py	/^de
 sim_ox_wn_defi_WDS_via_curr_main_syn	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_defi_WDS_via_curr_main_syn(word):$/;"	f
 sim_ox_wn_defi_WDS_via_defi_of_curr_main_syn	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_defi_WDS_via_defi_of_curr_main_syn(word):$/;"	f
 sim_ox_wn_defi_WDS_via_main_syns	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_defi_WDS_via_main_syns(word):$/;"	f
+sim_ox_wn_defi_WDS_via_main_syns_for_reduce	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets_wn, word):$/;"	f
 sim_ox_wn_definition	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_definition(word):$/;"	f
 sim_ox_wn_mix	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_mix(word):$/;"	f
 sim_ox_wn_via_definition	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_via_definition():$/;"	f
 sim_ox_wn_via_definition_cal_syns	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_via_definition_cal_syns():$/;"	f
 sim_ox_wn_via_definition_cal_word	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_via_definition_cal_word():$/;"	f
 sim_wn_ox_vector	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_wn_ox_vector(vectors_ox, vectors_wn):$/;"	f
+sim_wn_ox_vector_reduce	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_wn_ox_vector_reduce(vectors_ox, vectors_wn, status):$/;"	f
+similarity	WordnetHandler.py	/^def similarity(synset_1, synset_2):$/;"	f
 similarityWordB	SimilaritySample.py	/^def similarityWordB():$/;"	f
 similarityWordB	SimilarityWordB.py	/^def similarityWordB():$/;"	f
 similarityWords	SimilarityWordnetOxford.py	/^def similarityWords(dictOxfordNouns):$/;"	f

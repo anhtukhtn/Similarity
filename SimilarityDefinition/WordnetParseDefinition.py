@@ -7,12 +7,23 @@ __dict_defi_for_synset__ = {}
 __dict_feature_for_synset = {}
 
 
+def pos_is_noun(pos):
+  return (pos == 'NN' or pos == 'NNS' or pos == 'JJ')
+
+
+def pos_is_verb(pos):
+  return (pos == 'VB' or pos == 'VBD' or pos == 'VBN')
+
+
 def get_greatest_synset_similarity_between(synset_1, noun_2):
   synset_max = None
 
-  synsets_of_noun = WordnetHandler.get_synsets_for_word(noun_2, 'n')
-  synsets_of_verb = WordnetHandler.get_synsets_for_word(noun_2, 'v')
-  synsets_of_noun = synsets_of_noun + synsets_of_verb
+  (word, pos) = noun_2
+  synsets_of_noun = []
+  if pos_is_noun(pos):
+    synsets_of_noun = WordnetHandler.get_synsets_for_word(word, 'n')
+  if pos_is_verb(pos):
+    synsets_of_noun = WordnetHandler.get_synsets_for_word(word, 'v')
 
   if len(synsets_of_noun) > 0:
     synset_max = synsets_of_noun[0]
@@ -43,20 +54,30 @@ def get_feature_synset_for(synset):
       # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # # get hypernyms
       # print "\nhypernyms ------";
-  #  for hypernym in synset.hypernyms():
-  #    synsets_definition.append(hypernym)
-  #
-  #    # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  #    # get hyponyms
-  #  for hyponym in synset.hyponyms():
-  #    synsets_definition.append(hyponym)
-  #
-  #  for meronym in synset.part_meronyms():
-  #    synsets_definition.append(meronym)
-  #
-  #  for holonym in synset.member_holonyms():
-  #    synsets_definition.append(holonym)
-  #
+#    for hypernym in synset.hypernyms():
+#      synsets_definition.append(hypernym)
+#
+#      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#      # get hyponyms
+#    for hyponym in synset.hyponyms():
+#      synsets_definition.append(hyponym)
+#
+#    for meronym in synset.part_meronyms():
+#      synsets_definition.append(meronym)
+#
+#    for holonym in synset.member_holonyms():
+#      synsets_definition.append(holonym)
+
+#    for example in synset.examples():
+#      for lemma in synset.lemmas():
+#        example = example.replace(lemma.name(), "")
+#      nouns = PreprocessDefinition.preprocess_sentence(example)
+#      nouns = list(set(nouns))
+#      for noun in nouns:
+#        synset_max = get_greatest_synset_similarity_between(synset, noun)
+#        if synset_max is not None:
+#          synsets_definition.append(synset_max)
+
     synsets_definition.append(synset)
     __dict_feature_for_synset[key] = synsets_definition
 
@@ -105,7 +126,7 @@ def get_vectors_defi_for_word(word):
 def get_dict_vectores_synsets_for_synsets(synsets):
   vectors = OrderedDict()
   for synset in synsets:
-    vector = get_definition_synset(synset)
+    vector = get_feature_synset_for(synset)
     key = synset.definition()
     vectors[key] = vector
 

@@ -3,12 +3,24 @@ import PreprocessDefinition
 import OxfordParser
 from collections import OrderedDict
 
+
+def pos_is_noun(pos):
+  return (pos == 'NN' or pos == 'NNS' or pos == 'JJ')
+
+
+def pos_is_verb(pos):
+  return (pos == 'VB' or pos == 'VBD' or pos == 'VBN')
+
+
 def get_greatest_synset_similarity_between(synsets_wn, noun_2):
   synset_max = None
 
-  synsets_of_noun = WordnetHandler.get_synsets_for_word(noun_2, 'n')
-  synsets_of_verb = WordnetHandler.get_synsets_for_word(noun_2, 'v')
-  synsets_of_noun = synsets_of_noun + synsets_of_verb
+  (word, pos) = noun_2
+  synsets_of_noun = []
+  if pos_is_noun(pos):
+    synsets_of_noun = WordnetHandler.get_synsets_for_word(word, 'n')
+  if pos_is_verb(pos):
+    synsets_of_noun = WordnetHandler.get_synsets_for_word(word, 'v')
 
   if len(synsets_of_noun) > 0:
     synset_max = synsets_of_noun[0]

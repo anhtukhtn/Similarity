@@ -21,7 +21,11 @@ def create_key_for_similarity(synset_1, synset_2):
 
 
 def similarity(synset_1, synset_2):
+  sim = 0
   sim = synset_1.path_similarity(synset_2)
+#  if synset_1.pos() == synset_2.pos():
+#    sim = synset_1.lch_similarity(synset_2)
+#  sim = synset_1.wup_similarity(synset_2)
 
   return sim
 

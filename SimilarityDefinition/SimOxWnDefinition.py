@@ -313,28 +313,22 @@ def pair_0_1_reducing_m2d_sim(matrix_similarity, num_rows, num_cols, word):
 
   if num_rows >= 1 and num_cols > 1:
     synsets_wn = WordnetHandler.get_synsets_for_word(word,'n')
-    print synsets_wn
     status_synsets = create_status_array(synsets_wn)
     updated = reducing_m2d_sim(matrix_similarity, status_synsets)
-    DebugHandler.print_2d_matrix(matrix_similarity)
     while updated == 1:
       m2d = sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets, word)
-      DebugHandler.print_2d_matrix(m2d)
-      print status_synsets
       updated = reducing_m2d_sim(m2d, status_synsets)
       match_matrix_sim_with_temp_matrix(matrix_similarity, m2d)
-      DebugHandler.print_2d_matrix(matrix_similarity)
 
   return matrix_similarity
 
 
 def sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets_wn, word):
   dict_vectors_wn = WordnetParseDefinition.get_dict_vectores_synsets_for_synsets(synsets_wn)
-  synsets_reduce_wn = copy.deepcopy(synsets_wn)
+  synsets_reduce_wn = list(synsets_wn)
   for i in reversed(range(len(synsets_reduce_wn))):
     if status_synsets_wn[i] == 0:
       del synsets_reduce_wn[i]
-  print synsets_reduce_wn
 
   dict_vectors_ox = OxParseDefinition.get_dict_vectors_synsets_for_word(word, synsets_reduce_wn)
 
@@ -355,8 +349,8 @@ def sim_ox_wn_via_definition_cal_syns():
 
   dict_ox = OxfordParser.get_dict_nouns()
   for word in dict_ox:
-    if word != 'bank':
-      continue
+#    if word != 'bank':
+#      continue
 
     if word not in __m2d_sim__:
       m2d_sim = sim_ox_wn_definition(word)
@@ -370,8 +364,8 @@ def sim_ox_wn_via_definition_cal_syns():
 #    if len(m2d_sim) == 1 and len(m2d_sim[0]) == 1:
 #      continue
 #
-#    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
-    m2d_sim = pair_0_1_reducing_m2d_sim(m2d_sim, len(m2d_sim), len(m2d_sim[0]), word)
+    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
+#    m2d_sim = pair_0_1_reducing_m2d_sim(m2d_sim, len(m2d_sim), len(m2d_sim[0]), word)
     print word
 
     pair = count_pair(m2d_sim)
@@ -581,22 +575,23 @@ def choice_N_N_RANGE_FIRST():
   return f_score, current_params
 
 def train_sim_definition():
-#  Parameters.reset_params_zero()
-#  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
-#  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
-#  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
-#
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.1
+  Parameters.reset_params_zero()
+  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
+  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
+  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
 
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+#
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.15
+#
   sim_ox_wn_via_definition()
 
 

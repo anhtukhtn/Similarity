@@ -85,13 +85,35 @@ def readContentOfWord(oxfordNouns,runhd,iMeaning,meanings,level):
 
   # get examples
   x = meaning.findall('.//x');
+  oxfordNouns[runhd][str(iMeaning)]['x'] = " "
   for i in range(len(x)):
-    oxfordNouns[runhd][str(iMeaning)]['x' + str(i)] = x[i].text;
+    if x[i].text != None:
+      ex = ''.join(x[i].itertext()) or ""
+      oxfordNouns[runhd][str(iMeaning)]['x'] += ex
+      oxfordNouns[runhd][str(iMeaning)]['x'] += "."
+
+  # get collocations
+  x = meaning.findall('.//cl_in_x');
+  oxfordNouns[runhd][str(iMeaning)]['cl_in_x'] = " "
+  for i in range(len(x)):
+    if x[i].text != None:
+      ex = ''.join(x[i].itertext()) or ""
+      oxfordNouns[runhd][str(iMeaning)]['cl_in_x'] += ex
+      oxfordNouns[runhd][str(iMeaning)]['cl_in_x'] += " -- "
 
   # get see also/async
-  xh = meaning.findall('.//xh');
-  for i in range(len(xh)):
-    oxfordNouns[runhd][str(iMeaning)]['xh' + str(i)] = xh[i].text;
+#  xh = meaning.findall('.//xh');
+#  for i in range(len(xh)):
+#    oxfordNouns[runhd][str(iMeaning)]['xh' + str(i)] = xh[i].text;
+#
+  x = meaning.findall('.//xh');
+  oxfordNouns[runhd][str(iMeaning)]['xh'] = " "
+  for i in range(len(x)):
+    if x[i].text != None:
+      xh = ''.join(x[i].itertext()) or ""
+      oxfordNouns[runhd][str(iMeaning)]['xh'] +=  xh
+      oxfordNouns[runhd][str(iMeaning)]['xh'] += " -- "
+
 
 def checkAndRemoveInvalidElement(meanings):
 
@@ -430,6 +452,11 @@ def get_definitions_of_word(word):
       if dict_noun.has_key('d') and dict_noun['d'] != None:
         definition += ". " + dict_noun['d']
 
+#      if dict_noun.has_key('x') and dict_noun['x'] != None:
+#        example = dict_noun['x']
+#        example = example.replace(word, "")
+#        definition += ". " + example
+#
 #      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
 #        definition += ". " + dict_noun['xh']
 
@@ -438,4 +465,4 @@ def get_definitions_of_word(word):
   return definitions
 
 
-# writeDictFromOxfordToFile("OxfordDict/b-detail_fixed.csv",__dict_nouns__);
+writeDictFromOxfordToFile("OxfordDict/b-detail_fixed_xh_co.csv",__dict_nouns__);
