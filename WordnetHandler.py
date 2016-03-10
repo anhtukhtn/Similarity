@@ -2,6 +2,7 @@ from nltk.corpus import wordnet as wn
 
 __dict_synsets__ = {}
 __dict_similarity__ = {}
+__dict_freq_count__ = {}
 
 
 def create_key_for_get_synsets(word, pos):
@@ -36,3 +37,13 @@ def cal_similarity(synset_1, synset_2):
     __dict_similarity__[key] = similarity(synset_1, synset_2)
 
   return __dict_similarity__[key]
+
+
+def get_freq_count_of_synset(synset):
+  key = synset.name()
+  if key not in __dict_freq_count__:
+    count = 0
+    for lemma in synset.lemmas():
+      count += lemma.count()
+    __dict_freq_count__[key] = count
+  return __dict_freq_count__[key]

@@ -9,6 +9,12 @@ import heapq
 import CompareWithGold
 import copy
 import DebugHandler
+import POSWrapper
+import nltk
+from nltk.stem import WordNetLemmatizer
+
+from nltk.metrics import jaccard_distance
+wordnet_lemmatizer = WordNetLemmatizer()
 
 
 def sim_for_synset_and_synsetvector(a_synset, vector):
@@ -64,8 +70,6 @@ def sim_wn_ox_vector_reduce(vectors_ox, vectors_wn, status):
   return m2d_sim
 
 
-
-
 def choose_pair_0_1(matrix_similarity, num_rows, num_cols):
   if num_rows == 1 and num_cols == 1 and matrix_similarity[0][0] > Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN:
     matrix_similarity[0][0] = 1;
@@ -101,6 +105,14 @@ def sim_ox_wn_defi_WDS_via_main_syns(word):
   (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
 
   m2d_sim = sim_wn_ox_vector(vectors_ox, vectors_wn)
+
+#  matrix_similarity_jaccard = similarity_by_jaccard(keys_ox, keys_wn)
+#
+#  JACCARD_WEIGHT = 0.05
+#  for iWnWord in range(len(keys_wn)):
+#    for iDictWord in range(len(keys_ox)):
+#      m2d_sim[iWnWord][iDictWord] = m2d_sim[iWnWord][iDictWord]*(1-JACCARD_WEIGHT) + JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
+#
 
 # write to file
 #  # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -199,12 +211,47 @@ def sim_ox_wn_mix(word):
 
   return result
 
+
+def sim_ox_wn_value_main_synsets(word):
+  dict_vectors_wn = WordnetParseDefinition.get_dict_vectors_value_for(word)
+  synsets_wn = WordnetHandler.get_synsets_for_word(word,'n')
+  dict_vectors_ox = OxParseDefinition.get_vectors_value_for_word(word, synsets_wn)
+
+  (keys_wn, vectors_wn) = Util.get_keys_values_of_dict(dict_vectors_wn)
+  (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
+
+  m2d_sim_defi_temp =  sim_ox_wn_defi_WDS_via_main_syns(word)
+  DebugHandler.print_2d_matrix(m2d_sim_defi_temp)
+
+  m2d_sim_defi = [[0 for x in range(len(vectors_wn))] for x in range(len(vectors_ox))]
+  for i in range(len(vectors_wn)):
+    for j in range(len(vectors_ox)):
+      m2d_sim_defi[j][i] = m2d_sim_defi_temp[i][j]
+
+  m2d_sim = [[0 for x in range(len(vectors_ox))] for x in range(len(vectors_wn))]
+  for i in range(len(vectors_wn)):
+    vector_wn = vectors_wn[i]
+    print vector_wn
+    for j in range(len(vectors_ox)):
+      vector_ox = vectors_ox[j]
+      cosine = spatial.distance.cosine(m2d_sim_defi[j], vector_wn)
+      m2d_sim[i][j] = cosine
+
+  print "\n"
+  for j in range(len(vectors_ox)):
+    vector_ox = vectors_ox[j]
+    print vector_ox
+  return m2d_sim
+
+
 def sim_ox_wn_definition(word):
 #  result = sim_ox_wn_defi_WDS_via_curr_main_syn(word)
   result = sim_ox_wn_defi_WDS_via_main_syns(word)
 #  result = sim_ox_wn_defi_WDS_via_defi_of_curr_main_syn(word)
 #  result = sim_ox_wn_mix(word)
 #  result = sim_ox_wn_defi_WDS_via_1_main_syn(word)
+#  result = sim_ox_wn_value_main_synsets(word)
+
   return result
 
 
@@ -338,6 +385,49 @@ def sim_ox_wn_defi_WDS_via_main_syns_for_reduce(synsets_wn, status_synsets_wn, w
   m2d_sim = sim_wn_ox_vector_reduce(vectors_ox, vectors_wn, status_synsets_wn)
 
   return m2d_sim
+
+
+def similarity_by_jaccard(ox_defis, wn_defis):
+
+  matrix_similarity_jaccard = [[0 for x in range(len(ox_defis))] for x in range(len(wn_defis))];
+
+  for iWnWord in range(len(wn_defis)):
+
+    tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(wn_defis[iWnWord]));
+    words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
+
+    # words = nltk.wordpunct_tokenize(wn.synset(wn_defis[iWnWord].name()).definition());
+    # print words
+    for i in range(len(words)):
+      words[i] = wordnet_lemmatizer.lemmatize(words[i]);
+    wn_set = set(words);
+    # wn_set = set(wn.synset(wn_defis[iWnWord].name()).definition().split())
+    # print wn_set
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # word-word
+    for iDictWord in range(len(ox_defis)):
+
+#      if not ox_defis[str(iDictWord)].has_key("d") or dict_words[str(iDictWord)]["d"] == None:
+#        matrix_similarity_jaccard[iWnWord][iDictWord] = 1;
+#        continue
+
+      tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(ox_defis[iDictWord]));
+      words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')];
+
+      # words = nltk.wordpunct_tokenize(ox_defis[str(iDictWord)]["d"]);
+      # print words
+      for i in range(len(words)):
+        words[i] = wordnet_lemmatizer.lemmatize(words[i]);
+      dict_set = set(words);
+      # print
+      # dict_set = set(ox_defis[str(iDictWord)]["d"].encode('utf8').split());
+      matrix_similarity_jaccard[iWnWord][iDictWord] = jaccard_distance(wn_set,dict_set);
+
+  ########################################
+  return matrix_similarity_jaccard
+
+
 
 
 def sim_ox_wn_via_definition_cal_syns():
@@ -591,7 +681,7 @@ def train_sim_definition():
 #  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
 #  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
 #  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.15
-#
+
   sim_ox_wn_via_definition()
 
 
