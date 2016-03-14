@@ -1,10 +1,13 @@
 import WordnetHandler
 import PreprocessDefinition
 from collections import OrderedDict
+import ParamsForDefinition as PARAMS
 
 
 __dict_defi_for_synset__ = {}
 __dict_feature_for_synset = {}
+
+__SMOOTH_WEIGHT__ = 5
 
 
 def pos_is_noun(pos):
@@ -29,7 +32,7 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
   synsets_of_noun_2 = WordnetHandler.get_synsets_for_word(word, 'v')
   synsets_of_noun = synsets_of_noun_1 + synsets_of_noun_2
 
-  total_count = 11.0
+  total_count = 0 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
   for synset_of_noun in synsets_of_noun:
     total_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 #
@@ -42,10 +45,11 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
       p = WordnetHandler.cal_similarity(synset_1, synset_of_noun)
 
       if p is not None:
-        synset_freq_count = 11.0
+        synset_freq_count = __SMOOTH_WEIGHT__
         synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 
         p = p*(synset_freq_count/total_count)
+
 #
       if p > p_max:
         p_max = p
@@ -64,36 +68,36 @@ def get_feature_synset_for(synset):
     for noun in nouns:
       synset_max = get_greatest_synset_similarity_between(synset, noun)
       if synset_max is not None:
-        synsets_definition.append(synset_max)
+        synsets_definition.append((synset_max,PARAMS.PARAMS_WN.DEFI))
 
       # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # # get hypernyms
       # print "\nhypernyms ------";
-#    for hypernym in synset.hypernyms():
-#      synsets_definition.append(hypernym)
-#
-#      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-#      # get hyponyms
-#    for hyponym in synset.hyponyms():
-#      synsets_definition.append(hyponym)
-#
-#    for meronym in synset.part_meronyms():
-#      synsets_definition.append(meronym)
-#
-#    for holonym in synset.member_holonyms():
-#      synsets_definition.append(holonym)
+    for hypernym in synset.hypernyms():
+      synsets_definition.append((hypernym,PARAMS.PARAMS_WN.HYPER))
 
-#    for example in synset.examples():
-#      for lemma in synset.lemmas():
-#        example = example.replace(lemma.name(), "")
-#      nouns = PreprocessDefinition.preprocess_sentence(example)
-#      nouns = list(set(nouns))
-#      for noun in nouns:
-#        synset_max = get_greatest_synset_similarity_between(synset, noun)
-#        if synset_max is not None:
-#          synsets_definition.append(synset_max)
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      # get hyponyms
+    for hyponym in synset.hyponyms():
+      synsets_definition.append((hyponym,PARAMS.PARAMS_WN.HYPO))
 
-    synsets_definition.append(synset)
+    for meronym in synset.part_meronyms():
+      synsets_definition.append((meronym,PARAMS.PARAMS_WN.MERO))
+
+    for holonym in synset.member_holonyms():
+      synsets_definition.append((holonym,PARAMS.PARAMS_WN.HOLO))
+
+    for example in synset.examples():
+      for lemma in synset.lemmas():
+        example = example.replace(lemma.name(), "")
+      nouns = PreprocessDefinition.preprocess_sentence(example)
+      nouns = list(set(nouns))
+      for noun in nouns:
+        synset_max = get_greatest_synset_similarity_between(synset, noun)
+        if synset_max is not None:
+          synsets_definition.append((synset_max,PARAMS.PARAMS_WN.EX))
+
+    synsets_definition.append((synset,PARAMS.PARAMS_WN.MAIN))
     __dict_feature_for_synset[key] = synsets_definition
 
   return __dict_feature_for_synset[key]

@@ -1,7 +1,14 @@
-ox,wn,wds,similarity
-"defi(d,ud)",defi,ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],path
-ex(x),ex,ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox)[recall by synsets],jcn
-domain(sd),hyper,ox- get synsets by main synsets in wn – reduced synset step by step (using main syns in wn of the word to WDS ox)[recall by synsets],lch
-collocation in example(cl_in_x),hypo,,lin
-asee also(xr-xh),mero,,resnik
-,holo,,wup
+ox,wn,wds,similarity,,Thử nghiệm độ chính xác của WSD wordnet,,
+"defi(d,ud)",defi,ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],path,,,,
+ex(x),ex,ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS ox)[recall by synsets],jcn,,,,
+domain(sd),hyper,ox- get synsets by main synsets in wn – reduced synset step by step (using main syns in wn of the word to WDS ox)[recall by synsets],lch,,,,
+collocation in example(cl_in_x),hypo,,lin,,,,
+asee also(xr-xh),mero,,resnik,,,,
+,holo,,wup,,,,
+,freq count,,,,,,
+,,,,,,,
+,,,,,,,
+,,main syn,Defi,Defi-freq,Defi-hyper,Defi-hyper-hypo,Defi-hyper-hypo-mero-holo
+ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],defi,0.666,0.7398,,,,
+,Defi-jaccard,,,0.7479,,,
+ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],defi,0.633,0.7244,,,,

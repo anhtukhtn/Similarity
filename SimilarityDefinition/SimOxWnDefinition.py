@@ -19,18 +19,29 @@ wordnet_lemmatizer = WordNetLemmatizer()
 
 def sim_for_synset_and_synsetvector(a_synset, vector):
   p_max = 0
-  for synset in vector:
-#    p = a_synset.path_similarity(synset)
+  for (synset,weight) in vector:
     p = WordnetHandler.cal_similarity(a_synset, synset)
-    if p > p_max:
-      p_max = p
+    if p is not None:
+#      p = p*weight
+      if p > p_max:
+        p_max = p
 
   return p_max
 
+#def sim_for_synset_and_synsetvector(a_synset, vector):
+#  p_average = 0
+#  for (synset,weight) in vector:
+#    p = WordnetHandler.cal_similarity(a_synset, synset)
+#    if p is not None:
+#      p = p*weight
+#      p_average += p
+#
+#  return p_average/(len(vector)+1)
+#
 
 def vector_for_subvector_with_mixvector(subvector, mixvector):
   result_vector = []
-  for synset in mixvector:
+  for (synset,weight) in mixvector:
     result = sim_for_synset_and_synsetvector(synset, subvector)
     result_vector.append(result)
 
@@ -106,13 +117,13 @@ def sim_ox_wn_defi_WDS_via_main_syns(word):
 
   m2d_sim = sim_wn_ox_vector(vectors_ox, vectors_wn)
 
-#  matrix_similarity_jaccard = similarity_by_jaccard(keys_ox, keys_wn)
-#
-#  JACCARD_WEIGHT = 0.05
-#  for iWnWord in range(len(keys_wn)):
-#    for iDictWord in range(len(keys_ox)):
-#      m2d_sim[iWnWord][iDictWord] = m2d_sim[iWnWord][iDictWord]*(1-JACCARD_WEIGHT) + JACCARD_WEIGHT*(1-matrix_similarity_jaccard[iWnWord][iDictWord]);
-#
+  matrix_similarity_jaccard = similarity_by_jaccard(keys_ox, keys_wn)
+
+  JACCARD_WEIGHT = 0.05
+  for iWnWord in range(len(keys_wn)):
+    for iDictWord in range(len(keys_ox)):
+      m2d_sim[iWnWord][iDictWord] = m2d_sim[iWnWord][iDictWord]*(1-JACCARD_WEIGHT) + JACCARD_WEIGHT*(matrix_similarity_jaccard[iWnWord][iDictWord]);
+
 
 # write to file
 #  # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -401,6 +412,8 @@ def similarity_by_jaccard(ox_defis, wn_defis):
     for i in range(len(words)):
       words[i] = wordnet_lemmatizer.lemmatize(words[i]);
     wn_set = set(words);
+    print "\n"
+    print wn_set
     # wn_set = set(wn.synset(wn_defis[iWnWord].name()).definition().split())
     # print wn_set
 
@@ -420,9 +433,10 @@ def similarity_by_jaccard(ox_defis, wn_defis):
       for i in range(len(words)):
         words[i] = wordnet_lemmatizer.lemmatize(words[i]);
       dict_set = set(words);
+      print dict_set
       # print
       # dict_set = set(ox_defis[str(iDictWord)]["d"].encode('utf8').split());
-      matrix_similarity_jaccard[iWnWord][iDictWord] = jaccard_distance(wn_set,dict_set);
+      matrix_similarity_jaccard[iWnWord][iDictWord] = 1 - jaccard_distance(wn_set,dict_set);
 
   ########################################
   return matrix_similarity_jaccard
@@ -439,9 +453,9 @@ def sim_ox_wn_via_definition_cal_syns():
 
   dict_ox = OxfordParser.get_dict_nouns()
   for word in dict_ox:
-#    if word != 'bank':
-#      continue
-
+    if word != 'bank':
+      continue
+#
     if word not in __m2d_sim__:
       m2d_sim = sim_ox_wn_definition(word)
       __m2d_sim__[word] = m2d_sim
@@ -666,21 +680,21 @@ def choice_N_N_RANGE_FIRST():
 
 def train_sim_definition():
   Parameters.reset_params_zero()
-  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
-  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
-  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
-
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+#  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
+#  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
+#  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
 #
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.15
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+#
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.15
 
   sim_ox_wn_via_definition()
 

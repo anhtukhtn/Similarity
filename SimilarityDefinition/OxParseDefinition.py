@@ -3,6 +3,7 @@ import PreprocessDefinition
 import OxfordParser
 from collections import OrderedDict
 
+__SMOOTH_WEIGHT__ = 5
 
 def pos_is_noun(pos):
   return (pos == 'NN' or pos == 'NNS' or pos == 'JJ')
@@ -26,7 +27,7 @@ def get_greatest_synset_similarity_between(synsets_wn, noun_2):
   synsets_of_noun_2 = WordnetHandler.get_synsets_for_word(word, 'v')
   synsets_of_noun = synsets_of_noun_1 + synsets_of_noun_2
 
-  total_count = 11.0
+  total_count = 0 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
   for synset_of_noun in synsets_of_noun:
     total_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 
@@ -35,7 +36,7 @@ def get_greatest_synset_similarity_between(synsets_wn, noun_2):
     p_max = 0
 
     for synset_of_noun in synsets_of_noun:
-      synset_freq_count = 11.0
+      synset_freq_count = __SMOOTH_WEIGHT__
       synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 
       for synset_wn in synsets_wn:
@@ -103,7 +104,7 @@ def get_definition_synset_with_synsetwn(definition, synsets_wn):
   for noun in nouns:
     synset_max = get_greatest_synset_similarity_between(synsets_wn, noun)
     if synset_max is not None:
-      definition_synsets.append(synset_max)
+      definition_synsets.append((synset_max,1))
 
   return definition_synsets
 

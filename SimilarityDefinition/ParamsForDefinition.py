@@ -8,11 +8,20 @@ class PARAMETERS_CHOICE_0_1:
   CHOICE_N_N_MIN_FIRST = 0.6
   CHOICE_N_N_RANGE_FIRST = 1.1
 
+class PARAMS_WN:
+  MAIN = 1
+  DEFI = 1
+  HYPER = 0.4
+  HYPO = 0.2
+  MERO = 0.2
+  HOLO = 0.2
+  EX = 0.1
+
 
 ################################################################################
 
 
-filename = "main_syns_defi_d_cal_syns_v_test.csv"
+filename = "main_syns_defi_d_cal_syns_v_test_1.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 
@@ -52,6 +61,7 @@ def get_params_string():
 #params_string.append("precision")
 #params_string.append("recall")
 #params_string.append("f_score")
+
 #params_string.append("accuracy")
 #append_params_and_result_to_file(params_string)
 # # #
