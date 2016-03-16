@@ -18,10 +18,14 @@ class PARAMS_WN:
   EX = 0.1
 
 
+class MORPHO:
+  JACCARD = 0.1
+
+
 ################################################################################
 
 
-filename = "main_syns_defi_d_cal_syns_v_test_1.csv"
+filename = "main_syns_defi_d_sd_xh_cal_syns_v_jacc_separate_test.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 
@@ -35,6 +39,7 @@ def reset_params_zero():
   PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.0
   PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.0
   PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.0
+  MORPHO.JACCARD = 0
 
 
 def get_current_params():
@@ -43,7 +48,8 @@ def get_current_params():
           PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST,
           PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST,
           PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST,
-          PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST]
+          PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST,
+          MORPHO.JACCARD]
 
 
 def get_params_string():

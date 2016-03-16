@@ -6,6 +6,7 @@ import ParamsForDefinition as PARAMS
 
 __dict_defi_for_synset__ = {}
 __dict_feature_for_synset = {}
+__dict_gloss_for_synset__ = {}
 
 __SMOOTH_WEIGHT__ = 5
 
@@ -69,38 +70,71 @@ def get_feature_synset_for(synset):
       synset_max = get_greatest_synset_similarity_between(synset, noun)
       if synset_max is not None:
         synsets_definition.append((synset_max,PARAMS.PARAMS_WN.DEFI))
-
-      # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      # # get hypernyms
-      # print "\nhypernyms ------";
-    for hypernym in synset.hypernyms():
-      synsets_definition.append((hypernym,PARAMS.PARAMS_WN.HYPER))
-
-      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
-      # get hyponyms
-    for hyponym in synset.hyponyms():
-      synsets_definition.append((hyponym,PARAMS.PARAMS_WN.HYPO))
-
-    for meronym in synset.part_meronyms():
-      synsets_definition.append((meronym,PARAMS.PARAMS_WN.MERO))
-
-    for holonym in synset.member_holonyms():
-      synsets_definition.append((holonym,PARAMS.PARAMS_WN.HOLO))
-
-    for example in synset.examples():
-      for lemma in synset.lemmas():
-        example = example.replace(lemma.name(), "")
-      nouns = PreprocessDefinition.preprocess_sentence(example)
-      nouns = list(set(nouns))
-      for noun in nouns:
-        synset_max = get_greatest_synset_similarity_between(synset, noun)
-        if synset_max is not None:
-          synsets_definition.append((synset_max,PARAMS.PARAMS_WN.EX))
-
+#
+#      # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#      # # get hypernyms
+#      # print "\nhypernyms ------";
+#    for hypernym in synset.hypernyms():
+#      synsets_definition.append((hypernym,PARAMS.PARAMS_WN.HYPER))
+#
+#      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#      # get hyponyms
+#    for hyponym in synset.hyponyms():
+#      synsets_definition.append((hyponym,PARAMS.PARAMS_WN.HYPO))
+#
+#    for meronym in synset.part_meronyms():
+#      synsets_definition.append((meronym,PARAMS.PARAMS_WN.MERO))
+#
+#    for holonym in synset.member_holonyms():
+#      synsets_definition.append((holonym,PARAMS.PARAMS_WN.HOLO))
+#
+#    for example in synset.examples():
+#      for lemma in synset.lemmas():
+#        example = example.replace(lemma.name(), "")
+#      nouns = PreprocessDefinition.preprocess_sentence(example)
+#      nouns = list(set(nouns))
+#      for noun in nouns:
+#        synset_max = get_greatest_synset_similarity_between(synset, noun)
+#        if synset_max is not None:
+#          synsets_definition.append((synset_max,PARAMS.PARAMS_WN.EX))
+#
     synsets_definition.append((synset,PARAMS.PARAMS_WN.MAIN))
     __dict_feature_for_synset[key] = synsets_definition
 
   return __dict_feature_for_synset[key]
+
+
+def get_gloss_synset_for(synset):
+  key = synset.name()
+  if key not in __dict_gloss_for_synset__:
+    synsets_gloss = ""
+    definition = synset.definition()
+    synsets_gloss += definition + " "
+#
+#      # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#      # # get hypernyms
+#      # print "\nhypernyms ------";
+    for hypernym in synset.hypernyms():
+      synsets_gloss += WordnetHandler.get_lemma_synset(hypernym)
+
+
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      # get hyponyms
+    for hyponym in synset.hyponyms():
+      synsets_gloss += WordnetHandler.get_lemma_synset(hyponym)
+
+    for meronym in synset.part_meronyms():
+      synsets_gloss += WordnetHandler.get_lemma_synset(meronym)
+
+    for holonym in synset.member_holonyms():
+      synsets_gloss += WordnetHandler.get_lemma_synset(holonym)
+
+    for example in synset.examples():
+      synsets_gloss += example + " "
+
+    __dict_gloss_for_synset__[key] = synsets_gloss
+#
+  return __dict_gloss_for_synset__[key]
 
 
 def get_value_synset_for(cur_synset, synsets):
@@ -165,6 +199,16 @@ def get_vectors_defi_for_word(word):
 
   return vectors
 
+
+def get_gloss_for_jacc(word):
+  vectors = OrderedDict()
+  synsets = WordnetHandler.get_synsets_for_word(word, 'n')
+  for synset in synsets:
+    vector = get_gloss_synset_for(synset)
+    key = synset.definition()
+    vectors[key] = vector
+
+  return vectors
 
 def get_dict_vectores_synsets_for_synsets(synsets):
   vectors = OrderedDict()

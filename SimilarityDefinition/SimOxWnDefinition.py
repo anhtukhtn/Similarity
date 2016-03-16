@@ -12,6 +12,10 @@ import DebugHandler
 import POSWrapper
 import nltk
 from nltk.stem import WordNetLemmatizer
+from nltk import bigrams
+from nltk.corpus import stopwords
+
+__stopwords__ = stopwords.words('english')
 
 from nltk.metrics import jaccard_distance
 wordnet_lemmatizer = WordNetLemmatizer()
@@ -107,23 +111,99 @@ def choose_pair_0_1(matrix_similarity, num_rows, num_cols):
   return matrix_similarity
 
 
+def get_ngrams_for_sen(gloss):
+    gloss = gloss.replace("\\"," ")
+    gloss = gloss.replace("-"," ")
+    gloss = gloss.replace("/"," ")
+    gloss_temp = ''.join([i for i in gloss if (i.isalpha() or i == " ")])
+    gloss_words = gloss_temp.split()
+    gloss = ""
+    for word in gloss_words:
+      word = wordnet_lemmatizer.lemmatize(word)
+#      if word not in __stopwords__:
+      gloss += word + " "
+
+    ngrams_string = bigrams(gloss.split())
+    return ngrams_string
+
+
+def vector_sim_ngram_for_subngram_mixngram(ngrams_1, mix_ngrams):
+  result_ngram = []
+  for ngram in mix_ngrams:
+    (w1_1, w1_2) = ngram
+    result_sim = 0.0
+    if len(ngrams_1) > 0:
+      for ngram_1 in ngrams_1:
+        (w2_1, w2_2) = ngram_1
+        if w1_1 == w2_1 and w1_2 == w2_2:
+          result_sim += 1
+
+#      result_sim /= len(ngrams_1)
+    result_ngram.append(result_sim)
+  return result_ngram
+
+
+def cal_jacc_for_ngrams(ngrams_1, ngrams_2):
+  mix_ngrams = ngrams_1 + ngrams_2
+  result_ngram_1 = vector_sim_ngram_for_subngram_mixngram(ngrams_1, mix_ngrams)
+  result_ngram_2 = vector_sim_ngram_for_subngram_mixngram(ngrams_2, mix_ngrams)
+  cosine = spatial.distance.cosine(result_ngram_1, result_ngram_2)
+  sim_result = 1 - cosine
+  return sim_result
+
+
+def cal_jacc_for_n_grams_feature(wn_ngrams_list, ox_ngrams_list):
+  m2d_jaccard = [[0 for x in range(len(ox_ngrams_list))] for x in range(len(wn_ngrams_list))]
+  for i_wn in range(len(wn_ngrams_list)):
+    wn_ngrams = wn_ngrams_list[i_wn]
+    for i_ox in range(len(ox_ngrams_list)):
+      ox_ngrams = ox_ngrams_list[i_ox]
+      m2d_jaccard[i_wn][i_ox] = cal_jacc_for_ngrams(wn_ngrams, ox_ngrams)
+  return m2d_jaccard
+
+
+def cal_n_grams_sim(word, wn_gloss, ox_gloss):
+  wn_ngrams = []
+  for gloss in wn_gloss:
+    ngrams_string = get_ngrams_for_sen(gloss)
+    wn_ngrams.append(list(ngrams_string))
+
+  ox_ngrams = []
+  for gloss in ox_gloss:
+    ngrams_string = get_ngrams_for_sen(gloss)
+    ox_ngrams.append(list(ngrams_string))
+
+  m2d_ngrams = cal_jacc_for_n_grams_feature(wn_ngrams, ox_ngrams)
+  __m2d_sim_ngrams__[word] = m2d_ngrams
+
+
+def cal_jacc_sim(word, wn_gloss, ox_gloss):
+  matrix_similarity_jaccard = similarity_by_jaccard(ox_gloss, wn_gloss)
+  __m2d_sim_jacc__[word] = matrix_similarity_jaccard
+
+
 def sim_ox_wn_defi_WDS_via_main_syns(word):
   dict_vectors_wn = WordnetParseDefinition.get_dict_vectors_synsets_for_word(word)
   synsets_wn = WordnetHandler.get_synsets_for_word(word,'n')
   dict_vectors_ox = OxParseDefinition.get_dict_vectors_synsets_for_word(word, synsets_wn)
-
+#
   (keys_wn, vectors_wn) = Util.get_keys_values_of_dict(dict_vectors_wn)
   (keys_ox, vectors_ox) = Util.get_keys_values_of_dict(dict_vectors_ox)
-
+#
   m2d_sim = sim_wn_ox_vector(vectors_ox, vectors_wn)
+#
+  dict_gloss_wn = WordnetParseDefinition.get_gloss_for_jacc(word)
+  (key_wn, wn_gloss) = Util.get_keys_values_of_dict(dict_gloss_wn)
+  ox_gloss = OxfordParser.get_definitions_of_word_for_jacc(word)
+  cal_n_grams_sim(word, wn_gloss, ox_gloss)
 
-  matrix_similarity_jaccard = similarity_by_jaccard(keys_ox, keys_wn)
-
-  JACCARD_WEIGHT = 0.05
-  for iWnWord in range(len(keys_wn)):
-    for iDictWord in range(len(keys_ox)):
-      m2d_sim[iWnWord][iDictWord] = m2d_sim[iWnWord][iDictWord]*(1-JACCARD_WEIGHT) + JACCARD_WEIGHT*(matrix_similarity_jaccard[iWnWord][iDictWord]);
-
+  for i in range(len(wn_gloss)):
+    wn_gloss[i] = wn_gloss[i].replace(word, "")
+  for i in range(len(ox_gloss)):
+    ox_gloss[i] = ox_gloss[i].replace(word, "")
+  cal_jacc_sim(word, wn_gloss, ox_gloss)
+#
+#
 
 # write to file
 #  # - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -193,6 +273,8 @@ def sim_ox_wn_defi_WDS_via_curr_main_syn(word):
 
 __m2d_sim__ = {}
 
+__m2d_sim_jacc__ = {}
+__m2d_sim_ngrams__ = {}
 
 def sim_ox_wn_defi_WDS_via_1_main_syn(word):
   dict_vectors_wn = WordnetParseDefinition.get_dict_vectors_synsets_for_word(word)
@@ -412,8 +494,8 @@ def similarity_by_jaccard(ox_defis, wn_defis):
     for i in range(len(words)):
       words[i] = wordnet_lemmatizer.lemmatize(words[i]);
     wn_set = set(words);
-    print "\n"
-    print wn_set
+#    print "\n"
+#    print wn_set
     # wn_set = set(wn.synset(wn_defis[iWnWord].name()).definition().split())
     # print wn_set
 
@@ -433,15 +515,13 @@ def similarity_by_jaccard(ox_defis, wn_defis):
       for i in range(len(words)):
         words[i] = wordnet_lemmatizer.lemmatize(words[i]);
       dict_set = set(words);
-      print dict_set
+#      print dict_set
       # print
       # dict_set = set(ox_defis[str(iDictWord)]["d"].encode('utf8').split());
       matrix_similarity_jaccard[iWnWord][iDictWord] = 1 - jaccard_distance(wn_set,dict_set);
 
   ########################################
   return matrix_similarity_jaccard
-
-
 
 
 def sim_ox_wn_via_definition_cal_syns():
@@ -453,8 +533,8 @@ def sim_ox_wn_via_definition_cal_syns():
 
   dict_ox = OxfordParser.get_dict_nouns()
   for word in dict_ox:
-    if word != 'bank':
-      continue
+#    if word != 'bank':
+#      continue
 #
     if word not in __m2d_sim__:
       m2d_sim = sim_ox_wn_definition(word)
@@ -507,8 +587,87 @@ def sim_ox_wn_via_definition_cal_syns():
   return f_score, current_params
 
 
+def sim_ox_wn_via_definition_morpho_cal_syns():
+  total_tp = 0.;
+  total_tn = 0.;
+  total_fn = 0.0;
+  total_fp = 0.0;
+  total_pair = 0
+
+  dict_ox = OxfordParser.get_dict_nouns()
+  for word in dict_ox:
+#    if word != 'bank':
+#      continue
+#
+    if word not in __m2d_sim__:
+      m2d_sim = sim_ox_wn_definition(word)
+      __m2d_sim__[word] = m2d_sim
+
+    m2d_sim = copy.deepcopy(__m2d_sim__[word])
+    if m2d_sim == None or len(m2d_sim) == 0 or len(m2d_sim[0]) == 0:
+      continue
+
+    m2d_jacc = copy.deepcopy(__m2d_sim_jacc__[word])
+    m2d_ngrams = copy.deepcopy(__m2d_sim_ngrams__[word])
+    ngram_weight = 0.25
+    for iWnWord in range(len(m2d_sim)):
+      for iDictWord in range(len(m2d_sim[0])):
+        jacc = m2d_jacc[iWnWord][iDictWord]
+        ngrams = m2d_ngrams[iWnWord][iDictWord]
+        m2d_jacc[iWnWord][iDictWord] = jacc*(1-ngram_weight) + ngrams*ngram_weight
+
+    JACCARD_WEIGHT = Parameters.MORPHO.JACCARD
+    for iWnWord in range(len(m2d_sim)):
+      for iDictWord in range(len(m2d_sim[0])):
+        m2d_sim[iWnWord][iDictWord] = m2d_sim[iWnWord][iDictWord]*(1-JACCARD_WEIGHT) + JACCARD_WEIGHT*(m2d_jacc[iWnWord][iDictWord]);
+
+#    if len(m2d_sim) == 1 and len(m2d_sim[0]) == 1:
+#      continue
+#
+    m2d_sim = choose_pair_0_1(m2d_sim, len(m2d_sim), len(m2d_sim[0]))
+#    m2d_sim = pair_0_1_reducing_m2d_sim(m2d_sim, len(m2d_sim), len(m2d_sim[0]), word)
+    print word
+
+    pair = count_pair(m2d_sim)
+    total_pair += pair
+
+    (tp, tn, fn, fp) = CompareWithGold.compareGoldWithResult_without_cal_result(m2d_sim,word)
+    if tp != -1:
+      total_tp += tp
+      total_tn += tn
+      total_fn += fn
+      total_fp += fp
+
+  precision = total_tp / (total_tp + total_fp)
+  recall = total_tp / (total_tp + total_fn)
+  accuracy = (total_tp + total_tn) / (total_tp + total_tn + total_fp + total_fn)
+
+  f_score = 0
+  if precision != 0 or recall != 0:
+    f_score = 2*(precision*recall)/(precision + recall)
+  print "total:"
+  print total_pair
+  print total_tp
+  print total_tn
+  print total_fn
+  print total_fp
+
+  print precision
+  print recall
+  print f_score
+  print accuracy
+
+  Parameters.append_result_to_file( precision, recall, f_score, accuracy)
+  current_params = Parameters.get_current_params()
+  current_params = copy.deepcopy(current_params)
+  return f_score, current_params
+
+
+
 def sim_ox_wn_via_definition():
-  result = sim_ox_wn_via_definition_cal_syns()
+#  result = sim_ox_wn_via_definition_cal_syns()
+  result = sim_ox_wn_via_definition_morpho_cal_syns()
+
   return result
 
 
@@ -678,23 +837,71 @@ def choice_N_N_RANGE_FIRST():
 
   return f_score, current_params
 
+
+def jaccard_train():
+  def _reset_params():
+    Parameters.MORPHO.JACCARD = 0.00
+  def _change_params_for_step(cur_step,alpha):
+    _reset_params()
+    Parameters.MORPHO.JACCARD += cur_step*alpha
+
+  _reset_params()
+  _alpha = 0.05
+  _max_step = 16
+  _current_step = 10
+
+  f_score = 0
+  current_params = []
+
+#  global __continue
+#  if __continue == 1:
+#    return
+#    _current_step = 1
+#    _change_params_for_step(_current_step, _alpha)
+#
+  while _current_step <= _max_step:
+    (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
+    (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
+    (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
+
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
+    Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+
+    (cur_f_score, cur_params) = sim_ox_wn_via_definition()
+
+    if cur_f_score > f_score:
+      f_score = cur_f_score
+      current_params = cur_params
+
+    _current_step += 1
+    _change_params_for_step(_current_step, _alpha)
+
+  _reset_params()
+
+  return f_score, current_params
+
+
 def train_sim_definition():
   Parameters.reset_params_zero()
-#  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
-#  (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
-#  (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
+  (f_score, curr_params) = jaccard_train()
+
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = curr_params[0]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = curr_params[1]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = curr_params[2]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = curr_params[3]
+  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = curr_params[4]
+  Parameters.MORPHO.JACCARD = curr_params[5]
 #
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = ch_1_1_paramas[0]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = ch_1_n_paramas[1]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = ch_1_n_paramas[2]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = ch_n_n_paramas[3]
-#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = ch_n_n_paramas[4]
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.1
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.3
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 1
+#  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.2
+#  Parameters.MORPHO.JACCARD = 0.65
 #
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_1_MIN = 0
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_MIN_FIRST = 0.3
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_1_COL_RANGE_FIRST = 1.2
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_MIN_FIRST = 0.6
-  Parameters.PARAMETERS_CHOICE_0_1.CHOICE_N_N_RANGE_FIRST = 1.15
 
   sim_ox_wn_via_definition()
 

@@ -3,6 +3,7 @@ from nltk.corpus import wordnet as wn
 __dict_synsets__ = {}
 __dict_similarity__ = {}
 __dict_freq_count__ = {}
+__dict_lemma__ = {}
 
 
 def create_key_for_get_synsets(word, pos):
@@ -47,3 +48,15 @@ def get_freq_count_of_synset(synset):
       count += lemma.count()
     __dict_freq_count__[key] = count
   return __dict_freq_count__[key]
+
+
+def get_lemma_synset(synset):
+  key = synset.name()
+  if key not in __dict_lemma__:
+    lemma_gloss = ""
+    for lemma in synset.lemmas():
+      gloss = lemma.name().replace("_", " ")
+      lemma_gloss += " " + gloss
+    __dict_lemma__[key] = lemma_gloss
+
+  return __dict_lemma__[key]
