@@ -109,28 +109,28 @@ def get_gloss_synset_for(synset):
   if key not in __dict_gloss_for_synset__:
     synsets_gloss = ""
     definition = synset.definition()
-    synsets_gloss += definition + " "
+    synsets_gloss += definition + ". "
 #
 #      # # - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #      # # get hypernyms
 #      # print "\nhypernyms ------";
     for hypernym in synset.hypernyms():
-      synsets_gloss += WordnetHandler.get_lemma_synset(hypernym)
+      synsets_gloss += WordnetHandler.get_lemma_synset(hypernym) + ". "
 
 
       # - - - - - - - - - - - - - - - - - - - - - - - - - - -
       # get hyponyms
     for hyponym in synset.hyponyms():
-      synsets_gloss += WordnetHandler.get_lemma_synset(hyponym)
+      synsets_gloss += WordnetHandler.get_lemma_synset(hyponym) + ". "
 
     for meronym in synset.part_meronyms():
-      synsets_gloss += WordnetHandler.get_lemma_synset(meronym)
+      synsets_gloss += WordnetHandler.get_lemma_synset(meronym) + ". "
 
     for holonym in synset.member_holonyms():
-      synsets_gloss += WordnetHandler.get_lemma_synset(holonym)
+      synsets_gloss += WordnetHandler.get_lemma_synset(holonym) + ". "
 
     for example in synset.examples():
-      synsets_gloss += example + " "
+      synsets_gloss += example + ". "
 
     __dict_gloss_for_synset__[key] = synsets_gloss
 #

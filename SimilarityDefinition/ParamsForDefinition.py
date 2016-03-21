@@ -25,7 +25,7 @@ class MORPHO:
 ################################################################################
 
 
-filename = "main_syns_defi_d_sd_xh_cal_syns_v_jacc_separate_test.csv"
+filename = "main_syns_defi_d_sd_xh_cal_syns_v_ngrams_mono_25_test.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 
