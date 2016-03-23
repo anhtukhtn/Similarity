@@ -25,7 +25,8 @@ class MORPHO:
 ################################################################################
 
 
-filename = "main_syns_defi_d_sd_xh_cal_syns_v_ngrams_mono_25_test.csv"
+#filename = "WSD_wn_by_all_word_ox_d_sd_xh_cal_syns_v_ngrams_25_path_not_1.csv"
+filename = "align_p_defi_d_sd_xh_ngrams_25_path_not_1.fixed.csv"
 __result_file_name__ = "Results/vector_definition/" + filename
 
 

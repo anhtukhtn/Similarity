@@ -3,7 +3,7 @@ import PreprocessDefinition
 import OxfordParser
 from collections import OrderedDict
 
-__SMOOTH_WEIGHT__ = 5
+__SMOOTH_WEIGHT__ = 0
 
 def pos_is_noun(pos):
   return (pos == 'NN' or pos == 'NNS' or pos == 'JJ')
@@ -27,28 +27,28 @@ def get_greatest_synset_similarity_between(synsets_wn, noun_2):
   synsets_of_noun_2 = WordnetHandler.get_synsets_for_word(word, 'v')
   synsets_of_noun = synsets_of_noun_1 + synsets_of_noun_2
 
-  total_count = 0 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
+  total_count = 0.1 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
   for synset_of_noun in synsets_of_noun:
     total_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 
   if len(synsets_of_noun) > 0:
     synset_max = synsets_of_noun[0]
-    p_max = 0
-
-    for synset_of_noun in synsets_of_noun:
-      synset_freq_count = __SMOOTH_WEIGHT__
-      synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
-
-      for synset_wn in synsets_wn:
-        p = WordnetHandler.cal_similarity(synset_wn, synset_of_noun)
-
-        if p is not None:
-          p = p*(synset_freq_count/total_count)
-
-        if p > p_max:
-          p_max = p
-          synset_max = synset_of_noun
-
+#    p_max = -1.0
+#
+#    for synset_of_noun in synsets_of_noun:
+#      synset_freq_count = __SMOOTH_WEIGHT__
+#      synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
+#
+#      for synset_wn in synsets_wn:
+#        p = WordnetHandler.cal_similarity(synset_wn, synset_of_noun)
+#
+#        if p is not None:
+#          p = p*(synset_freq_count/total_count)
+#
+#        if p > p_max:
+#          p_max = p
+#          synset_max = synset_of_noun
+#
   return synset_max
 
 #
@@ -152,6 +152,16 @@ def get_dict_vectors_synsets_for_word(word, synsets_wn):
   definitions = OxfordParser.get_definitions_of_word(word)
   for definition in definitions:
     vector = get_definition_synset_with_synsetwn(definition, synsets_wn)
+    key = definition
+    vectors[key] = vector
+
+  return vectors
+
+def get_dict_vectors_word_for_word(word):
+  vectors = OrderedDict()
+  definitions = OxfordParser.get_definitions_of_word(word)
+  for definition in definitions:
+    vector = PreprocessDefinition.preprocess_sentence(definition)
     key = definition
     vectors[key] = vector
 

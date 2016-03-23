@@ -8,7 +8,7 @@ __dict_defi_for_synset__ = {}
 __dict_feature_for_synset = {}
 __dict_gloss_for_synset__ = {}
 
-__SMOOTH_WEIGHT__ = 5
+__SMOOTH_WEIGHT__ = 0
 
 
 def pos_is_noun(pos):
@@ -33,29 +33,29 @@ def get_greatest_synset_similarity_between(synset_1, noun_2):
   synsets_of_noun_2 = WordnetHandler.get_synsets_for_word(word, 'v')
   synsets_of_noun = synsets_of_noun_1 + synsets_of_noun_2
 
-  total_count = 0 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
+  total_count = 0.1 + len(synsets_of_noun)*__SMOOTH_WEIGHT__
   for synset_of_noun in synsets_of_noun:
     total_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
 #
   if len(synsets_of_noun) > 0:
     synset_max = synsets_of_noun[0]
-    p_max = 0.0
-
-    for synset_of_noun in synsets_of_noun:
-#      p = synset_1.path_similarity(synset_of_noun)
-      p = WordnetHandler.cal_similarity(synset_1, synset_of_noun)
-
-      if p is not None:
-        synset_freq_count = __SMOOTH_WEIGHT__
-        synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
-
-        p = p*(synset_freq_count/total_count)
-
+#    p_max = -1.0
 #
-      if p > p_max:
-        p_max = p
-        synset_max = synset_of_noun
-
+#    for synset_of_noun in synsets_of_noun:
+##      p = synset_1.path_similarity(synset_of_noun)
+#      p = WordnetHandler.cal_similarity(synset_1, synset_of_noun)
+#
+#      if p is not None:
+#        synset_freq_count = __SMOOTH_WEIGHT__
+#        synset_freq_count += WordnetHandler.get_freq_count_of_synset(synset_of_noun)
+#
+#        p = p*(synset_freq_count/total_count)
+#
+##
+#      if p > p_max:
+#        p_max = p
+#        synset_max = synset_of_noun
+#
   return synset_max
 
 
@@ -214,6 +214,18 @@ def get_dict_vectores_synsets_for_synsets(synsets):
   vectors = OrderedDict()
   for synset in synsets:
     vector = get_feature_synset_for(synset)
+    key = synset.definition()
+    vectors[key] = vector
+
+  return vectors
+
+
+def get_dict_vectors_words_for_word(word):
+  vectors = OrderedDict()
+  synsets = WordnetHandler.get_synsets_for_word(word, 'n')
+  for synset in synsets:
+    definition = synset.definition()
+    vector = PreprocessDefinition.preprocess_sentence(definition)
     key = synset.definition()
     vectors[key] = vector
 

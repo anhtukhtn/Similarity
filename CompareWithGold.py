@@ -2,7 +2,8 @@ __author__ = 'tu'
 
 import CompareVietNetOxford
 
-goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+"compare_VN_Ox_2.1.csv");
+filename = "compare_VN_Ox_2.1_fixed_.csv"
+goldData = CompareVietNetOxford.readResultFile("Results/parameters/VN_Ox/"+filename);
 # print goldData
 def compareGoldWithResult(dictResult,WORD):
   tp = 0.;

@@ -16,10 +16,10 @@ ox- get synsets by main synsets in wn (using main syns in wn of the word to WDS 
 ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],defi,0.633,0.7244,,,,
 ,,,,,,,
 ,,,,,,,
-WSD,,,,,,,
+Sense,,,,,,,
 ox,wn,wds,similarity,,,,
-"defi(d,ud)",defi,ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],path,0.7479,,,
-domain(sd),freq count,,wup,,,,
+"defi(d,ud)",defi,ox- get synsets by defi main synsets in wn (using main syns in wn of the word to WDS ox)[by synsets],path,0.7479,,using 1st,0.7727
+domain(sd),freq count,,wup,,,using 1st (after fix gold),0.7916
 asee also(xr-xh),,,,,,,
 ,,,,,,,
 Morpho,wn,distance,,,,,
