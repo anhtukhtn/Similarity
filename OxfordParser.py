@@ -446,8 +446,8 @@ def get_definitions_of_word(word):
       dict_noun = dict_means_noun[str(index)]
       definition = ""
 
-      if dict_noun.has_key('sd') and dict_noun['sd'] != None:
-        definition += dict_noun['sd']
+#      if dict_noun.has_key('sd') and dict_noun['sd'] != None:
+#        definition += dict_noun['sd']
 
       if dict_noun.has_key('d') and dict_noun['d'] != None:
         definition += ". " + dict_noun['d']
@@ -457,8 +457,8 @@ def get_definitions_of_word(word):
 #        example = example.replace(word, "")
 #        definition += ". " + example
 #
-      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
-        definition += ". " + dict_noun['xh']
+#      if dict_noun.has_key('xh') and dict_noun['xh'] != None:
+#        definition += ". " + dict_noun['xh']
 
       definitions.append(definition)
 
@@ -492,4 +492,21 @@ def get_definitions_of_word_for_jacc(word):
   return definitions
 
 
-writeDictFromOxfordToFile("OxfordDict/b-detail_fixed_xh_co.csv",__dict_nouns__);
+def get_definitions_of_word_for_svm(word):
+  definitions = []
+  if __dict_nouns__.has_key(word):
+    dict_means_noun = __dict_nouns__[word]
+    for index in range(len(dict_means_noun)):
+      dict_noun = dict_means_noun[str(index)]
+      definition = ""
+
+      if dict_noun.has_key('d') and dict_noun['d'] != None:
+        definition = dict_noun['d']
+
+      definitions.append(definition)
+
+  return definitions
+
+
+#writeDictFromOxfordToFile("OxfordDict/b-detail_fixed_xh_co.csv",__dict_nouns__);
+

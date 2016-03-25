@@ -54,5 +54,12 @@ def append_result_to_excel_file(filename, values):
     file.close();
   ########################################
 
+
+def append_value_to_file(value, filename):
+  file = open(filename, 'a')
+  file.write(value + "\n")
+  file.close()
+
+
 # a = [[1,2,3],[4,5,6],[7,8,9]]
 # write_to_excel_file("temp.csv",a,a)

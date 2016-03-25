@@ -130,7 +130,7 @@ def sim_for_words_words_with_order(words_1, words_2, synset):
   sim /= (len(words_1) + 0.001)
   return sim
 
-def sim_for_words_words_no_order(words_1, words_2, synset):
+def sim_for_words_words_no_order(words_1, words_2, synset = None):
   sim_1 = sim_for_words_words_with_order(words_1, words_2, synset)
   sim_2 = sim_for_words_words_with_order(words_2, words_1, synset)
   return (sim_1 + sim_2)/2
@@ -210,4 +210,10 @@ def get_nearest_synsets_words_synsets_order(words, synsets):
   return synsets_result
 
 
+def get_definitions_for_word(word):
+  defis = []
+  synsets = get_synsets_for_word(word, 'n')
+  for synset in synsets:
+    defis.append(synset.definition())
 
+  return defis

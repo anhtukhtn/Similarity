@@ -1,6 +1,6 @@
-from nltk.stem import WordNetLemmatizer
 import nltk
 import POSWrapper
+from nltk.stem import WordNetLemmatizer
 
 
 __wordnet_lemmatizer__ = WordNetLemmatizer()
