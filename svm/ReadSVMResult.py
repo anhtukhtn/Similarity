@@ -35,7 +35,6 @@ def read_svm_result():
       sim = float(line_sim)
 
       key = create_key_for_sens(sen_1, sen_2)
-      print key
       __dict_sim__[key] = sim
 
     line = f.readline();

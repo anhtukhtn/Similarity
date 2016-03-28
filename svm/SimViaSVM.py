@@ -72,13 +72,27 @@ def sim_ox_wn_via_svm():
   total_pair = 0
 
   dict_ox = OxfordParser.get_dict_nouns()
+  flag_can_go = False
   for word in dict_ox:
 
-    m2d_sim = get_m2d_sim_for_word_from_svm_result(word)
-    if m2d_sim == None:
+    if word == "blockage":
+      flag_can_go = True
+
+    if flag_can_go == False:
       continue
 
-    print word
+    word_syns_ox = dict_ox[word]
+    wn_synsets = WordnetHandler.get_synsets_for_word(word, "n")
+
+    m2d_sim = [[0 for x in range(len(word_syns_ox))] for x in range(len(wn_synsets))]
+
+    if len(word_syns_ox) == 1 and len(wn_synsets) == 1:
+      m2d_sim[0][0] = 1
+    else:
+      m2d_sim = get_m2d_sim_for_word_from_svm_result(word)
+
+    if m2d_sim == None:
+      continue
 
 #    DebugHandler.print_2d_matrix(m2d_sim)
 
@@ -128,7 +142,7 @@ def choice_1_1_MIN():
 
   _reset_params()
   _alpha = 0.05
-  _max_step = 20
+  _max_step = 1
   _current_step = 0
 
   f_score = 0
@@ -156,7 +170,7 @@ def choice_1_COL_MIN_FIRST():
 
   _reset_params()
   _alpha = 0.05
-  _max_step = 20
+  _max_step = 40
   _current_step = 0
 
   f_score = 0
@@ -227,7 +241,7 @@ def choice_N_N_MIN_FIRST():
 
   _reset_params()
   _alpha = 0.05
-  _max_step = 20
+  _max_step = 40
   _current_step = 0
 
   f_score = 0
@@ -289,7 +303,6 @@ def choice_N_N_RANGE_FIRST():
 
 def train_sim_definition():
   Parameters.reset_params_zero()
-  (ch_1_1_f_score, ch_1_1_paramas) = choice_1_1_MIN()
   (ch_1_n_f_score, ch_1_n_paramas) = choice_1_COL_MIN_FIRST()
   (ch_n_n_f_score, ch_n_n_paramas) = choice_N_N_MIN_FIRST()
 

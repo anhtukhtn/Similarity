@@ -1,5 +1,16 @@
 import re
 import unicodedata
+import glob
+import os
+
+
+def remove_files_in_path(path):
+  cur_path = os.getcwd()
+  os.chdir(path)
+  files = glob.glob("*")
+  for file in files:
+    os.remove(file)
+  os.chdir(cur_path)
 
 
 def remove_unicode_characters(phrase):
