@@ -3,4 +3,6 @@ OxfordXML/
 Results/
 WN/
 EVD/
+svm/train/
+svm/test/
 CoParser.py

@@ -76,6 +76,8 @@ def create_input_sen_via_ox_vn(dict_vn, dict_ox):
 
       word_syns_vn = dict_vn[word]
       word_syns_ox = dict_ox[word]
+      if len(word_syns_ox) == 1 and len(word_syns_ox) == 1:
+        continue
       for i_vn in word_syns_vn:
         syn_vn = word_syns_vn[i_vn]
 
@@ -259,7 +261,7 @@ def cal_features_from_sens_write_to_file(filename_sens, filename_output):
 
       feature_values += str(Literal.levenshtein_in_context(sen_1, sen_2, sens)) + "\t"
 #      feature_values += str(ShallowSyntactic.jaccard_POS_in_context(sen_1, sen_2, sens)) + "\t"
-      feature_values += str(WordnetBased.wordnet_based_in_context(sen_1, sen_2, sens, 0)) + "\t"
+      feature_values += str(WordnetBased.wordnet_based_in_context(sen_1, sen_2, sens, 0))
 #      feature_values += str(WordnetBased.wordnet_based_in_context(sen_1, sen_2, sens, 1))
 
       FileProcess.append_value_to_file(feature_values, filename_output)

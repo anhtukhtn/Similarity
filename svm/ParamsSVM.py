@@ -26,7 +26,7 @@ class MORPHO:
 
 
 #filename = "WSD_wn_by_all_word_ox_d_sd_xh_cal_syns_v_ngrams_25_path_not_1.csv"
-filename = "svm_defi_d_lit_wn_word-word.csv"
+filename = "svm_defi_d_lit_wn_first.csv"
 __result_file_name__ = "Results/svm/" + filename
 
 

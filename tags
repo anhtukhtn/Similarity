@@ -78,6 +78,7 @@ _1_col_min	Parameters.py	/^  _1_col_min = "1_col_min"$/;"	v	class:params_string
 _1_col_range	Parameters.py	/^  _1_col_range = "1_col_range"$/;"	v	class:params_string
 __SMOOTH_WEIGHT__	SimilarityDefinition/OxParseDefinition.py	/^__SMOOTH_WEIGHT__ = 0$/;"	v
 __SMOOTH_WEIGHT__	SimilarityDefinition/WordnetParseDefinition.py	/^__SMOOTH_WEIGHT__ = 0$/;"	v
+__WSD_type__	svm/WordnetBased.py	/^__WSD_type__ = 0  # 0: first, 1: max syn word-word$/;"	v
 __author__	CompareWithGold.py	/^__author__ = 'tu'$/;"	v
 __author__	DictProcess.py	/^__author__ = 'tu'$/;"	v
 __author__	ExhaustedTry.py	/^__author__ = 'tu'$/;"	v
@@ -100,17 +101,25 @@ __dict_feature_for_synset	SimilarityDefinition/WordnetParseDefinition.py	/^__dic
 __dict_freq_count__	WordnetHandler.py	/^__dict_freq_count__ = {}$/;"	v
 __dict_gloss_for_synset__	SimilarityDefinition/WordnetParseDefinition.py	/^__dict_gloss_for_synset__ = {}$/;"	v
 __dict_lemma__	WordnetHandler.py	/^__dict_lemma__ = {}$/;"	v
+__dict_len__	svm/Literal.py	/^__dict_len__ = {}$/;"	v
 __dict_ngrams__	SimilarityDefinition/SimOxWnDefinition.py	/^__dict_ngrams__ = {}$/;"	v
 __dict_nouns__	OxfordParser.py	/^__dict_nouns__ = readOxfordNouns()$/;"	v
 __dict_ox_nouns__	SimilarityWordnetOxford.py	/^__dict_ox_nouns__ = OxfordParser.readOxfordNouns();$/;"	v
 __dict_sim__	svm/ReadSVMResult.py	/^__dict_sim__ = {}$/;"	v
+__dict_sim__	svm/WordnetBased.py	/^__dict_sim__ = {}$/;"	v
 __dict_similarity__	WordnetHandler.py	/^__dict_similarity__ = {}$/;"	v
 __dict_synsets__	WordnetHandler.py	/^__dict_synsets__ = {}$/;"	v
 __dict_word_word__	WordnetHandler.py	/^__dict_word_word__ = {}$/;"	v
 __filename_input_feature_values__	svm/GoldDataSVM.py	/^__filename_input_feature_values__ = "svm\/train\/input_feature_values"$/;"	v
 __filename_input_gs__	svm/GoldDataSVM.py	/^__filename_input_gs__ = "svm\/train\/gs_sen"$/;"	v
+__filename_input_gs_train__	svm/InputSVM.py	/^__filename_input_gs_train__ = "svm\/train\/gs_sen"$/;"	v
 __filename_input_sen__	svm/GoldDataSVM.py	/^__filename_input_sen__ = "svm\/train\/input_sen"$/;"	v
 __filename_input_sen__	svm/ParseOxWnSVM.py	/^__filename_input_sen__ = "svm\/test\/input_sen"$/;"	v
+__filename_input_sen_test__	svm/GoldDataSVM.py	/^__filename_input_sen_test__ = "svm\/test\/input_sen"$/;"	v
+__filename_input_sen_test__	svm/InputSVM.py	/^__filename_input_sen_test__ = "svm\/test\/input_sen"$/;"	v
+__filename_input_sen_train__	svm/InputSVM.py	/^__filename_input_sen_train__ = "svm\/train\/input_sen"$/;"	v
+__filename_input_test_feature_values__	svm/InputSVM.py	/^__filename_input_test_feature_values__ = "svm\/test\/input_feature_values"$/;"	v
+__filename_input_train_feature_values__	svm/InputSVM.py	/^__filename_input_train_feature_values__ = "svm\/train\/input_feature_values"$/;"	v
 __filename_ox_dict__	OxfordParser.py	/^__filename_ox_dict__ = "OxfordXML\/B_150107.xml"$/;"	v
 __filename_test_feature_values__	svm/GoldDataSVM.py	/^__filename_test_feature_values__ = "svm\/test\/input_feature_values"$/;"	v
 __filename_test_sen__	svm/GoldDataSVM.py	/^__filename_test_sen__ = "svm\/test\/input_sen"$/;"	v
@@ -122,7 +131,7 @@ __m2d_sim__	SimilarityDefinition/SimOxWnDefinition.py	/^__m2d_sim__ = {}$/;"	v
 __m2d_sim_jacc__	SimilarityDefinition/SimOxWnDefinition.py	/^__m2d_sim_jacc__ = {}$/;"	v
 __n_best	ExhaustedTry.py	/^__n_best = 0$/;"	v
 __result_file_name__	SimilarityDefinition/ParamsForDefinition.py	/^__result_file_name__ = "Results\/vector_definition\/" + filename$/;"	v
-__result_file_name__	svm/ParamsSVM.py	/^__result_file_name__ = "Results\/vector_definition\/" + filename$/;"	v
+__result_file_name__	svm/ParamsSVM.py	/^__result_file_name__ = "Results\/svm\/" + filename$/;"	v
 __stopwords__	SimilarityDefinition/SimOxWnDefinition.py	/^__stopwords__ = stopwords.words('english')$/;"	v
 __wordnet_lemmatizer__	SimilarityDefinition/PreprocessDefinition.py	/^__wordnet_lemmatizer__ = WordNetLemmatizer()$/;"	v
 __wordnet_lemmatizer__	svm/Literal.py	/^__wordnet_lemmatizer__ = WordNetLemmatizer()$/;"	v
@@ -201,6 +210,8 @@ append_to_excel_file	FileProcess.py	/^def append_to_excel_file(filename, row, ma
 append_value_to_file	FileProcess.py	/^def append_value_to_file(value, filename):$/;"	f
 brown_ic	SimilarityWordB.py	/^brown_ic = wordnet_ic.ic('ic-brown.dat')$/;"	v
 brown_ic	WordnetHandler.py	/^brown_ic = wordnet_ic.ic('ic-brown.dat')$/;"	v
+cal_feature_values_for	svm/InputSVM.py	/^def cal_feature_values_for(syn_wn, syn_ox):$/;"	f
+cal_features_and_write_to_file_for	svm/InputSVM.py	/^def cal_features_and_write_to_file_for(syns_wn, syns_ox, filename_output):$/;"	f
 cal_features_for_test	svm/GoldDataSVM.py	/^def cal_features_for_test():$/;"	f
 cal_features_for_train	svm/GoldDataSVM.py	/^def cal_features_for_train():$/;"	f
 cal_features_from_sens_write_to_file	svm/GoldDataSVM.py	/^def cal_features_from_sens_write_to_file(filename_sens, filename_output):$/;"	f
@@ -249,10 +260,14 @@ cosine_similarity	SimilarityBank.py	/^def cosine_similarity(x,y):$/;"	f
 count_pair	SimilarityDefinition/SimOxWnDefinition.py	/^def count_pair(m2d):$/;"	f
 count_pair	svm/SimViaSVM.py	/^def count_pair(m2d):$/;"	f
 count_word_in_set	map_wordnet_via_EVD.py	/^def count_word_in_set(word, words):$/;"	f
+create_input_for_test	svm/GoldDataSVM.py	/^def create_input_for_test():$/;"	f
 create_input_for_train	svm/GoldDataSVM.py	/^def create_input_for_train():$/;"	f
+create_input_for_train_svm	svm/InputSVM.py	/^def create_input_for_train_svm():$/;"	f
+create_input_sen_via_gold_data	svm/GoldDataSVM.py	/^def create_input_sen_via_gold_data(dict_vn, dict_ox, dict_gold):$/;"	f
 create_input_sen_via_ox_vn	svm/GoldDataSVM.py	/^def create_input_sen_via_ox_vn(dict_vn, dict_ox):$/;"	f
-create_input_sen_via_ox_wn_negative	svm/GoldDataSVM.py	/^def create_input_sen_via_ox_wn_negative(dict_vn, dict_ox):$/;"	f
 create_input_sens_for_test_svm	svm/ParseOxWnSVM.py	/^def create_input_sens_for_test_svm():$/;"	f
+create_input_sens_test	svm/GoldDataSVM.py	/^def create_input_sens_test(dict_ox):$/;"	f
+create_key	svm/WordnetBased.py	/^def create_key(sen_1, sen_2):$/;"	f
 create_key_for_get_synsets	WordnetHandler.py	/^def create_key_for_get_synsets(word, pos):$/;"	f
 create_key_for_sens	svm/ReadSVMResult.py	/^def create_key_for_sens(sen_1, sen_2):$/;"	f
 create_key_for_similarity	WordnetHandler.py	/^def create_key_for_similarity(synset_1, synset_2):$/;"	f
@@ -279,7 +294,7 @@ file_test	svm/main_svm.py	/^file_test = path + "\/test\/input_feature_values"$/;
 file_train	svm/main_svm.py	/^file_train = path + "\/train\/input_feature_values"$/;"	v
 filename	CompareWithGold.py	/^filename = "compare_VN_Ox_2.1_fixed_.csv"$/;"	v
 filename	SimilarityDefinition/ParamsForDefinition.py	/^filename = "align_p_defi_d_sd_xh_ngrams_25_path_not_1.fixed.csv"$/;"	v
-filename	svm/ParamsSVM.py	/^filename = "align_p_defi_d_sd_xh_ngrams_25_path_not_1.fixed.csv"$/;"	v
+filename	svm/ParamsSVM.py	/^filename = "svm_defi_d_lit_wn_word-word.csv"$/;"	v
 filt_top_score_dict_word	SimilarityWordnetOxford.py	/^def filt_top_score_dict_word(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
 formatAndWriteMatrixToFile	SimilarityWordnetOxford.py	/^def formatAndWriteMatrixToFile(matrix_similarity, wn_words, dict_words,WORD):$/;"	f
 get_EVD_means	map_wordnet_via_EVD.py	/^def get_EVD_means(key, key_lemmas, values, dict_EVD):$/;"	f
@@ -332,6 +347,7 @@ get_nouns	WordnetProcess.py	/^def get_nouns(word_origin, wn_words):$/;"	f
 get_params_string	Parameters.py	/^def get_params_string():$/;"	f
 get_params_string	SimilarityDefinition/ParamsForDefinition.py	/^def get_params_string():$/;"	f
 get_params_string	svm/ParamsSVM.py	/^def get_params_string():$/;"	f
+get_row_values	svm/InputSVM.py	/^def get_row_values(syns_values_in_row, index):$/;"	f
 get_sim_for_sens	svm/ReadSVMResult.py	/^def get_sim_for_sens(sen_1, sen_2):$/;"	f
 get_string_of_d_elemnt	OxfordParser.py	/^def get_string_of_d_elemnt(element):$/;"	f
 get_synsets	DictProcess.py	/^def get_synsets(dict_words):$/;"	f
@@ -347,14 +363,21 @@ holonyms	Parameters.py	/^  holonyms = "holonyms"$/;"	v	class:params_string
 hypernyms	Parameters.py	/^  hypernyms = "hypernyms"$/;"	v	class:params_string
 hyponyms	Parameters.py	/^  hyponyms = "hyponyms"$/;"	v	class:params_string
 jaccard_POS	svm/ShallowSyntactic.py	/^def jaccard_POS(sen_1, sen_2):$/;"	f
+jaccard_POS_in_context	svm/ShallowSyntactic.py	/^def jaccard_POS_in_context(sen_1, sen_2, sens):$/;"	f
 jaccard_train	SimilarityDefinition/SimOxWnDefinition.py	/^def jaccard_train():$/;"	f
 jaccard_weight	ExhaustedTry.py	/^def jaccard_weight(dict_nouns):$/;"	f
 jaccard_weight	Parameters.py	/^  jaccard_weight = "jaccard_weight"$/;"	v	class:params_string
 jaccard_weight	Train_params.py	/^def jaccard_weight(dict_nouns):$/;"	f
+key_len	svm/Literal.py	/^def key_len(sen_1, sen_2):$/;"	f
 levenshtein	Util.py	/^def levenshtein(a,b):$/;"	f
 levenshtein	svm/Literal.py	/^def levenshtein(sen_1, sen_2):$/;"	f
+levenshtein_in_context	svm/Literal.py	/^def levenshtein_in_context(sen_1, sen_2, sens):$/;"	f
 map_wordnet_EVD	map_wordnet_via_EVD.py	/^def map_wordnet_EVD():$/;"	f
 match_matrix_sim_with_temp_matrix	SimilarityDefinition/SimOxWnDefinition.py	/^def match_matrix_sim_with_temp_matrix(m2d_sim, temp_m2d):$/;"	f
+max_jaccard_POS	svm/ShallowSyntactic.py	/^def max_jaccard_POS(sens):$/;"	f
+max_levenshtein	svm/Literal.py	/^def max_levenshtein(sens):$/;"	f
+max_values_of_a_feature_in_row	svm/InputSVM.py	/^def max_values_of_a_feature_in_row(syns_values_in_row, i_feature):$/;"	f
+max_wordnet_based	svm/WordnetBased.py	/^def max_wordnet_based(sens):$/;"	f
 meronyms	Parameters.py	/^  meronyms = "meronyms"$/;"	v	class:params_string
 n	Parameters.py	/^  n = "n"$/;"	v	class:params_string
 nbest	Parameters.py	/^  nbest = "nbest"$/;"	v	class:params_string
@@ -389,6 +412,7 @@ read_gold_file_to_dict	GoldData.py	/^def read_gold_file_to_dict(filename):$/;"	f
 read_nouns	WordnetProcessForEVD.py	/^def read_nouns():$/;"	f
 read_svm_result	svm/ReadSVMResult.py	/^def read_svm_result():$/;"	f
 reducing_m2d_sim	SimilarityDefinition/SimOxWnDefinition.py	/^def reducing_m2d_sim(m2d_sim, status_synsets):$/;"	f
+remove_files_in_path	Util.py	/^def remove_files_in_path(path):$/;"	f
 remove_tv	OxfordParser.py	/^def remove_tv(element):$/;"	f
 remove_unicode_characters	Util.py	/^def remove_unicode_characters(phrase):$/;"	f
 reorder_dict_for_word	GoldData.py	/^def reorder_dict_for_word(dict_gold, word):$/;"	f
@@ -408,7 +432,7 @@ sim_2_word	WordnetHandler.py	/^def sim_2_word(word_1, word_2, synset):$/;"	f
 sim_2_word	svm/WordnetBased.py	/^def sim_2_word(word_1, word_2):$/;"	f
 sim_for_synset_and_synsetvector	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_for_synset_and_synsetvector(a_synset, vector):$/;"	f
 sim_for_words_words_no_order	WordnetHandler.py	/^def sim_for_words_words_no_order(words_1, words_2, synset = None):$/;"	f
-sim_for_words_words_no_order	svm/WordnetBased.py	/^def sim_for_words_words_no_order(words_1, words_2):$/;"	f
+sim_for_words_words_no_order	svm/WordnetBased.py	/^def sim_for_words_words_no_order(sen_1, sen_2):$/;"	f
 sim_for_words_words_with_order	WordnetHandler.py	/^def sim_for_words_words_with_order(words_1, words_2, synset):$/;"	f
 sim_for_words_words_with_order	svm/WordnetBased.py	/^def sim_for_words_words_with_order(words_1, words_2):$/;"	f
 sim_ox_wn_defi_WDS_via_1_main_syn	SimilarityDefinition/SimOxWnDefinition.py	/^def sim_ox_wn_defi_WDS_via_1_main_syn(word):$/;"	f
@@ -483,6 +507,7 @@ vector_for_subvector_with_mixvector	SimilarityDefinition/SimOxWnDefinition.py	/^
 vector_sim_ngram_for_subngram_mixngram	SimilarityDefinition/SimOxWnDefinition.py	/^def vector_sim_ngram_for_subngram_mixngram(ngrams_1, mix_ngrams, num_of_grams):$/;"	f
 word_word_is_similarity	map_wordnet_via_EVD.py	/^def word_word_is_similarity(phrase_word_1, phrase_word_2):$/;"	f
 wordnet_based	svm/WordnetBased.py	/^def wordnet_based(sen_1, sen_2):$/;"	f
+wordnet_based_in_context	svm/WordnetBased.py	/^def wordnet_based_in_context(sen_1, sen_2, sens, WSD_type):$/;"	f
 wordnet_lemmatizer	SimilarityDefinition/SimOxWnDefinition.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 wordnet_lemmatizer	SimilaritySample.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 wordnet_lemmatizer	SimilarityWordB.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
@@ -490,6 +515,8 @@ wordnet_lemmatizer	SimilarityWordnetOxford.py	/^wordnet_lemmatizer = WordNetLemm
 wordnet_lemmatizer	WordnetProcess.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 wordnet_lemmatizer	WordnetProcessForEVD.py	/^wordnet_lemmatizer = WordNetLemmatizer()$/;"	v
 writeDictFromOxfordToFile	OxfordParser.py	/^def writeDictFromOxfordToFile(filename, dict):$/;"	f
+write_label_for_svm	svm/InputSVM.py	/^def write_label_for_svm(syns_wn, syns_ox, dict_gold):$/;"	f
+write_sens_for_reading	svm/InputSVM.py	/^def write_sens_for_reading(syns_wn, syns_ox):$/;"	f
 write_to_excel_file	FileProcess.py	/^def write_to_excel_file(filename, row, matrix_2d):$/;"	f
 x	Parameters.py	/^  x = "x"$/;"	v	class:params_string
 xh	Parameters.py	/^  xh = "xh"$/;"	v	class:params_string

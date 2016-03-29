@@ -170,7 +170,7 @@ def choice_1_COL_MIN_FIRST():
 
   _reset_params()
   _alpha = 0.05
-  _max_step = 40
+  _max_step = 30
   _current_step = 0
 
   f_score = 0
@@ -241,7 +241,7 @@ def choice_N_N_MIN_FIRST():
 
   _reset_params()
   _alpha = 0.05
-  _max_step = 40
+  _max_step = 30
   _current_step = 0
 
   f_score = 0

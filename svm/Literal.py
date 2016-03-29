@@ -1,7 +1,9 @@
 import Util
 from nltk.stem import WordNetLemmatizer
 import heapq
-
+import POSWrapper
+from nltk.metrics import jaccard_distance
+import nltk
 
 __wordnet_lemmatizer__ = WordNetLemmatizer()
 __dict_len__ = {}
@@ -57,3 +59,16 @@ def levenshtein_in_context(sen_1, sen_2, sens):
   sim_len = 1-levenshtein(sen_1, sen_2)
   (first, second) = max_levenshtein(sens)
   return sim_len/second
+
+
+def jaccard(sen_1, sen_2):
+  tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(sen_1))
+  words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')]
+  sen_set_1 = set(words)
+
+  tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(sen_2))
+  words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')]
+  sen_set_2 = set(words)
+
+  jaccard_value = jaccard_distance(sen_set_1, sen_set_2)
+  return jaccard_value
