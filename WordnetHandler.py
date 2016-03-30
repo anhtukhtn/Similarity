@@ -8,6 +8,7 @@ __dict_freq_count__ = {}
 __dict_lemma__ = {}
 __dict_word_word__ = {}
 
+__dict_gloss_for_synset__ = {}
 
 def create_key_for_get_synsets(word, pos):
   return word + "-" + pos
@@ -217,3 +218,40 @@ def get_definitions_for_word(word):
     defis.append(synset.definition())
 
   return defis
+
+
+def reprocess_sen(sen):
+#  sen = sen.lower()
+  return sen
+
+
+def get_defi_for_syn(syn_wn):
+  defi = reprocess_sen(syn_wn.definition())
+  return defi
+
+
+def get_gloss_for_syn(synset):
+  key = synset.name()
+  if key not in __dict_gloss_for_synset__:
+    synsets_gloss = ""
+    definition = synset.definition()
+    synsets_gloss += definition + ". "
+
+    for hypernym in synset.hypernyms():
+      synsets_gloss += get_lemma_synset(hypernym) + ". "
+
+    for hyponym in synset.hyponyms():
+      synsets_gloss += get_lemma_synset(hyponym) + ". "
+
+    for meronym in synset.part_meronyms():
+      synsets_gloss += get_lemma_synset(meronym) + ". "
+
+    for holonym in synset.member_holonyms():
+      synsets_gloss += get_lemma_synset(holonym) + ". "
+
+    for example in synset.examples():
+      synsets_gloss += example + ". "
+
+    __dict_gloss_for_synset__[key] = reprocess_sen(synsets_gloss)
+
+  return __dict_gloss_for_synset__[key]

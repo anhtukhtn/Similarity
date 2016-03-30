@@ -2,6 +2,12 @@ import nltk
 import POSWrapper
 from nltk.metrics import jaccard_distance
 import heapq
+from nltk.util import ngrams
+
+def get_ngrams_for(pos, num_of_grams):
+  ngrams_result = ngrams(pos, num_of_grams)
+  return ngrams_result
+
 
 def split_and_POS(sen):
   # tokenize
@@ -18,6 +24,18 @@ def split_and_POS(sen):
 def jaccard_POS(sen_1, sen_2):
   pos_1 = split_and_POS(sen_1)
   pos_2 = split_and_POS(sen_2)
+
+  pos_1 = set(pos_1)
+  pos_2 = set(pos_2)
+  return jaccard_distance(pos_1, pos_2)
+
+
+def jaccard_POS_ngrams(sen_1, sen_2, n_grams):
+  pos_1 = split_and_POS(sen_1)
+  pos_2 = split_and_POS(sen_2)
+
+  pos_1 = get_ngrams_for(pos_1, n_grams)
+  pos_2 = get_ngrams_for(pos_2, n_grams)
 
   pos_1 = set(pos_1)
   pos_2 = set(pos_2)

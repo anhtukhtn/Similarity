@@ -49,14 +49,19 @@ def sim_2_word(word_1, word_2):
 
 def sim_for_words_words_with_order(words_1, words_2):
   sim = 0.0001
+  count = 0
   for word_1 in words_1:
     p_max = 0
     for word_2 in words_2:
       p = sim_2_word(word_1, word_2)
       if p > p_max:
         p_max = p
-    sim += p_max
-  sim /= (len(words_1) + 0.001)
+
+    if p > 0:
+      count += 1
+      sim += p_max
+
+  sim /= (count + 0.001)
   return sim
 
 
@@ -78,7 +83,10 @@ def split_words(sen):
   return tagged_words
 
 
-def wordnet_based(sen_1, sen_2):
+def wordnet_based(sen_1, sen_2, WSD_type):
+  global __WSD_type__
+  __WSD_type__ = WSD_type
+
   result = sim_for_words_words_no_order(sen_1, sen_2)
   return result
 

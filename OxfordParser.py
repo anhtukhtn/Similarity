@@ -510,3 +510,36 @@ def get_definitions_of_word_for_svm(word):
 
 #writeDictFromOxfordToFile("OxfordDict/b-detail_fixed_xh_co.csv",__dict_nouns__);
 
+
+def reprocess_sen(sen):
+#  sen = sen.lower()
+#  sen = sen.replace("sth","something")
+#  sen = sen.replace("sb","somebody")
+  return sen
+
+
+def get_defi_for_syn(syn_ox):
+  defi = reprocess_sen(syn_ox["d"])
+  return defi
+
+
+def get_gloss_for_syn(syn_ox):
+  definition = ""
+
+  if syn_ox.has_key('sd') and syn_ox['sd'] != None:
+    definition += syn_ox['sd']
+
+  if syn_ox.has_key('d') and syn_ox['d'] != None:
+    definition += ". " + syn_ox['d']
+
+  if syn_ox.has_key('x') and syn_ox['x'] != None:
+    example = syn_ox['x']
+    definition += ". " + example
+
+  if syn_ox.has_key('xh') and syn_ox['xh'] != None:
+    xh = syn_ox['xh']
+    definition += ". " + xh
+
+  definition = reprocess_sen(definition)
+
+  return definition

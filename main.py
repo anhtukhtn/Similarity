@@ -14,6 +14,7 @@ Util.remove_files_in_path("svm/test/")
 
 print "train ..."
 svmData.create_input_for_train_svm()
+
 print "run svm..."
 svmData.create_input_for_test_svm()
 svm.run_svm()

@@ -64,10 +64,12 @@ def levenshtein_in_context(sen_1, sen_2, sens):
 def jaccard(sen_1, sen_2):
   tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(sen_1))
   words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')]
+
   sen_set_1 = set(words)
 
   tagged_sent = POSWrapper.pos_tag(nltk.wordpunct_tokenize(sen_2))
   words = [word for word,pos in tagged_sent if (pos == 'NN' or pos == 'NNS' or pos == 'JJ' or pos == '' or pos == 'VB' or pos == 'VBN' or pos == 'VBD' or pos == 'RB')]
+
   sen_set_2 = set(words)
 
   jaccard_value = jaccard_distance(sen_set_1, sen_set_2)
