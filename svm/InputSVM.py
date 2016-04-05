@@ -2,6 +2,7 @@ import Literal
 import Ngrams
 import ShallowSyntactic
 import WordnetBased
+import LSA
 import jellyfish as Jelly
 
 import CompareWithGold
@@ -80,11 +81,11 @@ def cal_feature_values_for(syn_wn, syn_ox):
   # # # # # # # # # # # # # # # # #
   # ShallowSyntactic
 
-  shallow_jaccard_POS = 0
-  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS(gloss_wn, gloss_ox)
-  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 2)
-  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 3)
-  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 4)
+#  shallow_jaccard_POS = 0
+#  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS(gloss_wn, gloss_ox)
+#  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 2)
+#  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 3)
+#  shallow_jaccard_POS += 1.0001 - ShallowSyntactic.jaccard_POS_ngrams(gloss_wn, gloss_ox, 4)
 #  feature_values.append(shallow_jaccard_POS)
 
   # # # # # # # # # # # # # # # # #
@@ -101,6 +102,11 @@ def cal_feature_values_for(syn_wn, syn_ox):
 
 #  wn_value_1 = WordnetBased.wordnet_based(gloss_wn, gloss_ox, 1)
 #  feature_values.append(wn_value + wn_value_1)
+
+  # # # # # # # # # # # # # # # # #
+  # lsa
+  lsa_tfidf = LSA.sim_tfidf(defi_wn, defi_ox)
+  feature_values.append(lsa_tfidf)
 
   return feature_values
 

@@ -1,0 +1,53 @@
+processing. preparing or putting through a prescribed procedure. the processing of newly arrived immigrants.the processing of ore to obtain minerals.
+blowing. processing that involves blowing a gas. 
+insufflation. (medicine) blowing air or medicated powder into the lungs (or into some other body cavity). 
+data processing. (computer science) a series of operations on data by a computer in order to retrieve or transform or classify information. 
+administrative data processing. business data processing. data processing in accounting or business management. 
+automatic data processing. ADP. data processing by a computer. 
+electronic data processing. EDP. automatic data processing by electronic means without the use of tabulating cards or punched tapes. 
+integrated data processing. IDP. automatic data processing in which data acquisition and other stages or processing are integrated into a coherent system. 
+data mining. data processing using sophisticated data search capabilities and statistical algorithms to discover patterns and correlations in large preexisting databases; a way to discover new meaning in data. 
+distributed data processing. remote-access data processing. teleprocessing. data processing in which some of the functions are performed in different places and connected by transmission facilities. 
+list processing. processing data that is given in the form of chained lists. 
+multiprocessing. parallel processing. simultaneous processing by two or more processing units. 
+operation. (computer science) data processing in which the result is completely specified by a rule (especially the processing that results from a single instruction). it can perform millions of operations per second.
+access. memory access. (computer science) the operation of reading or writing stored information. 
+disk access. memory access to the computer disk on which information is stored. 
+asynchronous operation. operations that occur without a regular or predictable time relation to other events. 
+auxiliary operation. off-line operation. a operation performed by off-line equipment not under the control of the central processing unit. 
+boolean operation. binary operation. binary arithmetic operation. an operation that follows the rules of Boolean algebra; each operand and the result take one of two values. 
+computer operation. machine operation. an elementary operation that a computer is designed and built to perform. 
+floating-point operation. flop. an arithmetic operation performed on floating-point numbers. this computer can perform a million flops per second.
+retrieval. (computer science) the operation of accessing information from the computer's memory. 
+stovepiping. retrieval of information from unconnected databases; the situation that exists when it is necessary to climb out of one database in order to climb down into another; sometimes used for protection against wandering hackers. 
+storage. (computer science) the process of storing information in a computer memory or on a magnetic tape or disk. 
+fragmentation. (computer science) the condition of a file that is broken up and stored in many different locations on a magnetic disk. fragmentation slows system performance because it takes extra time to locate and assemble the parts of the fragmented file.
+concurrent operation. two or more operations performed at the same time (or within a give interval). 
+control operation. control function. an operation that controls the recording or processing or transmission of interpretation of data. a control operation started the data processing.
+dyadic operation. an operation on exactly two operands. 
+fixed-cycle operation. an operation that is completed in a specified number of regularly timed execution cycles. 
+logic operation. logical operation. an operation that follows the rules of symbolic logic. 
+monadic operation. unary operation. an operation with exactly one operand. 
+multiplex operation. an operation in which two or more activities are interleaved. 
+parallel operation. simultaneous operation. the simultaneous execution of two or more operations. 
+printing operation. an operation that controls the printing or display of information. 
+carriage return. the operation that prepares for the next character to be printed or displayed as the first character on a line. 
+line feed. the operation that prepares for the next character to be printed or displayed on the next line. 
+new line. the operation that prepares for the next character to be printed or displayed as the first character on the next line. 
+search. lookup. an operation that determines whether one or more of a set of items has a specified property. they wrote a program to do a table lookup.
+serial operation. sequential operation. consecutive operation. the sequential execution of operations one after another. 
+sort. sorting. an operation that segregates items into groups according to a specified criterion. the bottleneck in mail delivery it the process of sorting.
+synchronous operation. operations that are initiated predictably by a clock. 
+threshold operation. an operation performed on operands in order to obtain the value of a threshold function. 
+majority operation. a threshold operation in which each operand is 0 or 1; output is 1 if and only if more than half the operands have the value 1. 
+priority processing. data processing in which the operations performed are determined by a system of priorities. 
+background processing. backgrounding. the execution of low priority programs while higher priority programs are not using the processing system. 
+foreground processing. foregrounding. the execution of a program that preempts the use of the processing system. 
+real-time processing. real-time operation. data processing fast enough to keep up with an outside process. 
+serial processing. sequential processing by two or more processing units. 
+word processing. rapid and efficient processing (storage and printing) of linguistic data for composition and editing. 
+development. developing. processing a photosensitive material in order to make an image visible. the development and printing of his pictures took only two hours.
+underdevelopment. (photography) inadequate processing of film resulting in inadequate contrast. 
+refining. refinement. purification. the process of removing impurities (as from oil or metals or sugar etc.). 
+rectification. (chemistry) the process of refinement or purification of a substance by distillation. 
+vulcanization. vulcanisation. process of treating rubber or rubberlike materials with sulphur at great heat to improve elasticity and strength or to harden them. 

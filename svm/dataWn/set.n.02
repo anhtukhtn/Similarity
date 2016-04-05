@@ -1,0 +1,27 @@
+set. (mathematics) an abstract collection of numbers or symbols. the set of prime numbers is infinite.
+diagonal. (mathematics) a set of entries in a square matrix running diagonally either from the upper left to lower right entry or running from the upper right to lower left entry. 
+domain. the set of values of the independent variable for which a function is defined. 
+field. (mathematics) a set of elements such that addition and multiplication are commutative and associative and multiplication is distributive over addition and there are two elements 0 and 1. the set of all rational numbers is a field.
+scalar field. a field of scalars. 
+group. mathematical group. a set that is closed, associative, has an identity element and every element has an inverse. 
+Abelian group. commutative group. a group that satisfies the commutative law. 
+subgroup. (mathematics) a subset (that is not empty) of a mathematical group. 
+intersection. a point or set of points common to two or more geometric configurations. 
+origin. the point of intersection of coordinate axes; where the values of the coordinates are all zero. 
+interval. a set containing all points (or all real numbers) between two given endpoints. 
+closed interval. bounded interval. an interval that includes its endpoints. 
+open interval. unbounded interval. an interval that does not include its endpoints. 
+sub-interval. an interval that is included in another interval. 
+locus. the set of all points or lines that satisfy or are determined by specific conditions. the locus of points equidistant from a given point is a circle.
+Mandelbrot set. a set of complex numbers that has a highly convoluted fractal boundary when plotted; the set of all points in the complex plane that are bounded under a certain mathematical iteration. 
+mathematical space. topological space. (mathematics) any set of points that satisfy a set of postulates of some kind. assume that the topological space is finite dimensional.
+manifold. a set of points such as those of a closed surface or an analogue in three or more dimensions. 
+metric space. a set of points such that for every pair of points there is a nonnegative real number called their distance that is symmetric and satisfies the triangle inequality. 
+Euclidean space. a space in which Euclid's axioms and definitions apply; a metric space that is linear and finite-dimensional. 
+Hilbert space. a metric space that is linear and complete and (usually) infinite-dimensional. 
+null space. a space that contains no points; and empty space. 
+subspace. a space that is contained within another space. 
+null set. a set that is empty; a set with no members. 
+solution. root. the set of values that give a true statement when substituted into an equation. 
+subset. a set whose members are members of another set; a set contained within another set. 
+universal set. (mathematics) the set that contains all the elements or objects involved in the problem under consideration. all other sets are subsets of the universal set.
