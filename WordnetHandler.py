@@ -230,6 +230,39 @@ def get_defi_for_syn(syn_wn):
   return defi
 
 
+def get_ex_for_syn(syn_wn):
+  synsets_gloss = ""
+  for example in syn_wn.examples():
+    synsets_gloss += example + ". "
+  return synsets_gloss
+
+
+def get_lemma_for_synset(synset):
+  lemma = get_lemma_synset(synset)
+  lemma = reprocess_sen(lemma)
+  return lemma
+
+
+def get_hyper_defi_for_synset(synset):
+  synsets_gloss = ""
+
+  for hypernym in synset.hypernyms():
+    synsets_gloss += hypernym.definition() + ". "
+  for hyponym in synset.hyponyms():
+    synsets_gloss += hyponym.definition() + ". "
+  return synsets_gloss
+
+
+def get_mero_defi_for_synset(synset):
+  synsets_gloss = ""
+
+  for mero in synset.part_meronyms():
+    synsets_gloss += mero.definition() + ". "
+  for hyponym in synset.member_holonyms():
+    synsets_gloss += hyponym.definition() + ". "
+  return synsets_gloss
+
+
 def get_gloss_for_syn(synset):
   key = synset.name()
   if key not in __dict_gloss_for_synset__:

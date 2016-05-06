@@ -9,6 +9,7 @@ import copy
 from collections import OrderedDict
 
 __filename_ox_dict__ = "OxfordXML/B_150107.xml"
+__filename_ox_csv__ = "OxfordXML/input_ox_.csv"
 
 
 def remove_tv(element):
@@ -523,6 +524,27 @@ def get_defi_for_syn(syn_ox):
   return defi
 
 
+def get_short_defi_for_syn(syn_ox):
+  if syn_ox.has_key('sd') and syn_ox['sd'] != None:
+    defi = reprocess_sen(syn_ox["sd"])
+    return defi
+  return ""
+
+
+def get_collocation_for_syn(syn_ox):
+  if syn_ox.has_key('cl_in_x') and syn_ox['cl_in_x'] != None:
+    string = reprocess_sen(syn_ox["cl_in_x"])
+    return string
+  return ""
+
+
+def get_ex_for_syn(syn_ox):
+  if syn_ox.has_key('ex') and syn_ox['ex'] != None:
+    defi = reprocess_sen(syn_ox["ex"])
+    return defi
+  return ""
+
+
 def get_gloss_for_syn(syn_ox):
   definition = ""
 
@@ -543,3 +565,31 @@ def get_gloss_for_syn(syn_ox):
   definition = reprocess_sen(definition)
 
   return definition
+
+
+__dict_csv__ =  OrderedDict()
+
+def parse_csv_dict_ox():
+  f = open(__filename_ox_csv__,'r');
+  line = f.readline();
+  while (line):
+    if len(line) > 0:
+
+      sens = line.split(",")
+      if sens[0] not in __dict_csv__:
+        __dict_csv__[sens[0]] = OrderedDict()
+      if sens[1] not in __dict_csv__[sens[0]]:
+        __dict_csv__[sens[0]][sens[1]]= OrderedDict()
+      defi = sens[3]
+      defi = defi.replace("\"","")
+      __dict_csv__[sens[0]][sens[1]][sens[2]] = defi
+      line = f.readline();
+
+  f.close()
+
+
+def get_dict_csv_nouns():
+  return __dict_csv__
+
+parse_csv_dict_ox()
+#print __dict_csv__

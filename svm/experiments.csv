@@ -16,7 +16,7 @@ Wordnet-based,first,,,
 ,max syn,,,
 LSA,,,,
 ,,,,
-,,,,
+,,Wn-base,,
 ,Levenshtein-jaccard_defi-defi,first_defi-defi,0.766,
 ,Levenshtein-jaccard_defi-defi,max syn_defi-defi,0.758,
 ,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,0.77,
@@ -24,4 +24,9 @@ LSA,,,,
 ,jaccard_gloss-gloss,first_defi-defi,0.757,
 ,jaccard_defi-defi-gloss-gloss,first_defi-defi,0.769,
 ,Levenshtein-jaccard_defi-defi-gloss-gloss,jaccard_POS,Levenshtein-jaccard_defi-defi-gloss-gloss,0.766
-,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,0.775,
+,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,0.7778,
+,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,lsa_defi_104domains,0.782
+,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi first_ex-ex,0.7776,
+80%_train,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,lsa_defi_104domains,0.7853
+80%_train,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,lsa_defi_hyper_104domains,0.788
+gold from vn,Levenshtein-jaccard_defi-defi-gloss-gloss,first_defi-defi,lsa_defi_hyper_104domains,0.78

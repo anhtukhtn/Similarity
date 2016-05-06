@@ -4,6 +4,7 @@ from transform.tfidf import TFIDF
 
 import sys
 
+__dict_search__ = {}
 
 try:
 	from numpy import dot
@@ -38,10 +39,13 @@ class VectorSpace:
 
   def search(self, searchList):
     """ search for documents that match based on a list of terms """
-    queryVector = self._build_query_vector(searchList)
+    key = searchList[0]
+    if key not in __dict_search__:
+      queryVector = self._build_query_vector(searchList)
+      ratings = [self._cosine(queryVector, documentVector) for documentVector in self.collection_of_document_term_vectors]
+      __dict_search__[key] = ratings
 
-    ratings = [self._cosine(queryVector, documentVector) for documentVector in self.collection_of_document_term_vectors]
-    return ratings
+    return __dict_search__[key]
 
 
   def sim(self, string_1, string_2):

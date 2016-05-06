@@ -75,11 +75,11 @@ def sim_ox_wn_via_svm():
   flag_can_go = False
   for word in dict_ox:
 
-    if word == "blockage":
-      flag_can_go = True
-
-    if flag_can_go == False:
-      continue
+#    if word == "brook":
+#      flag_can_go = True
+#
+#    if flag_can_go == False:
+#      continue
 
     word_syns_ox = dict_ox[word]
     wn_synsets = WordnetHandler.get_synsets_for_word(word, "n")

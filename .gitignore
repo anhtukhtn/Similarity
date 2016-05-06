@@ -6,3 +6,6 @@ EVD/
 svm/train/
 svm/test/
 CoParser.py
+svm/dataWn/
+svm/goldFromVn/
+svm/input_feature_values

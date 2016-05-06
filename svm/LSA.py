@@ -2,6 +2,7 @@ import FileProcess
 from nltk.corpus import wordnet as wn
 import svm.semanticpy.vector_space as VS
 from os import walk
+import os
 from svm.semanticpy.transform.tfidf import TFIDF
 
 
@@ -33,13 +34,26 @@ def write_wn_to_docs(folder):
   for lvl_2_syn in entity_synset.hyponyms():
     for lvl_3_syn in lvl_2_syn.hyponyms():
       for lvl_4_syn in lvl_3_syn.hyponyms():
-        print lvl_4_syn.name()
-        filename = folder + lvl_4_syn.name()
-        write_full_hyponyms_synset_to_file(lvl_4_syn, filename)
+        for lvl_5_syn in lvl_4_syn.hyponyms():
+          filename = folder + lvl_5_syn.name().replace("/",'_')
+          write_full_hyponyms_synset_to_file(lvl_5_syn, filename)
+
+
+def remove_smalle_file(folder):
+  files = []
+  for (dirpath, dirnames, filenames) in walk(__filename_folder__):
+    for filename in filenames:
+      files.append(__filename_folder__ + filename)
+
+  for filename in files:
+    lines = [line.rstrip('\n') for line in open(filename)]
+    if len(lines) < 50:
+      os.remove(filename)
 
 
 def get_wn_data():
   write_wn_to_docs(__filename_folder__)
+  remove_smalle_file(__filename_folder__)
 
 
 def test_lsa_wn():
@@ -54,9 +68,7 @@ def test_lsa_wn():
     string = " ".join(lines)
     files_string.append(string)
 
-  print "LSA creating ..."
   vector_space = VS.VectorSpace(files_string, [TFIDF])
-  print "LSA done ..."
 
   sen_1 = "a financial institution that accepts deposits and channels the money into lending activities"
   sen_2 = "an organization that provides various financial services, for example keeping or lending money"

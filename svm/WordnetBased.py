@@ -17,8 +17,8 @@ def pos_is_verb(pos):
   return (pos == 'VB' or pos == 'VBD' or pos == 'VBN')
 
 
-def synsets_for_word(word):
-  (word, pos) = word
+def synsets_for_word(word_pos):
+  (word, pos) = word_pos
   synsets_of_noun = []
   if pos_is_noun(pos):
     synsets_of_noun = WordnetHandler.get_synsets_for_word(word, 'n')
@@ -57,7 +57,7 @@ def sim_for_words_words_with_order(words_1, words_2):
       if p > p_max:
         p_max = p
 
-    if p > 0:
+    if p_max > 0:
       count += 1
       sim += p_max
 
@@ -90,6 +90,25 @@ def wordnet_based(sen_1, sen_2, WSD_type):
   result = sim_for_words_words_no_order(sen_1, sen_2)
   return result
 
+
+def wordnet_based_synset(syn_wn, sen_ox):
+  sim = 0.0001
+  words_ox = split_words(sen_ox)
+  count = 0
+  for word in words_ox:
+    p_max = 0
+    synsets_1 = synsets_for_word(word)
+    for synset in synsets_1:
+      p = WordnetHandler.cal_similarity(synset, syn_wn)
+      if p > p_max:
+        p_max = p
+
+    if p_max != 0:
+      count += 1
+      sim += p_max
+
+  sim /= (count + 0.001)
+  return sim
 
 def max_wordnet_based(sens):
   sen_0 =  ""
